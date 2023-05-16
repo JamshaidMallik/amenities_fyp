@@ -22,7 +22,6 @@ class InterestAreaScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 10,left: 15,right: 15),
         child: Column(
           children: [
-
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(20),

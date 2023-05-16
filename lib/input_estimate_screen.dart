@@ -71,7 +71,7 @@ List<String> listItem = [
                   textAlignVertical: TextAlignVertical.center,
                   obscureText: true,
                   decoration: InputDecoration(
-                   label:  Text("Number of Floor",style: kSecondaryText,),
+                   label:  Text("Number of Floor",),
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.all(8),
                   ),
@@ -85,7 +85,6 @@ List<String> listItem = [
               height: 130,
               width: double.infinity,
               decoration: BoxDecoration(
-                // border: Border.all(color: Colors.grey),
                   color: Colors.grey.shade200,
                   borderRadius: BorderRadius.circular(20)),
               child: Padding(
@@ -94,7 +93,7 @@ List<String> listItem = [
                   textAlignVertical: TextAlignVertical.center,
                   obscureText: true,
                   decoration: InputDecoration(
-                    label: Text("Numbers of Room",style: kSecondaryText,),
+                    label: Text("Numbers of Room",),
                     // hintText: "Numbers",
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.all(8),
@@ -118,7 +117,7 @@ List<String> listItem = [
                   textAlignVertical: TextAlignVertical.center,
                   obscureText: true,
                   decoration: InputDecoration(
-                    label: Text("Room Dimention",style: kSecondaryText,),
+                    label: Text("Room Dimention"),
                     // hintText: "Numbers",
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.all(8),

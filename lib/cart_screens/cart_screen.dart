@@ -23,7 +23,7 @@ class CartScreen extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-          itemCount: 1,
+          itemCount: 4,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
@@ -52,7 +52,8 @@ class CartScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
-                              child: Center(child: Padding(
+                              child: Center(
+                                  child: Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Icon(Icons.remove),
                               )),
@@ -63,9 +64,13 @@ class CartScreen extends StatelessWidget {
                             ),
                             Text("1"),
                             Container(
-                              child: Center(child: Padding(
+                              child: Center(
+                                  child: Padding(
                                 padding: const EdgeInsets.all(4.0),
-                                child: Icon(Icons.add,color: ,),
+                                child: Icon(
+                                  Icons.add,
+                                  color: kWhiteColor,
+                                ),
                               )),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
@@ -76,13 +81,35 @@ class CartScreen extends StatelessWidget {
                         ),
                         height: 50,
                         width: 100,
-                      )
+                      ),
                     ],
                   ),
                 ],
               ),
             );
           }),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Container(
+          height: 50,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: Colors.teal),
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Center(
+              child: Text(
+                "Estimation",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
