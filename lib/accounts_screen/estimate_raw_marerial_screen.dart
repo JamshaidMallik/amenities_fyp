@@ -1,3 +1,4 @@
+import 'package:amenities_app/cart_screens/cart_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -173,7 +174,7 @@ class EstimateRawMaterialScreen extends StatelessWidget {
           Center(
             child: GestureDetector(
               onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EstimateRawMaterialScreen()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CartScreen()));
               },
               child: Container(
                 height: 50,
@@ -185,7 +186,7 @@ class EstimateRawMaterialScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(15),
                   child: Center(
                     child: Text(
-                      "Order Now",
+                      "Order Now  ",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,

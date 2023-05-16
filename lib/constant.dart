@@ -48,7 +48,7 @@ TextStyle kPrimaryText = GoogleFonts.poppins(
 TextStyle kSecondaryText = GoogleFonts.poppins(
     textStyle: const TextStyle(
       fontSize: 14.0,
-      color: Colors.teal,
+      color: Colors.white,
       fontWeight: FontWeight.w300,
     ));
 
