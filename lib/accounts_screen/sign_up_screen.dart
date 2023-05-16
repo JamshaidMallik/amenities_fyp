@@ -10,30 +10,44 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       body:Padding(
-        padding: const EdgeInsets.only(top: 80),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 80, ),
         child: SingleChildScrollView(
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                  "Sighn Up",
-                  style: kBigHeadingText
-              ),
-              Text('Enter your email and password'),
-              Text('and start creating'
-              ),
+              Text("Sign Up", style: kBigHeadingText),
+              const Text('Enter your email and password'),
+              const Text('and start creating'),
               20.0.height,
               Container(
                 height: 50,
-                width: 300,
+                width: double.infinity,
                 decoration: BoxDecoration(
                   // border: Border.all(color: Colors.grey),
                     color: kWhiteColor,
                     borderRadius: BorderRadius.circular(20)),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: const TextField(
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 12),
+                  child: TextField(
+                    textAlignVertical: TextAlignVertical.center,
+                    decoration: InputDecoration(
+                        hintText: "Full Name",
+                        border: InputBorder.none
+                    ),
+                  ),
+                ),
+              ),
+              20.0.height,
+              Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 12),
+                  child: TextField(
                     textAlignVertical: TextAlignVertical.center,
                     decoration: InputDecoration(
                         hintText: "Email",
@@ -44,12 +58,11 @@ class SignUpScreen extends StatelessWidget {
               ),
               20.0.height,
               Container(height: 50,
-                width: 300,
+                width: double.infinity,
                 decoration: BoxDecoration(
-                  // border: Border.all(color: Colors.grey),
                     color: kWhiteColor,
                     borderRadius: BorderRadius.circular(20)),
-                child: TextField(
+                child: const TextField(
                   textAlignVertical: TextAlignVertical.center,
                   obscureText: true,
                   decoration: InputDecoration(
@@ -64,12 +77,12 @@ class SignUpScreen extends StatelessWidget {
               30.0.height,
               Container(
                 height: 50,
-                width: 300,
+                width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.teal),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
+                child: const Padding(
+                  padding: EdgeInsets.all(15),
                   child: Center(
                     child: Text(
                       "Sign Up",
@@ -82,58 +95,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               20.0.height,
-              Center(
-                child: Text(
-                  "Or,continue with",
-                ),
-              ),
-              30.0.height,
-              Container(
-                height: 50,
-                width: 300,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: kRedColor,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundImage: NetworkImage("https://i.pinimg.com/564x/d1/d5/4f/d1d54f6b1b7922b8976b0b83e8a1f91b.jpg"),
-                      ),
-                      // Icon(Icons.baby_changing_station),
-                      Text('continue with facebook',style:kSecondaryWhiteText),
-
-                    ],
-                  ),
-                ),
-              ),
-              20.0.height,
-              Container(
-                height: 50,
-                width: 300,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: kWhiteColor,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        backgroundImage: NetworkImage("https://i.pinimg.com/564x/60/41/99/604199df880fb029291ddd7c382e828b.jpg"),
-                      ),
-                      // Icon(Icons.baby_changing_station),
-                      Text('continue with Google',style: TextStyle(fontWeight: FontWeight.bold),),
-                      SizedBox(),
-                    ],
-                  ),
-                ),
-              ),
-              20.0.height,
-              Center(
+              const Center(
                 child: Text.rich(
                   TextSpan(
                     children: [
@@ -145,7 +107,6 @@ class SignUpScreen extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.italic,
-                            // decoration: TextDecoration.underline,
                             color: kBlueColor),
                       ),
                     ],
