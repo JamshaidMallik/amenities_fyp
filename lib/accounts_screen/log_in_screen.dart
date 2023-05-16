@@ -19,15 +19,13 @@ class LogInScreen extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Sighn in", style: kBigHeadingText),
-              const Text('Welcome back you'),
-              const Text('been missed'),
+              Text("Sign in", style: kBigHeadingText),
+              Text('Welcome back!', style: kBigHeadingText.copyWith(fontSize: 14.0,fontWeight: FontWeight.w300),),
               20.0.height,
               Container(
                 height: 50,
-            width: double.infinity,
+                width: double.infinity,
                 decoration: BoxDecoration(
-                    // border: Border.all(color: Colors.grey),
                     color: kWhiteColor,
                     borderRadius: BorderRadius.circular(20)),
                 child: const Padding(
@@ -44,7 +42,6 @@ class LogInScreen extends StatelessWidget {
                 height: 50,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    // border: Border.all(color: Colors.grey),
                     color: kWhiteColor,
                     borderRadius: BorderRadius.circular(20)),
                 child: const TextField(
@@ -67,11 +64,12 @@ class LogInScreen extends StatelessWidget {
                    Navigator.of(context).push(MaterialPageRoute(
                        builder: (context) =>
                            const ResetPasswordScreen()));
-
                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [Text('Recovery Password',)],
+                    children: const [
+                      Text('Recovery Password',)
+                    ],
                   ),
                 ),
               ),
