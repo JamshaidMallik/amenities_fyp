@@ -65,7 +65,6 @@ TextStyle kHeadingText = GoogleFonts.poppins(
 TextStyle kBigHeadingText = GoogleFonts.poppins(
     textStyle: const TextStyle(
       fontSize: 22.0,
-      color: Colors.white,
       fontWeight: FontWeight.bold,
     ));
 /// white Text Styles

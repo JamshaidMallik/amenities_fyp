@@ -65,7 +65,7 @@ class CartScreen extends StatelessWidget {
                             Container(
                               child: Center(child: Padding(
                                 padding: const EdgeInsets.all(4.0),
-                                child: Icon(Icons.add,color: ,),
+                                child: Icon(Icons.add,color: Colors.white,),
                               )),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
