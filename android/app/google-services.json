@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1013386679195",
+    "project_id": "amenities-fyp",
+    "storage_bucket": "amenities-fyp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013386679195:android:c2be71edab8c419b10073e",
+        "android_client_info": {
+          "package_name": "com.example.amenities_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013386679195-t8djqhr56ctpg2q9jc9cliv9pvooo7og.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxQyAPE1GNpXQXa2x8DhFodEgVTn1kV9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013386679195-t8djqhr56ctpg2q9jc9cliv9pvooo7og.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

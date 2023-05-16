@@ -1,26 +1,32 @@
-import 'package:amenities_app/accounts_screen/log_in_screen.dart';
-import 'package:amenities_app/building_type_screen.dart';
 import 'package:amenities_app/interest_area_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: Colors.teal
         )
       ),
-      home: InterestAreaScreen(),
+      home: const InterestAreaScreen(),
       // home: BuildingTypeScreen(),
       // home: LogInScreen(),
     );
