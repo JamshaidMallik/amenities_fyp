@@ -19,20 +19,13 @@ class InterestAreaScreen extends StatelessWidget {
         )],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 50,left: 15,right: 15),
+        padding: const EdgeInsets.only(top: 10,left: 15,right: 15),
         child: Column(
           children: [
-            Container(height: 50,
-            width: double.infinity,
-            child: Center(child: Text("Get Prodect")),
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            ),
+
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(20),
                 child: GestureDetector(
                   onTap: (){
                     Navigator.of(context).push(MaterialPageRoute(
@@ -47,18 +40,18 @@ class InterestAreaScreen extends StatelessWidget {
                 ),
               ),
             ),
-            10.0.height,
             Container(height: 50,
               width: double.infinity,
-              child: Center(child: Text("Get Estimation")),
+              child: Center(child: Text("Get Prodect",style: kSecondaryText,)),
               decoration: BoxDecoration(
-                color: Colors.red,
+                color: Colors.teal,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
             Expanded(
+
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(20),
                 child: Container(
                   width: double.infinity,
                   child: Image.asset("Assets/Images/Estimate_house.png",fit: BoxFit.cover,),
@@ -67,6 +60,14 @@ class InterestAreaScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20)
                   ),
                 ),
+              ),
+            ),
+            Container(height: 50,
+              width: double.infinity,
+              child: Center(child: Text("Get Estimation",style: kSecondaryText,)),
+              decoration: BoxDecoration(
+                color: Colors.teal,
+                borderRadius: BorderRadius.circular(10),
               ),
             ),
           ],
