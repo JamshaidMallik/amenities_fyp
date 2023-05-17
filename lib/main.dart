@@ -1,4 +1,5 @@
 import 'package:amenities_app/accounts_screen/log_in_screen.dart';
+import 'package:amenities_app/admin_screen/slider_screen.dart';
 import 'package:amenities_app/interest_area_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
           color: Colors.teal
         )
       ),
-      home: const LogInScreen(),
+      home: SliderScreen(),
+      // home: const LogInScreen(),
       // home: BuildingTypeScreen(),
       // home: LogInScreen(),
     );
