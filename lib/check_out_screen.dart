@@ -173,7 +173,7 @@ class CheckOutScreen extends StatelessWidget {
                   // btnCancelOnPress: () {},
                   btnOkOnPress: () {},
                   btnOkText: "Continue shopping",
-                  btnOkColor: ktealColor,
+                  btnOkColor: Colors.teal,
                 )..show();
               },
               child: Container(

@@ -1,3 +1,4 @@
+import 'package:amenities_app/admin_screen/order_screen.dart';
 import 'package:amenities_app/admin_screen/profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,14 +40,17 @@ class SliderScreen extends StatelessWidget {
               leading: Icon(Icons.account_box_outlined),
               title: Text("Profile"),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfileScreen()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ProfileScreen()));
               },
             ),
             ListTile(
-              leading: Icon(Icons.emoji_people_sharp),
-              title: Text("Orders"),
-              onTap: () => null,
-            ),
+                leading: Icon(Icons.emoji_people_sharp),
+                title: Text("Orders"),
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => OrderScreen()));
+                }),
             ListTile(
               leading: Icon(Icons.settings),
               title: Text("Setting"),
@@ -81,86 +85,131 @@ class SliderScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        child: Center(child: Text("Users",)),
-                        height: 100,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color:kGreyColor),
-                      ),
-                    ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Card(
+                          elevation: 10,
+                          child: Container(
+                            child: Center(
+                                child: Text(
+                              "Users",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            )),
+                            height: 100,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4.0),
+                                color: Colors.teal.shade300),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Container(
-                      child: Center(child: Text("Products",)),
-                      height: 100,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: kGreyColor),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Card(
+                          elevation: 10,
+                          child: Container(
+                            child: Center(
+                                child: Text(
+                              "Products",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            )),
+                            height: 100,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4.0),
+                                color: Colors.teal.shade300),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-
-            ],
-          ),
-          10.0.height,
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Container(
-                      child: Center(child: Text("Orders",)),
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Card(
+                          elevation: 10,
+                          child: Container(
+                            child: Center(
+                                child: Text(
+                              "Orders",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            )),
+                            height: 100,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4.0),
+                                color: Colors.teal.shade300),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Container(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(child: Text("Complain",)),
-                      ),
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey),
+                // 10.0.width,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Card(
+                          elevation: 10,
+                          child: Container(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                  child: Text(
+                                "Complain",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              )),
+                            ),
+                            height: 100,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4.0),
+                              color: Colors.teal.shade300,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-
-                  ],
+                  ),
                 ),
-              ),
-
-            ],
-          ),
-
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
