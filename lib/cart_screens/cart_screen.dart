@@ -1,3 +1,4 @@
+import 'package:amenities_app/check_out_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -90,20 +91,25 @@ class CartScreen extends StatelessWidget {
           }),
       bottomSheet: Padding(
         padding: const EdgeInsets.all(10),
-        child: Container(
-          height: 50,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: Colors.teal),
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: Center(
-              child: Text(
-                "Estimation",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+        child: GestureDetector(
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CheckOutScreen()));
+          },
+          child: Container(
+            height: 50,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.teal),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Center(
+                child: Text(
+                  "Estimation",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
