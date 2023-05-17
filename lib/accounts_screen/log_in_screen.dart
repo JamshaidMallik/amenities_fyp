@@ -1,15 +1,17 @@
 import 'package:amenities_app/accounts_screen/reset_password_screen.dart';
 import 'package:amenities_app/accounts_screen/sign_up_screen.dart';
-import 'package:amenities_app/building_type_screen.dart';
+import 'package:amenities_app/controller/auth_controller.dart';
 import 'package:amenities_app/interest_area_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../constant.dart';
+import '../widgets/button_widgets.dart';
+import '../widgets/custom_text_field.dart';
 
 class LogInScreen extends StatelessWidget {
-  const LogInScreen({Key? key}) : super(key: key);
+  final AuthController controller = Get.put(AuthController()); // Get the instance of the auth controller
 
   @override
   Widget build(BuildContext context) {
@@ -23,49 +25,18 @@ class LogInScreen extends StatelessWidget {
               Text("Sign in", style: kBigHeadingText),
               Text('Welcome back!', style: kBigHeadingText.copyWith(fontSize: 14.0,fontWeight: FontWeight.w300),),
               20.0.height,
-              Container(
-                height: 50,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: kWhiteColor,
-                    borderRadius: BorderRadius.circular(20)),
-                child: const Padding(
-                  padding: EdgeInsets.only(left: 12),
-                  child: TextField(
-                    textAlignVertical: TextAlignVertical.center,
-                    decoration: InputDecoration(
-                        hintText: "Email", border: InputBorder.none),
-                  ),
-                ),
-              ),
+              customTextField(controller: controller.emailController, hintText: 'Email'),
               20.0.height,
-              Container(
-                height: 50,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: kWhiteColor,
-                    borderRadius: BorderRadius.circular(20)),
-                child: const TextField(
-                  textAlignVertical: TextAlignVertical.center,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    hintText: "Password",
-                    suffixIcon: Icon(
-                      Icons.visibility_off_sharp,
-                    ),
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.all(8),
-                  ),
-                ),
-              ),
+              customTextField(hintText: 'Password', controller: controller.passwordController, suffixIcon: const Icon(Icons.visibility_off_sharp,)),
+              30.0.height,
               Padding(
                 padding: const EdgeInsets.only(right: 25, top: 10),
                 child: GestureDetector(
-                 onTap: (){
-                   Navigator.of(context).push(MaterialPageRoute(
-                       builder: (context) =>
-                           const ResetPasswordScreen()));
-                 },
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                         ResetPasswordScreen()));
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
@@ -75,30 +46,9 @@ class LogInScreen extends StatelessWidget {
                 ),
               ),
               30.0.height,
-              GestureDetector(
-                onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>InterestAreaScreen()));
-                },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.teal),
-                  child: const Padding(
-                    padding: EdgeInsets.all(15),
-                    child: Center(
-                      child: Text(
-                        "Sign In",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              primarybutton(btnText: 'SignIn',press: () async{
+                await controller.login();
+              }),
               20.0.height,
               Center(
                 child: Text.rich(
@@ -112,7 +62,7 @@ class LogInScreen extends StatelessWidget {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const SignUpScreen()));
+                                builder: (context) => SignUpScreen()));
                           },
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,

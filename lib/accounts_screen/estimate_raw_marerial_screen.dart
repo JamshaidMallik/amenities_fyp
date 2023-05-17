@@ -1,5 +1,4 @@
 import 'package:amenities_app/cart_screens/cart_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constant.dart';

@@ -1,6 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'constant.dart';
 
 class CheckOutScreen extends StatelessWidget {
@@ -11,14 +11,14 @@ class CheckOutScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('Your Cart'),
-        leading: Icon(
+        title: const Text('Your Cart'),
+        leading: const Icon(
           Icons.menu,
           color: kWhiteColor,
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Icon(Icons.shopping_cart_outlined),
           ),
         ],
@@ -28,7 +28,7 @@ class CheckOutScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Add Your Details:"),
+            const Text("Add Your Details:"),
             10.0.height,
             Container(
               height: 50,
@@ -156,8 +156,8 @@ class CheckOutScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Total",style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text("0.00",style: TextStyle(fontWeight: FontWeight.bold,),),
+                    const Text("Total",style: TextStyle(fontWeight: FontWeight.bold)),
+                    const Text("0.00",style: TextStyle(fontWeight: FontWeight.bold,),),
                   ],
                 ),
               ),
@@ -173,8 +173,8 @@ class CheckOutScreen extends StatelessWidget {
                   // btnCancelOnPress: () {},
                   btnOkOnPress: () {},
                   btnOkText: "Continue shopping",
-                  btnOkColor: Colors.teal,
-                )..show();
+                  btnOkColor: kTealColor,
+                ).show();
               },
               child: Container(
                 height: 50,
@@ -182,8 +182,8 @@ class CheckOutScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.teal),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
+                child: const Padding(
+                  padding: EdgeInsets.all(15),
                   child: Center(
                     child: Text(
                       "Confirm Detail",
