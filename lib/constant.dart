@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 /// App Colors
-const Color kPrimaryColor = Color(0xff441A05);
+const Color kPrimaryColor = Colors.teal;
 const Color kBlackColor = Colors.black;
 const Color kScaffoldBgColor = Colors.grey;
 const Color kGreenColor = Colors.green;
@@ -13,6 +13,8 @@ const Color kOrangeColor = Colors.orange;
 const Color kGreyColor = Colors.grey;
 const Color kWhiteColor = Colors.white;
 
+/// collection of Firebase
+String kUserCollection = 'users';
 
 /// App Padding and margin
 double kDefaultPadding = 12.0;

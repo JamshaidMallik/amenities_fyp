@@ -1,5 +1,4 @@
 import 'package:amenities_app/admin_screen/profile_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constant.dart';

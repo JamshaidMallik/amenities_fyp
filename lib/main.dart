@@ -1,10 +1,10 @@
-import 'package:amenities_app/accounts_screen/log_in_screen.dart';
 import 'package:amenities_app/admin_screen/slider_screen.dart';
-import 'package:amenities_app/interest_area_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
+import 'accounts_screen/log_in_screen.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -12,6 +12,7 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  GetStorage.init();
   runApp(const MyApp());
 
 }
@@ -28,8 +29,8 @@ class MyApp extends StatelessWidget {
           color: Colors.teal
         )
       ),
-      home: SliderScreen(),
-      // home: const LogInScreen(),
+      // home: SliderScreen(),
+      home: LogInScreen(),
       // home: BuildingTypeScreen(),
       // home: LogInScreen(),
     );
