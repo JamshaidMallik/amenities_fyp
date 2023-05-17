@@ -30,7 +30,7 @@ class ResetPasswordScreen extends StatelessWidget {
               child: const TextField(
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  icon: Icon(Icons.account_box_outlined,color: ktealColor,),
+                  icon: Icon(Icons.account_box_outlined,color: kTealColor,),
                     hintText: "Email", border: InputBorder.none),
               ),
             ),

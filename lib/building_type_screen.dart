@@ -42,7 +42,7 @@ class BuildingTypeScreen extends StatelessWidget {
                   },
                   child: Container(
                     width: double.infinity,
-                    child: Icon(Icons.home_outlined,size: 140,color: ktealColor,),
+                    child: Icon(Icons.home_outlined,size: 140,color: kTealColor,),
                    decoration: BoxDecoration(color: Colors.grey.shade200,
                    borderRadius: BorderRadius.circular(20)),),
                 ),
@@ -54,7 +54,7 @@ class BuildingTypeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   width: double.infinity,
-                  child: Icon(Icons.castle_outlined,size: 140,color: ktealColor,),
+                  child: Icon(Icons.castle_outlined,size: 140,color: kTealColor,),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20)

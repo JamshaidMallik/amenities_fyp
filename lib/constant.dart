@@ -7,8 +7,8 @@ const Color kScaffoldBgColor = Colors.grey;
 const Color kGreenColor = Colors.green;
 const Color kBlueColor = Colors.blue;
 const Color kYellowColor = Colors.yellow;
- Color kRedColor = Colors.red.shade400;
-const Color ktealColor = Colors.teal;
+final Color kRedColor = Colors.red.shade400;
+const Color kTealColor = Colors.teal;
 const Color kOrangeColor = Colors.orange;
 const Color kGreyColor = Colors.grey;
 const Color kWhiteColor = Colors.white;
@@ -17,20 +17,18 @@ const Color kWhiteColor = Colors.white;
 /// App Padding and margin
 double kDefaultPadding = 12.0;
 double kDefaultMargin = 16.0;
+
 /// Media Query Size
 var kSize = MediaQueryData.fromWindow(WidgetsBinding.instance.window).size;
+
 /// App sizes
 extension SpaceXY on double {
   SizedBox get width => SizedBox(width: this);
   SizedBox get height => SizedBox(height: this);
 }
 
-
 /// App SnackBar
-void kShowSnackBar(
-    {required BuildContext context,
-      required String message,
-      required bool isSuccess}) {
+void kShowSnackBar({required BuildContext context, required String message, required bool isSuccess}) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     behavior: SnackBarBehavior.floating,
     backgroundColor: isSuccess ? kGreenColor : kRedColor,
@@ -38,6 +36,7 @@ void kShowSnackBar(
     duration: const Duration(seconds: 2),
   ));
 }
+
 /* App Text Styles */
 /// black Text Styles
 TextStyle kPrimaryText = GoogleFonts.poppins(
@@ -51,7 +50,6 @@ TextStyle kSecondaryText = GoogleFonts.poppins(
       color: Colors.white,
       fontWeight: FontWeight.w300,
     ));
-
 TextStyle kSubHeadingText = GoogleFonts.poppins(
     textStyle: const TextStyle(
       fontSize: 16.0,
@@ -67,6 +65,7 @@ TextStyle kBigHeadingText = GoogleFonts.poppins(
       fontSize: 22.0,
       fontWeight: FontWeight.bold,
     ));
+
 /// white Text Styles
 TextStyle kPrimaryWhiteText = GoogleFonts.poppins(
     textStyle: const TextStyle(
@@ -98,6 +97,7 @@ TextStyle kBigHeadinWhiteText = GoogleFonts.poppins(
       color: Colors.white,
       fontWeight: FontWeight.bold,
     ));
+
 /// gray Text Styles
 TextStyle kPrimaryGrayText = GoogleFonts.poppins(
     textStyle: const TextStyle(
@@ -105,4 +105,3 @@ TextStyle kPrimaryGrayText = GoogleFonts.poppins(
       fontSize: 12.0,
       fontWeight: FontWeight.w300,
     ));
-// Define a list of colors

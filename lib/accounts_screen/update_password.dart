@@ -29,7 +29,7 @@ class UpdatePassword extends StatelessWidget {
               child: const TextField(
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock_outline,color: ktealColor,),
+                  prefixIcon: Icon(Icons.lock_outline,color: kTealColor,),
                     hintText: "New Password", border: InputBorder.none),
               ),
             ),
@@ -45,10 +45,10 @@ class UpdatePassword extends StatelessWidget {
               textAlignVertical: TextAlignVertical.center,
               obscureText: true,
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.lock_outline,color: ktealColor,),
+                prefixIcon: Icon(Icons.lock_outline,color: kTealColor,),
                 hintText: "Confirm Password",
                 suffixIcon:
-                Icon(Icons.visibility_off_sharp,color: ktealColor, ),
+                Icon(Icons.visibility_off_sharp,color: kTealColor, ),
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.all(8),
               ),
@@ -67,7 +67,7 @@ class UpdatePassword extends StatelessWidget {
                     // btnCancelOnPress: () {},
                 btnOkOnPress: () {},
                   btnOkText: "Login",
-                  btnOkColor: ktealColor,
+                  btnOkColor: kTealColor,
                 )..show();
               },
               child: Container(

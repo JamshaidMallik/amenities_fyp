@@ -13,7 +13,6 @@ class SignUpScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 80, ),
         child: SingleChildScrollView(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text("Sign Up", style: kBigHeadingText),
@@ -68,7 +67,7 @@ class SignUpScreen extends StatelessWidget {
                   decoration: InputDecoration(
                     hintText: "Password",
                     suffixIcon:
-                    Icon(Icons.visibility_off_sharp, ),
+                    Icon(Icons.visibility_off_sharp,),
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.all(8),
                   ),
