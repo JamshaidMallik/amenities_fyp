@@ -20,12 +20,6 @@ class BuildingTypeScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 50,left: 15,right: 15),
         child: Column(
           children: [
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [Icon(Icons.menu,color: ktealColor,size: 30,),
-            //     Icon(Icons.shopping_cart_outlined,color: ktealColor,size: 30,),
-            //   ],
-            // ),
             30.0.height,
             Center(child: Text('Choose your Building Type'),),
             30.0.height,

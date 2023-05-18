@@ -84,7 +84,7 @@ class AreaScreen extends StatelessWidget {
                       width: 100,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.red),
+                          color: kGreyColor),
                       ),
                       Text("Marla")
                     ],
@@ -99,7 +99,7 @@ class AreaScreen extends StatelessWidget {
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.red),
+                            color: kGreyColor),
                       ),
                       Text("Marla")
                     ],
@@ -120,7 +120,7 @@ class AreaScreen extends StatelessWidget {
                       width: 100,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.red),
+                          color: kGreyColor),
                       ),
                       Text("Marla")
                     ],
@@ -135,7 +135,7 @@ class AreaScreen extends StatelessWidget {
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.red),
+                            color: kGreyColor),
                       ),
                       Text("Marla")
                     ],
@@ -156,7 +156,7 @@ class AreaScreen extends StatelessWidget {
                       width: 100,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.red),
+                          color: kGreyColor),
                       ),
                       Text("Marla")
                     ],
@@ -171,7 +171,7 @@ class AreaScreen extends StatelessWidget {
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.red),
+                            color: kGreyColor),
                       ),
                       Text("Marla")
                     ],
@@ -192,7 +192,7 @@ class AreaScreen extends StatelessWidget {
                       width: 100,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.red),
+                          color: kGreyColor),
                       ),
                       Text("Kanal")
                     ],
@@ -207,7 +207,7 @@ class AreaScreen extends StatelessWidget {
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.red),
+                            color: kGreyColor),
                       ),
                       Text("Kanal")
                     ],
@@ -228,7 +228,7 @@ class AreaScreen extends StatelessWidget {
                       width: 100,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                          color: Colors.red),
+                          color: kGreyColor),
                       ),
                       Text("Kanal")
                     ],
@@ -242,7 +242,7 @@ class AreaScreen extends StatelessWidget {
                         width: 100,
                         decoration: BoxDecoration(
                          borderRadius: BorderRadius.circular(10),
-                            color: Colors.red),
+                            color: kGreyColor),
                         child: Center(child: Text("5",style: kBigHeadingText,)),
                       ),
                       Text("Kanal")
