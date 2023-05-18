@@ -10,9 +10,10 @@ class BuildingTypeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.menu,color: kWhiteColor,),
-        actions: [Padding(
-          padding: const EdgeInsets.all(8.0),
+        leading: const Icon(Icons.menu,color: kWhiteColor,),
+        actions: const [
+          Padding(
+          padding: EdgeInsets.all(8.0),
           child: Icon(Icons.shopping_cart_outlined),
         )],
       ),
@@ -21,7 +22,7 @@ class BuildingTypeScreen extends StatelessWidget {
         child: Column(
           children: [
             30.0.height,
-            Center(child: Text('Choose your Building Type'),),
+            const Center(child: Text('Choose your Building Type'),),
             30.0.height,
 
             Expanded(
@@ -31,13 +32,13 @@ class BuildingTypeScreen extends StatelessWidget {
                   onTap: (){
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
-                            AreaScreen()));
+                            const AreaScreen()));
                   },
                   child: Container(
                     width: double.infinity,
-                    child: Icon(Icons.home_outlined,size: 140,color: kTealColor,),
                    decoration: BoxDecoration(color: Colors.grey.shade200,
-                   borderRadius: BorderRadius.circular(20)),),
+                   borderRadius: BorderRadius.circular(20)),
+                    child: const Icon(Icons.home_outlined,size: 140,color: kTealColor,),),
                 ),
               ),
             ),
@@ -47,11 +48,11 @@ class BuildingTypeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   width: double.infinity,
-                  child: Icon(Icons.castle_outlined,size: 140,color: kTealColor,),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20)
                   ),
+                  child: const Icon(Icons.castle_outlined,size: 140,color: kTealColor,),
                 ),
               ),
             ),

@@ -2,10 +2,9 @@ import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/screens/admin_screen/profile_screen.dart';
 import 'package:amenities_app/screens/seller_screens/seller_order_screen.dart';
 import 'package:amenities_app/screens/seller_screens/seller_products_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import '../../widgets/logout_widget.dart';
 
 class SellerMainScreen extends StatelessWidget {
   const SellerMainScreen({Key? key}) : super(key: key);
@@ -14,8 +13,11 @@ class SellerMainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
-        title: Text("Home"),
+        leading: const Icon(Icons.arrow_back),
+        title: const Text("Home"),
+        actions: [
+          logOutMethod(context),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 50),
@@ -29,16 +31,18 @@ class SellerMainScreen extends StatelessWidget {
                  Expanded(
                    child: GestureDetector(
                      onTap: (){
-                       Get.to(()=>SellerProductsScreen());
+                       Get.to(()=>const SellerProductsScreen());
                      },
-                     child: Container(
-                       height: 200,
-                       decoration: BoxDecoration(
+                     child: Card(
+                       elevation: 10.0,
+                       shape: RoundedRectangleBorder(
                          borderRadius: BorderRadius.circular(20),
-                         color: Colors.teal.shade300,
                        ),
-                       child: Center(
-                         child: Text("Products",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                       child: const SizedBox(
+                         height: 200,
+                         child: Center(
+                           child: Text("Products",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+                         ),
                        ),
                      ),
                    ),
@@ -47,16 +51,18 @@ class SellerMainScreen extends StatelessWidget {
                  Expanded(
                    child: GestureDetector(
                      onTap: (){
-                       Get.to(()=>SellerOrderScreen());
+                       Get.to(()=>const SellerOrderScreen());
                      },
-                     child: Container(
-                       height: 200,
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(20),
-                         color: Colors.teal.shade300,
+                     child: Card(
+                       shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
                        ),
-                       child: Center(
-                         child: Text("Orders",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                       elevation: 10.0,
+                       child: const SizedBox(
+                         height: 200,
+                         child: Center(
+                           child: Text("Orders",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+                         ),
                        ),
                      ),
                    ),
@@ -66,19 +72,20 @@ class SellerMainScreen extends StatelessWidget {
            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    Get.to(()=>ProfileScreen());
-                  },
-                  child: Container(
+              child: GestureDetector(
+                onTap: (){
+                  Get.to(()=>ProfileScreen());
+                },
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  elevation: 10.0,
+                  child: const SizedBox(
                     height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.teal.shade300,
-                    ),
+                    width: double.infinity,
                     child: Center(
-                      child: Text("Go to Profile",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                      child: Text("Go to Profile",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
                     ),
                   ),
                 ),

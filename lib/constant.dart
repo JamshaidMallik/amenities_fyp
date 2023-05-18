@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
+import 'widgets/progress_dialog.dart';
 /// App Colors
 const Color kPrimaryColor = Colors.teal;
 const Color kBlackColor = Colors.black;
@@ -13,8 +18,16 @@ const Color kOrangeColor = Colors.orange;
 const Color kGreyColor = Colors.grey;
 const Color kWhiteColor = Colors.white;
 
+/// local storage
+final GetStorage kStorage = GetStorage();
+// local storage keys
+String kUserType = 'user_type';
+String kUserId = 'User_id';
+
 /// collection of Firebase
 String kUserCollection = 'users';
+FirebaseFirestore kFireStore = FirebaseFirestore.instance;
+FirebaseStorage kStorageRef = FirebaseStorage.instance;
 
 /// App Padding and margin
 double kDefaultPadding = 12.0;
@@ -107,3 +120,12 @@ TextStyle kPrimaryGrayText = GoogleFonts.poppins(
       fontSize: 12.0,
       fontWeight: FontWeight.w300,
     ));
+
+
+void showLoading(BuildContext context) {
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) => ProgressDialog(),
+  );
+}

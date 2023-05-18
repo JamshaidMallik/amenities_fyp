@@ -1,10 +1,15 @@
+import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/screens/auth_screens/log_in_screen.dart';
 import 'package:amenities_app/screens/seller_screens/seller_main_screen.dart';
+import 'package:amenities_app/screens/user_screens/interest_area_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
+import 'controller/auth_controller.dart';
 import 'firebase_options.dart';
+import 'screens/admin_screen/admin_main_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +26,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userType = kStorage.read(kUserType);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -28,11 +34,24 @@ class MyApp extends StatelessWidget {
           color: Colors.teal
         )
       ),
-      home: SellerMainScreen(),
-      // home: SliderScreen(),
-      // home: LogInScreen(),
-      // home: BuildingTypeScreen(),
-      // home: LogInScreen(),
+      home: StreamBuilder(
+        stream: AuthController().auth.authStateChanges(),
+        builder: (context, AsyncSnapshot snapshot){
+          if(snapshot.hasData){
+            if(userType == 'Admin'){
+              return const AdminMainScreen();
+            }else if(userType == 'Seller'){
+              return const SellerMainScreen();
+            }else if(userType == 'User'){
+              return const InterestAreaScreen();
+            }else{
+              return LogInScreen();
+            }
+          }else{
+            return LogInScreen();
+          }
+        },
+      ),
     );
   }
 }
