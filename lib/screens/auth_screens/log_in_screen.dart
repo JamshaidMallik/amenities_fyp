@@ -2,7 +2,6 @@
 import 'package:amenities_app/controller/auth_controller.dart';
 import 'package:amenities_app/screens/auth_screens/reset_password_screen.dart';
 import 'package:amenities_app/screens/auth_screens/sign_up_screen.dart';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,7 +47,7 @@ class LogInScreen extends StatelessWidget {
                 ),
               ),
               30.0.height,
-              primarybutton(btnText: 'SignIn',press: () async{
+              primarybutton(btnText: 'Sign In',press: () async{
                 await controller.login();
               }),
               20.0.height,
@@ -70,7 +69,7 @@ class LogInScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.italic,
                             // decoration: TextDecoration.underline,
-                            color: kBlueColor),
+                            color: kPrimaryColor),
                       ),
                     ],
                   ),

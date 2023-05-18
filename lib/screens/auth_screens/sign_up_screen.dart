@@ -1,10 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../constant.dart';
 import '../../controller/auth_controller.dart';
 import '../../widgets/button_widgets.dart';
 import '../../widgets/custom_text_field.dart';
+import 'log_in_screen.dart';
 
 
 class SignUpScreen extends GetView<AuthController> {
@@ -37,12 +38,12 @@ class SignUpScreen extends GetView<AuthController> {
                     selectedColor: Colors.white,
                     tapTargetSize: MaterialTapTargetSize.padded,
                     isSelected: [
-                      controller.selectedUserType.value == 'Buyer',
+                      controller.selectedUserType.value == 'User',
                       controller.selectedUserType.value == 'Seller',
                     ],
                     onPressed: (int index) {
                       if (index == 0) {
-                        controller.updateSelectedStatus('Buyer');
+                        controller.updateSelectedStatus('User');
                       } else if (index == 1) {
                         controller.updateSelectedStatus('Seller');
                       }
@@ -55,7 +56,7 @@ class SignUpScreen extends GetView<AuthController> {
                         child: const Padding(
                           padding: EdgeInsets.all(15.0),
                           child: Text(
-                            'Buyer',
+                            'User',
                           ),
                         ),
                       ),
@@ -84,20 +85,23 @@ class SignUpScreen extends GetView<AuthController> {
               primarybutton(btnText: 'Sign Up',press: () async{
                await controller.signup();
               }),
-              20.0.height,
-              const Center(
+              30.0.height,
+               Center(
                 child: Text.rich(
                   TextSpan(
                     children: [
-                      TextSpan(
+                      const TextSpan(
                           text: 'already have an account?',
                           style: TextStyle(color: Colors.black)),
                       TextSpan(
                         text: ' Sign in',
-                        style: TextStyle(
+                        recognizer: TapGestureRecognizer()..onTap = () {
+                           Get.to(()=> LogInScreen());
+                          },
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.italic,
-                            color: kBlueColor),
+                            color: kPrimaryColor),
                       ),
                     ],
                   ),

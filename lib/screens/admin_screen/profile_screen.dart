@@ -3,7 +3,6 @@ import 'package:amenities_app/controller/auth_controller.dart';
 import 'package:amenities_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class ProfileScreen extends StatelessWidget {
   final AuthController controller = Get.put(AuthController());

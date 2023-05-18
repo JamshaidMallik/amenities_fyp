@@ -1,25 +1,52 @@
 
 import 'package:amenities_app/screens/admin_screen/profile_screen.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../constant.dart';
+import '../../controller/auth_controller.dart';
 import 'order_screen.dart';
 
 
-class SliderScreen extends StatelessWidget {
-  const SliderScreen({Key? key}) : super(key: key);
+class AdminMainScreen extends StatelessWidget {
+  const AdminMainScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Admin Panel'),
+        actions: [
+          GetBuilder<AuthController>(
+              init: AuthController(),
+              builder: (c) {
+                return IconButton(onPressed: (){
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.success,
+                    animType: AnimType.rightSlide,
+                    title: 'Are you sure you want to logout',
+                    btnCancelOnPress: () {
+                      Get.back();
+                    },
+                    btnOkOnPress: () async{
+                      await c.logOut();
+                    },
+                    btnCancelText: 'Cancel',
+                    btnOkText: "LogOut",
+                    btnOkColor: Colors.teal,
+                  ).show();
+                }, icon: const Icon(Icons.logout));
+              }
+          )
+        ],
+      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            UserAccountsDrawerHeader(
+            const UserAccountsDrawerHeader(
               accountName: Text('flutter.com'),
               accountEmail: Text("example.com"),
               currentAccountPicture: CircleAvatar(
@@ -35,36 +62,36 @@ class SliderScreen extends StatelessWidget {
               child: Text("Amenities", style: kSubHeadingText),
             ),
             ListTile(
-              leading: Icon(Icons.home_outlined),
-              title: Text("Home"),
+              leading: const Icon(Icons.home_outlined),
+              title: const Text("Home"),
               onTap: () => null,
             ),
             ListTile(
-              leading: Icon(Icons.account_box_outlined),
-              title: Text("Profile"),
+              leading: const Icon(Icons.account_box_outlined),
+              title: const Text("Profile"),
               onTap: () {
                Get.to(()=>ProfileScreen());
               },
             ),
             ListTile(
-                leading: Icon(Icons.emoji_people_sharp),
-                title: Text("Orders"),
+                leading: const Icon(Icons.emoji_people_sharp),
+                title: const Text("Orders"),
                 onTap: () {
-                  Get.to(()=>OrderScreen());
+                  Get.to(()=>const OrderScreen());
                 }),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text("Setting"),
+              leading: const Icon(Icons.settings),
+              title: const Text("Setting"),
               onTap: () => null,
             ),
             ListTile(
-              leading: Icon(Icons.home_outlined),
-              title: Text("Help & Sport"),
+              leading: const Icon(Icons.home_outlined),
+              title: const Text("Help & Sport"),
               onTap: () => null,
             ),
             ListTile(
-              leading: Icon(Icons.data_usage_sharp),
-              title: Text("About us"),
+              leading: const Icon(Icons.data_usage_sharp),
+              title: const Text("About us"),
               onTap: () => null,
             ),
             Padding(
@@ -102,7 +129,7 @@ class SliderScreen extends StatelessWidget {
                         Card(
                           elevation: 10,
                           child: Container(
-                            child: Center(
+                            child: const Center(
                                 child: Text(
                               "Users",
                               style: TextStyle(
@@ -128,7 +155,7 @@ class SliderScreen extends StatelessWidget {
                         Card(
                           elevation: 10,
                           child: Container(
-                            child: Center(
+                            child: const Center(
                                 child: Text(
                               "Products",
                               style: TextStyle(
@@ -158,7 +185,7 @@ class SliderScreen extends StatelessWidget {
                         Card(
                           elevation: 10,
                           child: Container(
-                            child: Center(
+                            child: const Center(
                                 child: Text(
                               "Orders",
                               style: TextStyle(
@@ -185,8 +212,8 @@ class SliderScreen extends StatelessWidget {
                         Card(
                           elevation: 10,
                           child: Container(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Center(
                                   child: Text(
                                 "Complain",

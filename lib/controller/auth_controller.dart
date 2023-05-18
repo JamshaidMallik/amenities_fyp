@@ -1,11 +1,16 @@
 import 'dart:developer';
 
+import 'package:amenities_app/screens/auth_screens/log_in_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../constant.dart';
+import '../screens/admin_screen/admin_main_screen.dart';
+import '../screens/seller_screens/seller_main_screen.dart';
+import '../screens/user_screens/interest_area_screen.dart';
 
 class AuthController extends GetxController{
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -21,35 +26,43 @@ class AuthController extends GetxController{
   }
 
   login() async {
+    showLoading(Get.context!);
     try {
       update();
       userCredential = await auth.signInWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text);
       if (userCredential != null) {
         await FirebaseFirestore.instance.collection(kUserCollection).doc(userCredential!.user!.uid).get().then((value) {
-          kShowSnackBar(context: Get.context!, message: 'user login', isSuccess: true);
-          log("user_type: ${value['user_type']}");
+          Get.back();
+          emailController.clear();
+          passwordController.clear();
+          kStorage.write(kUserId, value['user_id']);
+          kStorage.write(kUserType, value['user_type']);
           if(value['user_type'] == 'Admin'){
-            log('userTypeIs: ${value['user_type']}');
-          }else if(value['user_type'] == 'Buyer'){
-            log('userTypeIs: ${value['user_type']}');
+            Get.offAll(()=> const AdminMainScreen());
           }else if(value['user_type'] == 'Seller'){
-            log('userTypeIs: ${value['user_type']}');
+            Get.offAll(()=> const SellerMainScreen());
+          }else if(value['user_type'] == 'User'){
+            Get.offAll(()=> const InterestAreaScreen());
           }else{
             log('userTypeIs: ${value['user_type']}');
           }
         });
       }
     } on FirebaseAuthException catch (e) {
+      Get.back();
       handleAuthException(e);
     } finally {
       update();
     }
   }
-
   Future<void> signup() async{
+    showLoading(Get.context!);
     try{
       userCredential = await auth.createUserWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text).then((value){
         log('User_Created_Successfully ${value.user!.uid} : ${value.user!.email}');
+        Get.back(
+
+        );
         if (value.user != null){
           _firestore.collection(kUserCollection).doc(value.user!.uid).set({
             'user_id': value.user!.uid,
@@ -71,6 +84,7 @@ class AuthController extends GetxController{
         }
       });
     } on FirebaseAuthException catch(e){
+      Get.back();
       kShowSnackBar(context: Get.context!, message: e.toString(), isSuccess: false);
     }
     update();
@@ -89,9 +103,10 @@ class AuthController extends GetxController{
   }
   /// logout method
   Future logOut() async {
+    showLoading(Get.context!);
     await auth.signOut();
+    Get.offAll(()=> LogInScreen());
   }
-
 }
 
 
