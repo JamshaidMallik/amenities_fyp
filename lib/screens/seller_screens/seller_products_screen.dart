@@ -5,8 +5,16 @@ import 'package:get/get.dart';
 
 import '../../constant.dart';
 
-class SellerProductsScreen extends StatelessWidget {
+class SellerProductsScreen extends StatefulWidget {
+
   const SellerProductsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SellerProductsScreen> createState() => _SellerProductsScreenState();
+}
+
+class _SellerProductsScreenState extends State<SellerProductsScreen> {
+  List items = [];
 
   @override
   Widget build(BuildContext context) {

@@ -16,9 +16,7 @@ class OrderScreen extends StatelessWidget {
         child: ListView(
           children: [
             Card(
-              elevation: 6,
               child: Container(
-                height: 70,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.teal.shade300,
@@ -27,7 +25,6 @@ class OrderScreen extends StatelessWidget {
                 child: Center(
                   child: ListTile(
                     leading: Container(
-                      height: 70,
                       width: 70,
                       decoration: BoxDecoration(
                         color: Colors.red,
@@ -46,9 +43,7 @@ class OrderScreen extends StatelessWidget {
             ),
             10.0.height,
             Card(
-              elevation: 6,
               child: Container(
-                height: 70,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.teal.shade300,
@@ -76,9 +71,7 @@ class OrderScreen extends StatelessWidget {
             ),
             10.0.height,
             Card(
-              elevation: 6,
               child: Container(
-                height: 70,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.teal.shade300,
@@ -106,9 +99,7 @@ class OrderScreen extends StatelessWidget {
             ),
             10.0.height,
             Card(
-              elevation: 6,
               child: Container(
-                height: 70,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.teal.shade300,

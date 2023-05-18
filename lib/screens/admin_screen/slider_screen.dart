@@ -1,6 +1,8 @@
 
 import 'package:amenities_app/screens/admin_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../constant.dart';
 import 'order_screen.dart';
@@ -41,16 +43,14 @@ class SliderScreen extends StatelessWidget {
               leading: Icon(Icons.account_box_outlined),
               title: Text("Profile"),
               onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => ProfileScreen()));
+               Get.to(()=>ProfileScreen());
               },
             ),
             ListTile(
                 leading: Icon(Icons.emoji_people_sharp),
                 title: Text("Orders"),
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => OrderScreen()));
+                  Get.to(()=>OrderScreen());
                 }),
             ListTile(
               leading: Icon(Icons.settings),

@@ -1,14 +1,19 @@
 import 'package:amenities_app/constant.dart';
+import 'package:amenities_app/controller/auth_controller.dart';
+import 'package:amenities_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  final AuthController controller = Get.put(AuthController());
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Profile"),
+        title: Text("Profile"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 60),
@@ -22,40 +27,12 @@ class ProfileScreen extends StatelessWidget {
                     "https://i.pinimg.com/236x/a1/e3/54/a1e354e74959e999b5fcbb95d1815bbd.jpg"),
               ),
             ),
-            Text("example.com"),
             20.0.height,
-            Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: kWhiteColor,
-                  borderRadius: BorderRadius.circular(20)),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 12),
-                child: TextField(
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                      hintText: "Name",
-                      border: InputBorder.none),
-                ),
-              ),
-            ),
+           customTextField(hintText: "Name",controller: controller.fullNameController),
             10.0.height,
-            Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: kWhiteColor,
-                  borderRadius: BorderRadius.circular(20)),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 12),
-                child: TextField(
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                      hintText: "Email", border: InputBorder.none),
-                ),
-              ),
-            ),
+            customTextField(controller:controller.emailController,hintText: "Email"),
+            10.0.height,
+            customTextField(hintText: "Phone no",controller: controller.phoneController),
           ],
         ),
       ),
