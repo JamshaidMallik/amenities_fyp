@@ -1,7 +1,8 @@
-import 'package:amenities_app/accounts_screen/estimate_raw_marerial_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'constant.dart';
+import '../../constant.dart';
+import 'estimate_raw_marerial_screen.dart';
+
 
 class InputEstimateScreen extends StatefulWidget {
 

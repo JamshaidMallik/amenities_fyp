@@ -1,14 +1,16 @@
-import 'package:amenities_app/accounts_screen/reset_password_screen.dart';
-import 'package:amenities_app/accounts_screen/sign_up_screen.dart';
+
 import 'package:amenities_app/controller/auth_controller.dart';
-import 'package:amenities_app/interest_area_screen.dart';
+import 'package:amenities_app/screens/auth_screens/reset_password_screen.dart';
+import 'package:amenities_app/screens/auth_screens/sign_up_screen.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constant.dart';
-import '../widgets/button_widgets.dart';
-import '../widgets/custom_text_field.dart';
+import '../../constant.dart';
+import '../../widgets/button_widgets.dart';
+import '../../widgets/custom_text_field.dart';
+
 
 class LogInScreen extends StatelessWidget {
   final AuthController controller = Get.put(AuthController()); // Get the instance of the auth controller

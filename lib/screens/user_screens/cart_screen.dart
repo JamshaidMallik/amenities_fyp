@@ -1,7 +1,8 @@
-import 'package:amenities_app/check_out_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../constant.dart';
+import '../../constant.dart';
+import 'check_out_screen.dart';
+
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);

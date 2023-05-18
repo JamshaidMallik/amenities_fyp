@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../constant.dart';
-import '../controller/auth_controller.dart';
-import '../widgets/button_widgets.dart';
-import '../widgets/custom_text_field.dart';
+
+import '../../constant.dart';
+import '../../controller/auth_controller.dart';
+import '../../widgets/button_widgets.dart';
+import '../../widgets/custom_text_field.dart';
+
 
 class SignUpScreen extends GetView<AuthController> {
   final AuthController controller = Get.find<AuthController>(); // Get the instance of the auth controller

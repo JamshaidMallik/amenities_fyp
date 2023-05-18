@@ -1,7 +1,8 @@
-import 'package:amenities_app/input_estimate_screen.dart';
+
 import 'package:flutter/material.dart';
 
-import 'constant.dart';
+import '../../constant.dart';
+import 'input_estimate_screen.dart';
 
 class AreaScreen extends StatelessWidget {
   const AreaScreen({Key? key}) : super(key: key);

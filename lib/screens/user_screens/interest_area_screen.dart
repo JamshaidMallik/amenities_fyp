@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'building_type_screen.dart';
-import 'constant.dart';
+import '../../constant.dart';
 
 class InterestAreaScreen extends StatelessWidget {
   const InterestAreaScreen({Key? key}) : super(key: key);

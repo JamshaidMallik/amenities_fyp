@@ -1,7 +1,7 @@
-import 'package:amenities_app/area_screen.dart';
+import 'package:amenities_app/screens/user_screens/area_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'constant.dart';
+import '../../constant.dart';
 
 class BuildingTypeScreen extends StatelessWidget {
   const BuildingTypeScreen({Key? key}) : super(key: key);

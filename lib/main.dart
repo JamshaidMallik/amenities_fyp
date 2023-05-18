@@ -1,10 +1,9 @@
-import 'package:amenities_app/admin_screen/slider_screen.dart';
+import 'package:amenities_app/screens/auth_screens/log_in_screen.dart';
+import 'package:amenities_app/screens/seller_screens/seller_main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
-import 'accounts_screen/log_in_screen.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -29,8 +28,9 @@ class MyApp extends StatelessWidget {
           color: Colors.teal
         )
       ),
+      home: SellerMainScreen(),
       // home: SliderScreen(),
-      home: LogInScreen(),
+      // home: LogInScreen(),
       // home: BuildingTypeScreen(),
       // home: LogInScreen(),
     );
