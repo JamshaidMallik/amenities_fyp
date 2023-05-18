@@ -25,6 +25,7 @@ class AuthController extends GetxController{
     selectedUserType.value = status;
   }
 
+  /// login method
   login() async {
     showLoading(Get.context!);
     try {
@@ -35,7 +36,7 @@ class AuthController extends GetxController{
           Get.back();
           emailController.clear();
           passwordController.clear();
-          kStorage.write(kUserId, value['user_id']);
+          kStorage.write(kUserId, userCredential!.user!.uid);
           kStorage.write(kUserType, value['user_type']);
           if(value['user_type'] == 'Admin'){
             Get.offAll(()=> const AdminMainScreen());
@@ -55,6 +56,7 @@ class AuthController extends GetxController{
       update();
     }
   }
+  /// signup method
   Future<void> signup() async{
     showLoading(Get.context!);
     try{
@@ -89,6 +91,7 @@ class AuthController extends GetxController{
     }
     update();
   }
+  /// forgot password method
   forgetPassword() async {
     try {
       update();
@@ -112,7 +115,6 @@ class AuthController extends GetxController{
 
 void handleAuthException(FirebaseAuthException exception) {
   String errorMessage = 'An error occurred during authentication.';
-
   switch (exception.code) {
     case 'invalid-email':
       errorMessage = 'Invalid email address.';
