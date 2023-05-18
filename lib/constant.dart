@@ -55,7 +55,7 @@ TextStyle kSecondaryText = GoogleFonts.poppins(
 TextStyle kSubHeadingText = GoogleFonts.poppins(
     textStyle: const TextStyle(
       fontSize: 14.0,
-      fontWeight: FontWeight.w900,
+      fontWeight: FontWeight.w500,
     ));
 TextStyle kHeadingText = GoogleFonts.poppins(
     textStyle: const TextStyle(
