@@ -1,9 +1,12 @@
 import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/controller/profile_controller.dart';
 import 'package:amenities_app/widgets/custom_text_field.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
+import 'widgets/button_widgets.dart';
 
 class ProfileScreen extends GetView<ProfileController> {
   final profile = Get.put(ProfileController());
@@ -23,16 +26,54 @@ class ProfileScreen extends GetView<ProfileController> {
                     child: CircularProgressIndicator(),
                   )
                 : Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 60),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 60),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          const Center(
-                            child: CircleAvatar(
-                              maxRadius: 50,
-                              backgroundImage: NetworkImage(
-                                  "https://i.pinimg.com/236x/a1/e3/54/a1e354e74959e999b5fcbb95d1815bbd.jpg"),
+                          SizedBox(
+                            height: 170.0,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20.0),
+                                  child: Stack(fit: StackFit.loose, children: <Widget>[
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        CircleAvatar(
+                                          radius: 60,
+                                          backgroundColor: Colors.grey.shade100,
+                                          child: const Icon(
+                                            Icons.person_rounded,
+                                            size: 50,
+                                            color: Colors.teal,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                        padding: const EdgeInsets.only(top: 80.0, left: 90.0),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            InkWell(
+                                              onTap: () {},
+                                              child: const CircleAvatar(
+                                                backgroundColor: kPrimaryColor,
+                                                radius: 12.0,
+                                                child: Icon(
+                                                  Icons.photo_camera_back,
+                                                  color: Colors.white,
+                                                  size: 12,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        )),
+                                  ]),
+                                )
+                              ],
                             ),
                           ),
                           20.0.height,
@@ -64,20 +105,11 @@ class ProfileScreen extends GetView<ProfileController> {
                           controller.isView == false
                               ? Column(
                                   children: [
-                                    customTextField(
-                                        hintText: "Name",
-                                        controller: controller.nameController,
-                                        readOnly: true),
+                                    nameWidget(name: controller.nameController.text),
                                     10.0.height,
-                                    customTextField(
-                                        controller: controller.emailController,
-                                        hintText: "Email",
-                                        readOnly: true),
+                                    nameWidget(name: controller.emailController.text),
                                     10.0.height,
-                                    customTextField(
-                                        hintText: "Phone Number",
-                                        controller: controller.phoneController,
-                                        readOnly: true),
+                                    nameWidget(name: controller.phoneController.text),
                                   ],
                                 )
                               : Column(
@@ -95,12 +127,31 @@ class ProfileScreen extends GetView<ProfileController> {
                                         hintText: "Phone Number",
                                         controller: controller.phoneController),
                                   ],
-                                )
+                                ),
+                          30.0.height,
+                          controller.isView == true
+                              ? primarybutton(btnText: 'Update',press: (){}): Container()
+
                         ],
                       ),
                     ),
                   ),
           );
         });
+  }
+
+  Widget nameWidget({required name}) {
+    return Container(
+      height: 50,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: kWhiteColor, borderRadius: BorderRadius.circular(20)),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 12),
+        child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(name)),
+      ),
+    );
   }
 }

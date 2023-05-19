@@ -1,12 +1,13 @@
 import 'dart:developer';
-
+import 'dart:io';
 import 'package:amenities_app/screens/auth_screens/log_in_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../constant.dart';
 import '../screens/admin_screen/admin_main_screen.dart';
 import '../screens/seller_screens/seller_main_screen.dart';
@@ -23,6 +24,32 @@ class AuthController extends GetxController{
   final Rx<String> selectedUserType = ''.obs;
   void updateSelectedStatus(String status) {
     selectedUserType.value = status;
+  }
+
+  /// image pick
+  TextEditingController productNameController = TextEditingController();
+  RxBool isProductLoading = false.obs;
+  final ImagePicker _picker = ImagePicker();
+  File? image;
+  pickImage() async {
+    XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      this.image = File(image.path);
+      update();
+    }
+  }
+
+  Future<String> uploadImageToStorage(File file) async {
+    try {
+      String imageName = DateTime.now().millisecondsSinceEpoch.toString();
+      Reference ref = kStorageRef.ref().child('$kProfileImage/$imageName.jpg');
+      UploadTask uploadTask = ref.putFile(image!);
+      TaskSnapshot storageSnapshot = await uploadTask;
+      String imageUrl = await storageSnapshot.ref.getDownloadURL();
+      return imageUrl;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// login method
@@ -57,41 +84,40 @@ class AuthController extends GetxController{
     }
   }
   /// signup method
-  Future<void> signup() async{
+  Future<void> signup() async {
     kShowLoading(Get.context!);
-    try{
-      userCredential = await auth.createUserWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text).then((value){
-        log('User_Created_Successfully ${value.user!.uid} : ${value.user!.email}');
-        Get.back(
-
-        );
-        if (value.user != null){
-          _firestore.collection(kUserCollection).doc(value.user!.uid).set({
-            'user_id': value.user!.uid,
-            'fullName': fullNameController.text,
-            'email': value.user!.email,
-            'user_type': selectedUserType.value,
-            'created_at': DateTime.now(),
-            'user_image': '',
-            'user_phone': phoneController.text,
-          }).
-          then((value){
-            kShowSnackBar(context: Get.context!, message: 'Account Create Successfully', isSuccess: true);
-            fullNameController.clear();
-            emailController.clear();
-            passwordController.clear();
-            selectedUserType.value = '';
-            phoneController.clear();
-
-          });
-        }
-      });
-    } on FirebaseAuthException catch(e){
+    try {
+      userCredential = await auth.createUserWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text);
+      Get.back();
+      if (userCredential?.user != null) {
+        String imageUrl = await uploadImageToStorage(image!); // Assign the result to imageUrl
+        _firestore.collection(kUserCollection).doc(userCredential?.user!.uid).set({
+          'user_id': userCredential?.user!.uid,
+          'fullName': fullNameController.text,
+          'email': userCredential?.user!.email,
+          'user_type': selectedUserType.value,
+          'created_at': DateTime.now(),
+          'user_image': imageUrl,
+          'user_phone': phoneController.text,
+        }).then((value) {
+          kShowSnackBar(context: Get.context!, message: 'Account Create Successfully', isSuccess: true);
+          Get.offAll(()=> LogInScreen());
+          image = null;
+          fullNameController.clear();
+          emailController.clear();
+          passwordController.clear();
+          selectedUserType.value = '';
+          phoneController.clear();
+          update();
+        });
+      }
+    } on FirebaseAuthException catch(e) {
       Get.back();
       kShowSnackBar(context: Get.context!, message: e.toString(), isSuccess: false);
     }
     update();
   }
+
   /// forgot password method
   forgetPassword() async {
     try {

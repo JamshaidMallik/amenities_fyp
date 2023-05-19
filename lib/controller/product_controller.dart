@@ -32,8 +32,7 @@ class ProductController extends GetxController {
           isSuccess: false);
     } else if (image != null) {
       String imageName = DateTime.now().millisecondsSinceEpoch.toString();
-      Reference ref =
-          kStorageRef.ref().child('$kProductCollection/$imageName.jpg');
+      Reference ref = kStorageRef.ref().child('$kProductCollection/$imageName.jpg');
       UploadTask uploadTask = ref.putFile(image!);
       TaskSnapshot storageSnapshot = await uploadTask;
       String imageUrl = await storageSnapshot.ref.getDownloadURL();

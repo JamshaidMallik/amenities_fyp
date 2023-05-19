@@ -9,6 +9,7 @@ import 'log_in_screen.dart';
 
 
 class SignUpScreen extends GetView<AuthController> {
+  @override
   final AuthController controller = Get.find<AuthController>(); // Get the instance of the auth controller
 
   @override
@@ -27,11 +28,63 @@ class SignUpScreen extends GetView<AuthController> {
               10.0.height,
               const Text('Enter your email and password'),
               const Text('And Choose your type'),
-             CircleAvatar(
-               maxRadius: 50,
-               backgroundImage: NetworkImage(
-                   "https://i.pinimg.com/236x/a1/e3/54/a1e354e74959e999b5fcbb95d1815bbd.jpg"),
-             ),
+              GetBuilder<AuthController>(
+                init: AuthController(),
+                builder: (c) {
+                  return SizedBox(
+                    height: 170.0,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Stack(fit: StackFit.loose, children: <Widget>[
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                               c.image == null
+                                   ? CircleAvatar(
+                                  radius: 60,
+                                  backgroundColor: Colors.grey.shade100,
+                                  child: const Icon(
+                                    Icons.person_rounded,
+                                    size: 50,
+                                    color: Colors.teal,
+                                  ),
+                                )
+                                   : CircleAvatar(
+                                 radius: 60,
+                                 backgroundColor: Colors.grey.shade100,
+                                 backgroundImage: FileImage(c.image!),
+                               ),
+                              ],
+                            ),
+                            Padding(
+                                padding: const EdgeInsets.only(top: 80.0, left: 90.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    InkWell(
+                                      onTap: ()=> c.pickImage(),
+                                      child: const CircleAvatar(
+                                        backgroundColor: kPrimaryColor,
+                                        radius: 12.0,
+                                        child: Icon(
+                                          Icons.photo_camera_back,
+                                          color: Colors.white,
+                                          size: 12,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )),
+                          ]),
+                        )
+                      ],
+                    ),
+                  );
+                }
+              ),
               10.0.height,
               Obx(() => ToggleButtons(
                     fillColor: kPrimaryColor,
@@ -88,6 +141,9 @@ class SignUpScreen extends GetView<AuthController> {
               customTextField(hintText: 'Password', controller: controller.passwordController, suffixIcon: const Icon(Icons.visibility_off_sharp,)),
               30.0.height,
               primarybutton(btnText: 'Sign Up',press: () async{
+                if(controller.image == null){
+                 kShowSnackBar(context: context, message: 'Please Select Profile Image', isSuccess: false);
+                }
                await controller.signup();
               }),
               30.0.height,
