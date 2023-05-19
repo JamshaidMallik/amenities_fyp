@@ -1,10 +1,8 @@
 import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/controller/profile_controller.dart';
 import 'package:amenities_app/widgets/custom_text_field.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import 'widgets/button_widgets.dart';
 

@@ -1,6 +1,5 @@
 import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/controller/product_controller.dart';
-import 'package:amenities_app/controller/profile_controller.dart';
 import 'package:amenities_app/profile_screen.dart';
 import 'package:amenities_app/screens/seller_screens/seller_order_screen.dart';
 import 'package:amenities_app/screens/seller_screens/seller_products_screen.dart';
@@ -18,8 +17,7 @@ class SellerMainScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            leading: const Icon(Icons.arrow_back),
-            title:  Text("Home"),
+            title:  const Text("Home"),
             actions: [
               logOutMethod(context),
             ],
