@@ -14,7 +14,11 @@ class SellerProductsScreen extends StatelessWidget {
         init: ProductController(),
         builder: (c) {
           return Scaffold(
-            body: ListView.builder(
+            body: c.isProductLoading.isTrue
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
                 itemCount: c.productList.length,
                 itemBuilder: (context, index) {
                   Product product = c.productList[index];

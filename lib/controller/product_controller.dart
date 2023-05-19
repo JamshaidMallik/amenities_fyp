@@ -13,6 +13,7 @@ class ProductController extends GetxController {
   List<Product> productList = [];
   final ImagePicker _picker = ImagePicker();
   TextEditingController productNameController = TextEditingController();
+  RxBool isProductLoading = false.obs;
   File? image;
   pickImage() async {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
@@ -65,17 +66,19 @@ class ProductController extends GetxController {
   }
 
   getProducts() {
+    isProductLoading(true);
     productList.clear();
     kFireStore
         .collection(kProductCollection)
         .where('userId', isEqualTo: kStorage.read(kUserId))
         .snapshots()
         .listen((snapshot) {
-         log('productList ${snapshot.docs.length}');
+          update();
       for (var doc in snapshot.docs) {
         Product product = Product.fromSnapshot(doc);
         productList.add(product);
       }
+      isProductLoading(false);
     });
     update();
   }
