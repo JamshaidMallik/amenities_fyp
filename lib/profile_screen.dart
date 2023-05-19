@@ -44,12 +44,18 @@ class ProfileScreen extends GetView<ProfileController> {
                                         CircleAvatar(
                                           radius: 60,
                                           backgroundColor: Colors.grey.shade100,
-                                          child: const Icon(
-                                            Icons.person_rounded,
-                                            size: 50,
-                                            color: Colors.teal,
-                                          ),
+                                          backgroundImage: NetworkImage(controller.userImage),
+
                                         ),
+                                        // CircleAvatar(
+                                        //   radius: 60,
+                                        //   backgroundColor: Colors.grey.shade100,
+                                        //   child: const Icon(
+                                        //     Icons.person_rounded,
+                                        //     size: 50,
+                                        //     color: Colors.teal,
+                                        //   ),
+                                        // ),
                                       ],
                                     ),
                                     Padding(

@@ -1,5 +1,7 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:amenities_app/constant.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -46,6 +48,7 @@ class ProductController extends GetxController {
         getProducts(userId: userId);
         update();
         Get.back();
+        Get.back();
         productNameController.clear();
         image = null;
         kShowSnackBar(
@@ -79,6 +82,39 @@ class ProductController extends GetxController {
       isProductLoading(false);
       update();
     });
+  }
+  Future<void> deleteProduct({required String productId, required int index, required String imageUrl}) async {
+    kShowLoading(Get.context!);
+    try {
+      await kFireStore.collection(kProductCollection).doc(productId).delete();
+      Get.back();
+      if (imageUrl.isNotEmpty) {
+        try {
+          await kStorageRef.refFromURL(imageUrl).delete();
+        } catch (e) {
+          kShowSnackBar(
+            context: Get.context!,
+            message: 'Error deleting image from Firebase Storage',
+            isSuccess: false,
+          );
+        }
+      }
+      productList.removeWhere((element) => element.id == productId);
+      kShowSnackBar(
+        context: Get.context!,
+        message: 'Product deleted successfully',
+        isSuccess: true,
+      );
+    } catch (e) {
+      Get.back();
+      kShowSnackBar(
+        context: Get.context!,
+        message: 'Error deleting product',
+        isSuccess: false,
+      );
+    }
+
+    update();
   }
 
 

@@ -21,7 +21,7 @@ class SellerProductsScreen extends StatelessWidget {
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : ListView.builder(
+                : c.productList.isNotEmpty? ListView.builder(
                 itemCount: c.productList.length,
                 itemBuilder: (context, index) {
                   Product product = c.productList[index];
@@ -50,16 +50,22 @@ class SellerProductsScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Text(
-                              product.productName,
-                              style: kHeadingText,
+                            Row(
+                              children: [
+                                Text(
+                                  product.productName,
+                                  style: kHeadingText
+                                ),
+                                const Spacer(),
+                                TextButton(onPressed: ()=> c.deleteProduct(productId: product.id, index: index,imageUrl: product.image), child: const Text('Delete', style: TextStyle(color: Colors.red),)),
+                              ],
                             ),
                           ],
                         ),
                       ],
                     ),
                   );
-                }),
+                }): const Center(child: Text('No Products')),
             floatingActionButton: FloatingActionButton(
               backgroundColor: kTealColor,
               onPressed: () {

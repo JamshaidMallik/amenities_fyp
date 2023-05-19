@@ -12,18 +12,18 @@ class ProfileController extends GetxController{
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  String userImage = '';
   void profileUpdateToggle(){
     _isView.toggle();
     update();
   }
-
-
   getUserProfile({required String userId}) async {
    isProfileLoading(true);
     update();
     kFireStore.collection(kUserCollection).doc(userId).get().then((value) {
       if (value.exists) {
         UserModel userProfile = UserModel.fromJson(value.data() as Map<String, dynamic>);
+        userImage = userProfile.userImage;
         nameController.text = userProfile.fullName;
         emailController.text = userProfile.email;
         phoneController.text = userProfile.userPhone;
