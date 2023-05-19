@@ -143,8 +143,11 @@ class SignUpScreen extends GetView<AuthController> {
               primarybutton(btnText: 'Sign Up',press: () async{
                 if(controller.image == null){
                  kShowSnackBar(context: context, message: 'Please Select Profile Image', isSuccess: false);
+                }else if (controller.selectedUserType == ''){
+                  kShowSnackBar(context: context, message: 'Please Select User Type', isSuccess: false);
+                } else{
+                  await controller.signup();
                 }
-               await controller.signup();
               }),
               30.0.height,
                Center(
