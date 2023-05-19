@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           color: Colors.teal
-        )
+        ),
+
       ),
       home: StreamBuilder(
         stream: AuthController().auth.authStateChanges(),
