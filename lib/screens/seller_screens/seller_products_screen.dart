@@ -14,6 +14,9 @@ class SellerProductsScreen extends StatelessWidget {
         init: ProductController(),
         builder: (c) {
           return Scaffold(
+            appBar: AppBar(
+              title: const Text('Products'),
+            ),
             body: c.isProductLoading.isTrue
                 ? const Center(
                     child: CircularProgressIndicator(),
@@ -23,7 +26,7 @@ class SellerProductsScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   Product product = c.productList[index];
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
                         Column(
@@ -34,21 +37,22 @@ class SellerProductsScreen extends StatelessWidget {
                               height: 200,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                  color: kRedColor,
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                        product.image,
-                                      ),
-                                      fit: BoxFit.cover)),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: FadeInImage.assetNetwork(
+                                  fadeInDuration: const Duration(seconds: 1),
+                                  placeholder: placeHolderPic,
+                                  image: product.image,
+                                  fit: BoxFit.cover,
+                                  placeholderFit: BoxFit.cover,
+                                ),
+                              ),
                             ),
                             Text(
                               product.productName,
                               style: kHeadingText,
-                            ),
-                            Text(
-                              "Suppliar",
-                              style: kSubHeadingText,
                             ),
                           ],
                         ),

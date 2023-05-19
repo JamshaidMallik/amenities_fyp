@@ -75,7 +75,7 @@ class SellerAddProduct extends StatelessWidget {
                       hintText: 'Enter Product Name'),
                   const Spacer(),
                   primarybutton(btnText: 'Save Product',press: (){
-                    c.addProduct();
+                    c.addProduct(userId: kStorage.read(kUserId));
                   }),
                 ],
               ),

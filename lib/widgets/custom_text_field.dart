@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constant.dart';
-Widget customTextField({TextEditingController? controller ,required String hintText, Icon? suffixIcon}) {
+Widget customTextField({TextEditingController? controller ,required String hintText, Icon? suffixIcon, bool? readOnly}) {
   return Container(
     height: 50,
     width: double.infinity,
@@ -11,6 +11,7 @@ Widget customTextField({TextEditingController? controller ,required String hintT
     child: Padding(
       padding: const EdgeInsets.only(left: 12),
       child: TextField(
+        readOnly: readOnly ?? false,
         controller: controller,
         textAlignVertical: TextAlignVertical.center,
         decoration:  InputDecoration(

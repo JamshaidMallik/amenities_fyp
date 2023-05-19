@@ -53,6 +53,9 @@ void kShowSnackBar({required BuildContext context, required String message, requ
   ));
 }
 
+/// place holder images
+var placeHolderPic = 'Assets/Images/placeholder.jpg';
+
 /* App Text Styles */
 /// black Text Styles
 TextStyle kPrimaryText = GoogleFonts.poppins(
@@ -63,7 +66,6 @@ TextStyle kPrimaryText = GoogleFonts.poppins(
 TextStyle kSecondaryText = GoogleFonts.poppins(
     textStyle: const TextStyle(
       fontSize: 14.0,
-      color: Colors.white,
       fontWeight: FontWeight.w300,
     ));
 TextStyle kSubHeadingText = GoogleFonts.poppins(

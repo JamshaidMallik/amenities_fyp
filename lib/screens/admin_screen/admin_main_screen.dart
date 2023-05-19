@@ -1,5 +1,5 @@
 
-import 'package:amenities_app/screens/admin_screen/profile_screen.dart';
+import 'package:amenities_app/profile_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

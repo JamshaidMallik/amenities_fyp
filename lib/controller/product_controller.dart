@@ -1,20 +1,20 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:amenities_app/constant.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../model/product_model.dart';
 
 class ProductController extends GetxController {
-  List<Product> productList = [];
+  RxList<Product> productList = RxList<Product>();
+  List<Product> products = [];
+
   final ImagePicker _picker = ImagePicker();
   TextEditingController productNameController = TextEditingController();
   RxBool isProductLoading = false.obs;
   File? image;
+
   pickImage() async {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
@@ -22,8 +22,7 @@ class ProductController extends GetxController {
       update();
     }
   }
-
-  addProduct() async {
+  addProduct({required String userId}) async {
     kShowLoading(Get.context!);
     if (productNameController.text.isEmpty) {
       Get.back();
@@ -45,7 +44,7 @@ class ProductController extends GetxController {
         "image": imageUrl,
         "status": "available",
       }).then((value) {
-        getProducts();
+        getProducts(userId: userId);
         update();
         Get.back();
         productNameController.clear();
@@ -64,28 +63,30 @@ class ProductController extends GetxController {
     }
     update();
   }
-
-  getProducts() {
-    isProductLoading(true);
+  getProducts({required String userId}) {
     productList.clear();
+    isProductLoading(true);
     kFireStore
         .collection(kProductCollection)
-        .where('userId', isEqualTo: kStorage.read(kUserId))
+        .where('userId', isEqualTo: userId)
         .snapshots()
         .listen((snapshot) {
-          update();
+      products.clear();
       for (var doc in snapshot.docs) {
         Product product = Product.fromSnapshot(doc);
-        productList.add(product);
+        products.add(product);
       }
+      productList.assignAll(products);
       isProductLoading(false);
+      update();
     });
-    update();
   }
+
 
   @override
   void onInit() {
     super.onInit();
-    getProducts();
+    getProducts(userId: kStorage.read(kUserId));
   }
+
 }

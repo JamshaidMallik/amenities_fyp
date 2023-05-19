@@ -1,5 +1,6 @@
 import 'package:amenities_app/constant.dart';
-import 'package:amenities_app/screens/admin_screen/profile_screen.dart';
+import 'package:amenities_app/controller/profile_controller.dart';
+import 'package:amenities_app/profile_screen.dart';
 import 'package:amenities_app/screens/seller_screens/seller_order_screen.dart';
 import 'package:amenities_app/screens/seller_screens/seller_products_screen.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +75,7 @@ class SellerMainScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: (){
-                  Get.to(()=>ProfileScreen());
+                  Get.to(()=> ProfileScreen());
                 },
                 child: Card(
                   shape: RoundedRectangleBorder(
