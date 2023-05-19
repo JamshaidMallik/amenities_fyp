@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:amenities_app/constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,7 +7,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../model/product_model.dart';
+
 class ProductController extends GetxController {
+  List<Product> productList = [];
   final ImagePicker _picker = ImagePicker();
   TextEditingController productNameController = TextEditingController();
   File? image;
@@ -28,7 +32,8 @@ class ProductController extends GetxController {
           isSuccess: false);
     } else if (image != null) {
       String imageName = DateTime.now().millisecondsSinceEpoch.toString();
-      Reference ref = kStorageRef.ref().child('$kProductCollection/$imageName.jpg');
+      Reference ref =
+          kStorageRef.ref().child('$kProductCollection/$imageName.jpg');
       UploadTask uploadTask = ref.putFile(image!);
       TaskSnapshot storageSnapshot = await uploadTask;
       String imageUrl = await storageSnapshot.ref.getDownloadURL();
@@ -39,6 +44,7 @@ class ProductController extends GetxController {
         "image": imageUrl,
         "status": "available",
       }).then((value) {
+        getProducts();
         update();
         Get.back();
         productNameController.clear();
@@ -57,7 +63,26 @@ class ProductController extends GetxController {
     }
     update();
   }
-  getProducts(){
 
+  getProducts() {
+    productList.clear();
+    kFireStore
+        .collection(kProductCollection)
+        .where('userId', isEqualTo: kStorage.read(kUserId))
+        .snapshots()
+        .listen((snapshot) {
+         log('productList ${snapshot.docs.length}');
+      for (var doc in snapshot.docs) {
+        Product product = Product.fromSnapshot(doc);
+        productList.add(product);
+      }
+    });
+    update();
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    getProducts();
   }
 }
