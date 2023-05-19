@@ -27,7 +27,12 @@ class SignUpScreen extends GetView<AuthController> {
               10.0.height,
               const Text('Enter your email and password'),
               const Text('And Choose your type'),
-              20.0.height,
+             CircleAvatar(
+               maxRadius: 50,
+               backgroundImage: NetworkImage(
+                   "https://i.pinimg.com/236x/a1/e3/54/a1e354e74959e999b5fcbb95d1815bbd.jpg"),
+             ),
+              10.0.height,
               Obx(() => ToggleButtons(
                     fillColor: kPrimaryColor,
                     color: Colors.black,
