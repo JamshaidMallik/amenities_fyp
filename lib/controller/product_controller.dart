@@ -11,11 +11,12 @@ import '../model/product_model.dart';
 class ProductController extends GetxController {
   RxList<Product> productList = RxList<Product>();
   List<Product> products = [];
-
   final ImagePicker _picker = ImagePicker();
   TextEditingController productNameController = TextEditingController();
   RxBool isProductLoading = false.obs;
   File? image;
+  RxInt _userProductsCount = 0.obs;
+  get userProductCount => _userProductsCount.value;
 
   pickImage() async {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
@@ -23,6 +24,10 @@ class ProductController extends GetxController {
       this.image = File(image.path);
       update();
     }
+  }
+  removeImage(){
+    image = null;
+    update();
   }
   addProduct({required String userId}) async {
     kShowLoading(Get.context!);
@@ -116,12 +121,25 @@ class ProductController extends GetxController {
 
     update();
   }
+  Future getUserProducts() async {
+    int? productLength;
+    kFireStore
+        .collection(kProductCollection)
+        .where('userId', isEqualTo: kStorage.read(kUserId))
+        .snapshots()
+        .listen((snapshot) {
+        productLength = snapshot.docs.length;
+        _userProductsCount = RxInt(productLength!);
+        update();
+    });
+    return productLength;
+  }
 
 
   @override
   void onInit() {
     super.onInit();
     getProducts(userId: kStorage.read(kUserId));
+    getUserProducts();
   }
-
 }

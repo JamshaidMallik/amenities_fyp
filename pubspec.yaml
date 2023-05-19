@@ -46,6 +46,7 @@ dependencies:
   firebase_auth: ^4.6.1
   cloud_firestore: ^4.7.1
   cached_network_image:
+  dotted_border: ^2.0.0+3
 
 
 

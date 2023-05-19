@@ -23,8 +23,10 @@ class SellerProductsScreen extends StatelessWidget {
                   )
                 : c.productList.isNotEmpty? ListView.builder(
                 itemCount: c.productList.length,
+                physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   Product product = c.productList[index];
+                  bool last = index == c.productList.length - 1? true : false;
                   return Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
@@ -60,6 +62,8 @@ class SellerProductsScreen extends StatelessWidget {
                                 TextButton(onPressed: ()=> c.deleteProduct(productId: product.id, index: index,imageUrl: product.image), child: const Text('Delete', style: TextStyle(color: Colors.red),)),
                               ],
                             ),
+                            if(last)
+                              70.0.height,
                           ],
                         ),
                       ],
