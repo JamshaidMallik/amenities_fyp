@@ -27,7 +27,7 @@ class AuthController extends GetxController{
 
   /// login method
   login() async {
-    showLoading(Get.context!);
+    kShowLoading(Get.context!);
     try {
       update();
       userCredential = await auth.signInWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text);
@@ -58,7 +58,7 @@ class AuthController extends GetxController{
   }
   /// signup method
   Future<void> signup() async{
-    showLoading(Get.context!);
+    kShowLoading(Get.context!);
     try{
       userCredential = await auth.createUserWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text).then((value){
         log('User_Created_Successfully ${value.user!.uid} : ${value.user!.email}');
@@ -107,7 +107,7 @@ class AuthController extends GetxController{
   }
   /// logout method
   Future logOut() async {
-    showLoading(Get.context!);
+    kShowLoading(Get.context!);
     await auth.signOut();
     Get.offAll(()=> LogInScreen());
   }

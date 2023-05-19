@@ -26,6 +26,7 @@ String kUserId = 'User_id';
 
 /// collection of Firebase
 String kUserCollection = 'users';
+String kProductCollection = 'products';
 FirebaseFirestore kFireStore = FirebaseFirestore.instance;
 FirebaseStorage kStorageRef = FirebaseStorage.instance;
 
@@ -122,7 +123,7 @@ TextStyle kPrimaryGrayText = GoogleFonts.poppins(
     ));
 
 
-void showLoading(BuildContext context) {
+void kShowLoading(BuildContext context) {
   showDialog(
     barrierDismissible: false,
     context: context,
