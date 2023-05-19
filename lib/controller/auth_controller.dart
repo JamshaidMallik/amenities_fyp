@@ -82,6 +82,7 @@ class AuthController extends GetxController{
             passwordController.clear();
             selectedUserType.value = '';
             phoneController.clear();
+
           });
         }
       });

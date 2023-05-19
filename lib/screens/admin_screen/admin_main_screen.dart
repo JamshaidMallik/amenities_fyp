@@ -24,7 +24,7 @@ class AdminMainScreen extends StatelessWidget {
                 return IconButton(onPressed: (){
                   AwesomeDialog(
                     context: context,
-                    dialogType: DialogType.success,
+                    dialogType: DialogType.question,
                     animType: AnimType.rightSlide,
                     title: 'Are you sure you want to logout',
                     btnCancelOnPress: () {

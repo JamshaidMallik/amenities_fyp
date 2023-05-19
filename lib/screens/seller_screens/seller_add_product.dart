@@ -1,12 +1,9 @@
-import 'dart:io';
-
 import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/controller/product_controller.dart';
 import 'package:amenities_app/widgets/button_widgets.dart';
 import 'package:amenities_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 class SellerAddProduct extends StatelessWidget {
   const SellerAddProduct({Key? key}) : super(key: key);
@@ -41,7 +38,7 @@ class SellerAddProduct extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children:  [
-                                  Icon(
+                                  const Icon(
                                     Icons.add,
                                     color: Colors.white,
                                     size: 50,
@@ -77,7 +74,9 @@ class SellerAddProduct extends StatelessWidget {
                       controller: c.productNameController,
                       hintText: 'Enter Product Name'),
                   const Spacer(),
-                  primarybutton(btnText: 'Save Product'),
+                  primarybutton(btnText: 'Save Product',press: (){
+                    c.addProduct();
+                  }),
                 ],
               ),
             ),
