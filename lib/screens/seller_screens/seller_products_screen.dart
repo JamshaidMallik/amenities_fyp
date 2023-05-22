@@ -69,6 +69,7 @@ class SellerProductsScreen extends StatelessWidget {
                                   style: kHeadingText
                                 ),
                                 const Spacer(),
+                                if(kStorage.read(kUserType) == 'Seller')
                                 TextButton(onPressed: ()=> c.deleteProduct(productId: product.id, index: index,imageUrl: product.image), child: const Text('Delete', style: TextStyle(color: Colors.red),)),
                               ],
                             ),
