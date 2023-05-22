@@ -139,6 +139,8 @@ class AuthController extends GetxController{
     await auth.signOut();
     Get.offAll(()=> LogInScreen());
   }
+
+
 }
 
 

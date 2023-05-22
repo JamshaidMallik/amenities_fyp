@@ -1,8 +1,10 @@
 import 'package:amenities_app/controller/product_controller.dart';
 import 'package:amenities_app/screens/seller_screens/seller_add_product.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constant.dart';
+import '../../controller/auth_controller.dart';
 import '../../model/product_model.dart';
 
 class SellerProductsScreen extends StatelessWidget {
@@ -70,7 +72,25 @@ class SellerProductsScreen extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 if(kStorage.read(kUserType) == 'Seller')
-                                TextButton(onPressed: ()=> c.deleteProduct(productId: product.id, index: index,imageUrl: product.image), child: const Text('Delete', style: TextStyle(color: Colors.red),)),
+                                TextButton(onPressed: (){
+                                  AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.question,
+                                    animType: AnimType.rightSlide,
+                                    title: 'Are you sure you want to Delete',
+                                    btnCancelOnPress: () {
+                                      Get.back();
+                                    },
+                                    btnOkOnPress: () async{
+                                      c.deleteProduct(productId: product.id, index: index,imageUrl: product.image);
+                                    },
+                                    btnCancelText: 'Cancel',
+                                    btnOkText: "Delete",
+                                    btnOkColor: Colors.teal,
+                                  ).show();
+                                }
+                                    ,child: const Text('Delete', style: TextStyle(color: Colors.red),)),
+                                //
                               ],
                             ),
                             if(last)

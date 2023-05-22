@@ -54,7 +54,7 @@ class EstimateRawMaterialScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             color: kGreyColor),
                       ),
-                      Text("Marla")
+                      Text("Bricks")
                     ],
                   ),
                 ),

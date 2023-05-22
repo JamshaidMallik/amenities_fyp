@@ -17,10 +17,6 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Cart'),
-        leading: Icon(
-          Icons.menu,
-          color: kWhiteColor,
-        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -29,7 +25,7 @@ class CartScreen extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-          itemCount: 4,
+          itemCount: 10,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
@@ -38,26 +34,24 @@ class CartScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: Image.network("https://i.pinimg.com/564x/ee/55/08/ee5508020993c264524edce53aeb3636.jpg",fit: BoxFit.fill,),
-                        height: 50,
-                        width: 60,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10)),
+                      CircleAvatar(
+                        maxRadius: 30,
+                        backgroundImage: NetworkImage("https://i.pinimg.com/564x/ee/55/08/ee5508020993c264524edce53aeb3636.jpg"),
                       ),
+
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text("Product Name"),
-                          Text("Supliar"),
+                          Text("Product Name",style: kHeadingText,),
+                          Text("Supliar",style: kSecondaryText.copyWith(color: kRedColor),),
                         ],
                       ),
                     Container(
                       height: 50,
                       width: 100,
                       color: Colors.transparent,
-                      child: customTextField(controller: controller.emailController, hintText: '. . .'),
+                      child: customTextField(controller: controller.emailController, hintText: 'Add Detail'),
                     ),
                     ],
                   ),
