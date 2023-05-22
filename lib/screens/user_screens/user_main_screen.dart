@@ -11,14 +11,19 @@ class UserMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: Text('Choose your Building Type'),
-        leading: Icon(Icons.menu,color: kWhiteColor,),
-        actions: [Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.shopping_cart_outlined),
-        )],
+        title: const Text('Choose your Building Type'),
+        leading: const Icon(
+          Icons.menu,
+          color: kWhiteColor,
+        ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(Icons.shopping_cart_outlined),
+          )
+        ],
       ),
       body: Center(
         child: Padding(
@@ -27,36 +32,38 @@ class UserMainScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)
-                ),
-                elevation: 10,
-                child: GestureDetector(
-                  onTap: (){
-                    Get.to(()=>AllSellerScreen());
-                  },
-                  child: Container(
+              GestureDetector(
+                onTap: () => Get.to(() => const AllSellerScreen()),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  elevation: 10,
+                  child: const SizedBox(
                     height: 200,
                     width: double.infinity,
-                    child: const Icon(Icons.production_quantity_limits_sharp,size: 50,color: Colors.teal,),
+                    child: Icon(
+                      Icons.production_quantity_limits_sharp,
+                      size: 50,
+                      color: Colors.teal,
+                    ),
                   ),
                 ),
               ),
               20.0.height,
-              Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
-                elevation: 10,
-                child: GestureDetector(
-                  onTap: (){
-                    Get.to(()=>BuildingTypeScreen());
-                  },
-                  child: Container(
+              GestureDetector(
+                onTap: () => Get.to(() => const BuildingTypeScreen()),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  elevation: 10,
+                  child: const SizedBox(
                     height: 200,
                     width: double.infinity,
-                    child: Icon(Icons.add_box_rounded,size: 50,color: Colors.teal,),
+                    child: Icon(
+                      Icons.add_box_rounded,
+                      size: 50,
+                      color: Colors.teal,
+                    ),
                   ),
                 ),
               ),
