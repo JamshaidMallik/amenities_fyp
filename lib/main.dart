@@ -1,7 +1,7 @@
 import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/screens/auth_screens/log_in_screen.dart';
 import 'package:amenities_app/screens/seller_screens/seller_main_screen.dart';
-import 'package:amenities_app/screens/user_screens/interest_area_screen.dart';
+import 'package:amenities_app/screens/user_screens/user_main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
             }else if(userType == 'Seller'){
               return const SellerMainScreen();
             }else if(userType == 'User'){
-              return const InterestAreaScreen();
+              return const UserMainScreen();
             }else{
               return LogInScreen();
             }

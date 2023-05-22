@@ -13,7 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import '../constant.dart';
 import '../screens/admin_screen/admin_main_screen.dart';
 import '../screens/seller_screens/seller_main_screen.dart';
-import '../screens/user_screens/interest_area_screen.dart';
+import '../screens/user_screens/user_main_screen.dart';
 
 class AuthController extends GetxController{
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -72,7 +72,7 @@ class AuthController extends GetxController{
           }else if(value['user_type'] == 'Seller'){
             Get.offAll(()=> const SellerMainScreen());
           }else if(value['user_type'] == 'User'){
-            Get.offAll(()=> const InterestAreaScreen());
+            Get.offAll(()=> const UserMainScreen());
           }else{
             log('userTypeIs: ${value['user_type']}');
           }
