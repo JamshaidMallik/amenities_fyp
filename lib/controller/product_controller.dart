@@ -70,6 +70,7 @@ class ProductController extends GetxController {
     }
     update();
   }
+
   getProducts({required String userId}) {
     productList.clear();
     isProductLoading(true);
@@ -139,7 +140,7 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getProducts(userId: kStorage.read(kUserId));
+    // getProducts(userId: kStorage.read(kUserId));
     getUserProducts();
   }
 }

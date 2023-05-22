@@ -7,14 +7,27 @@ class UserController extends GetxController{
   final RxList<UserModel> _allSeller = <UserModel>[].obs;
   List<UserModel> get allSeller => _allSeller;
 
-void fetchAllSeller(){
-  kFireStore.collection(kUserCollection).where(kUserType, isEqualTo: 'Seller').get().then((value) {
-    _allSeller.assignAll(value.docs.map((e) => UserModel.fromJson(e.data())).toList());
-    update();
-    log('all_sellers:${value.docs.length}');
-    log('all_sellers_name: ${_allSeller.first.fullName}');
-  });
-}
+  void fetchAllSeller() {
+    kShowLoading(Get.context!);
+    kFireStore
+        .collection(kUserCollection)
+        .where(kUserType, isEqualTo: 'Seller')
+        .snapshots()
+        .listen((querySnapshot) {
+          Get.back();
+      _allSeller.assignAll(querySnapshot.docs
+          .map((e) => UserModel.fromJson(e.data()))
+          .toList());
+      update();
+    }, onError: (error) {
+      Get.back();
+      kShowSnackBar(
+          context: Get.context!, message: error.toString(), isSuccess: true);
+    });
+  }
+
+
+
 
 @override
   void onReady() {

@@ -2,21 +2,30 @@ import 'package:amenities_app/controller/product_controller.dart';
 import 'package:amenities_app/screens/seller_screens/seller_add_product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../constant.dart';
 import '../../model/product_model.dart';
 
 class SellerProductsScreen extends StatelessWidget {
-  const SellerProductsScreen({Key? key}) : super(key: key);
+  final String userId;
+   SellerProductsScreen(this.userId, {Key? key}) : super(key: key);
+
+  var controller = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
+    controller.getProducts(userId:userId);
     return GetBuilder<ProductController>(
         init: ProductController(),
         builder: (c) {
           return Scaffold(
             appBar: AppBar(
               title: const Text('Products'),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: Center(child: Text(c.productList.length.toString(),style: kHeadingText,)),
+                ),
+              ],
             ),
             body: c.isProductLoading.isTrue
                 ? const Center(
@@ -71,12 +80,14 @@ class SellerProductsScreen extends StatelessWidget {
                     ),
                   );
                 }): const Center(child: Text('No Products')),
-            floatingActionButton: FloatingActionButton(
-              backgroundColor: kTealColor,
-              onPressed: () {
+            floatingActionButton:
+            FloatingActionButton(
+              elevation: 0.0,
+              backgroundColor: kStorage.read(kUserType) == 'Seller' ?  kTealColor: Colors.transparent,
+              onPressed: kStorage.read(kUserType) == 'Seller' ?  () {
                 Get.to(() => const SellerAddProduct());
-              },
-              child: const Icon(Icons.add),
+              }:null,
+              child:  kStorage.read(kUserType) == 'Seller' ?  Icon(Icons.add): null,
             ),
           );
         });

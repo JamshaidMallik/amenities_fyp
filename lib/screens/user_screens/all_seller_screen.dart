@@ -28,25 +28,29 @@ class AllSellerScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                              CircleAvatar(
+                               backgroundColor: kPrimaryColor,
                               maxRadius: 30,
                               backgroundImage: NetworkImage(users.userImage),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 80),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(users.fullName,style: kHeadingText,),
-                                  Text("Applicable",style: kSubHeadingText.copyWith(color: kGreenColor)),
-                                  Text("Supliar",style: kSecondaryText.copyWith(color: kRedColor),),
-                                ],
+                            10.0.width,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 80),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(users.fullName,style: kHeadingText,),
+                                    Text(users.email,style: kSubHeadingText),
+                                    Text(users.userPhone,style: kSecondaryText,),
+                                  ],
+                                ),
                               ),
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(primary: Colors.teal,),
                                 onPressed: (){
-                                Get.to(()=>const SellerProductsScreen());
+                                Get.to(()=> SellerProductsScreen(users.userId));
                                 }, child: const Text("View")),
                           ],
                         ),

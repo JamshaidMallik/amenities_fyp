@@ -34,7 +34,7 @@ class SellerMainScreen extends StatelessWidget {
                      Expanded(
                        child: GestureDetector(
                          onTap: (){
-                           Get.to(()=>const SellerProductsScreen());
+                           Get.to(()=> SellerProductsScreen(kStorage.read(kUserId)));
                          },
                          child: Card(
                            elevation: 10.0,
