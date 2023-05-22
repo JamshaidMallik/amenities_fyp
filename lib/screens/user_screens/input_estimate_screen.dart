@@ -27,17 +27,6 @@ List<String> listItem = [
           'Select Floor',
           style: kSubHeadingText,
         ),
-        leading: Icon(
-          Icons.menu,
-          color: kWhiteColor,
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.shopping_cart_outlined),
-          ),
-
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

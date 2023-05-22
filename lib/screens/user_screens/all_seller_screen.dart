@@ -47,7 +47,7 @@ class AllSellerScreen extends StatelessWidget {
                               style: ElevatedButton.styleFrom(primary: Colors.teal,),
                                 onPressed: (){
                                 Get.to(()=>const SellerProductsScreen());
-                                }, child: const Text("View"))
+                                }, child: const Text("View")),
                           ],
                         ),
                       ],

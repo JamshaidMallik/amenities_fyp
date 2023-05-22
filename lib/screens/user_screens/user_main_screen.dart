@@ -1,9 +1,11 @@
 import 'package:amenities_app/screens/user_screens/all_seller_screen.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../constant.dart';
+import '../../controller/auth_controller.dart';
 import 'building_type_screen.dart';
 
 class UserMainScreen extends StatelessWidget {
@@ -15,14 +17,32 @@ class UserMainScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Choose your Building Type'),
         leading: const Icon(
-          Icons.menu,
+          Icons.arrow_back,
           color: kWhiteColor,
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.shopping_cart_outlined),
-          )
+        actions: [
+          GetBuilder<AuthController>(
+              init: AuthController(),
+              builder: (c) {
+                return IconButton(onPressed: (){
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.question,
+                    animType: AnimType.rightSlide,
+                    title: 'Are you sure you want to logout',
+                    btnCancelOnPress: () {
+                      Get.back();
+                    },
+                    btnOkOnPress: () async{
+                      await c.logOut();
+                    },
+                    btnCancelText: 'Cancel',
+                    btnOkText: "LogOut",
+                    btnOkColor: Colors.teal,
+                  ).show();
+                }, icon: const Icon(Icons.logout));
+              }
+          ),
         ],
       ),
       body: Center(

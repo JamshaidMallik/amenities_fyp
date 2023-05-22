@@ -34,9 +34,7 @@ class LogInScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 25, top: 10),
                 child: GestureDetector(
                   onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                         ResetPasswordScreen()));
+                   Get.to(()=> ResetPasswordScreen());
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,

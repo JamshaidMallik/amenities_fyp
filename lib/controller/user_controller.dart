@@ -10,6 +10,7 @@ class UserController extends GetxController{
 void fetchAllSeller(){
   kFireStore.collection(kUserCollection).where(kUserType, isEqualTo: 'Seller').get().then((value) {
     _allSeller.assignAll(value.docs.map((e) => UserModel.fromJson(e.data())).toList());
+    update();
     log('all_sellers:${value.docs.length}');
     log('all_sellers_name: ${_allSeller.first.fullName}');
   });
