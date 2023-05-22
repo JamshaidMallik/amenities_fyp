@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../constant.dart';
 import 'building_type_screen.dart';
@@ -26,9 +28,9 @@ class InterestAreaScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: GestureDetector(
                   onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            BuildingTypeScreen()));
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) =>
+                    //         BuildingTypeScreen()));
                   },
                   child: Container(
                     width: double.infinity,
@@ -60,12 +62,17 @@ class InterestAreaScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Container(height: 50,
-              width: double.infinity,
-              child: Center(child: Text("Get Estimation",style: kSecondaryText,)),
-              decoration: BoxDecoration(
-                color: Colors.teal,
-                borderRadius: BorderRadius.circular(10),
+            GestureDetector(
+              onTap: (){
+                Get.to(()=>BuildingTypeScreen());
+              },
+              child: Container(height: 50,
+                width: double.infinity,
+                child: Center(child: Text("Get Estimation",style: kSecondaryText,)),
+                decoration: BoxDecoration(
+                  color: Colors.teal,
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
           ],

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../constant.dart';
+import '../../controller/auth_controller.dart';
+import '../../widgets/custom_text_field.dart';
 import 'check_out_screen.dart';
 
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
+  final AuthController controller = Get.put(AuthController());
+   CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +39,10 @@ class CartScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
+                        child: Image.network("https://i.pinimg.com/564x/ee/55/08/ee5508020993c264524edce53aeb3636.jpg",fit: BoxFit.fill,),
                         height: 50,
                         width: 60,
                         decoration: BoxDecoration(
-                            color: kRedColor,
                             borderRadius: BorderRadius.circular(10)),
                       ),
                       Column(
@@ -48,41 +53,12 @@ class CartScreen extends StatelessWidget {
                           Text("Supliar"),
                         ],
                       ),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              child: Center(
-                                  child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Icon(Icons.remove),
-                              )),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.teal,
-                              ),
-                            ),
-                            Text("1"),
-                            Container(
-                              child: Center(
-                                  child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Icon(
-                                  Icons.add,
-                                  color: kWhiteColor,
-                                ),
-                              )),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.teal,
-                              ),
-                            )
-                          ],
-                        ),
-                        height: 50,
-                        width: 100,
-                      ),
+                    Container(
+                      height: 50,
+                      width: 100,
+                      color: Colors.transparent,
+                      child: customTextField(controller: controller.emailController, hintText: '. . .'),
+                    ),
                     ],
                   ),
                 ],
