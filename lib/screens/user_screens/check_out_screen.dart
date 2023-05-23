@@ -17,67 +17,69 @@ class CheckOutScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Add Your Details:"),
-            10.0.height,
-            Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: kWhiteColor, borderRadius: BorderRadius.circular(20)),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 12),
-                child: TextField(
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                      hintText: "Name", border: InputBorder.none),
+            ExpansionTile(
+                title: const Text("Fill Your Details"), children: [
+              Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: kWhiteColor, borderRadius: BorderRadius.circular(20)),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 12),
+                  child: TextField(
+                    textAlignVertical: TextAlignVertical.center,
+                    decoration: InputDecoration(
+                        hintText: "Name", border: InputBorder.none),
+                  ),
                 ),
               ),
-            ),
-            10.0.height,
-            Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: kWhiteColor, borderRadius: BorderRadius.circular(20)),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 12),
-                child: TextField(
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                      hintText: "Address", border: InputBorder.none),
+              10.0.height,
+              Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: kWhiteColor, borderRadius: BorderRadius.circular(20)),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 12),
+                  child: TextField(
+                    textAlignVertical: TextAlignVertical.center,
+                    decoration: InputDecoration(
+                        hintText: "Address", border: InputBorder.none),
+                  ),
                 ),
               ),
-            ),
-            10.0.height,
-            Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: kWhiteColor, borderRadius: BorderRadius.circular(20)),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 12),
-                child: TextField(
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                      hintText: "Email", border: InputBorder.none),
+              10.0.height,
+              Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: kWhiteColor, borderRadius: BorderRadius.circular(20)),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 12),
+                  child: TextField(
+                    textAlignVertical: TextAlignVertical.center,
+                    decoration: InputDecoration(
+                        hintText: "Email", border: InputBorder.none),
+                  ),
                 ),
               ),
-            ),
-            10.0.height,
-            Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: kWhiteColor, borderRadius: BorderRadius.circular(20)),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 12),
-                child: TextField(
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                      hintText: "Contect No", border: InputBorder.none),
+              10.0.height,
+              Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: kWhiteColor, borderRadius: BorderRadius.circular(20)),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 12),
+                  child: TextField(
+                    textAlignVertical: TextAlignVertical.center,
+                    decoration: InputDecoration(
+                        hintText: "Contect No", border: InputBorder.none),
+                  ),
                 ),
               ),
-            ),
+            ]),
+
             10.0.height,
             Container(
               width: double.infinity,
@@ -145,15 +147,21 @@ class CheckOutScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("Total",style: TextStyle(fontWeight: FontWeight.bold)),
-                    const Text("0.00",style: TextStyle(fontWeight: FontWeight.bold,),),
+                    const Text("Total",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    const Text(
+                      "0.00",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
             50.0.height,
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 AwesomeDialog(
                   context: context,
                   dialogType: DialogType.success,

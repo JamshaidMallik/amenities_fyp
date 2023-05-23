@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:amenities_app/constant.dart';
@@ -6,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../model/cart_item_model.dart';
+import '../model/my_cart_model.dart';
 import '../model/product_model.dart';
 
 class ProductController extends GetxController {
@@ -17,19 +20,23 @@ class ProductController extends GetxController {
   File? image;
   RxInt _userProductsCount = 0.obs;
   get userProductCount => _userProductsCount.value;
-
-  pickImage() async {
+  RxList<MyCartProduct> myCartProductList = RxList<MyCartProduct>();
+  List<MyCartProduct> myCartProducts = [];
+  RxBool isCartProductLoading = false.obs;
+TextEditingController myCartQuantityController = TextEditingController();
+  CartItem? cartItem;
+ void pickImage() async {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       this.image = File(image.path);
       update();
     }
   }
-  removeImage(){
+ void removeImage(){
     image = null;
     update();
   }
-  addProduct({required String userId}) async {
+ void addProduct({required String userId}) async {
     kShowLoading(Get.context!);
     if (productNameController.text.isEmpty) {
       Get.back();
@@ -70,8 +77,7 @@ class ProductController extends GetxController {
     }
     update();
   }
-
-  getProducts({required String userId}) {
+ void getProducts({required String userId}) {
     productList.clear();
     isProductLoading(true);
     kFireStore
@@ -135,12 +141,79 @@ class ProductController extends GetxController {
     });
     return productLength;
   }
-
-
+  void addToCartItem({required String name, required String quantity, required String addUserID, required String productId, required String productUserId, required String productImage}) {
+    var cartItem = CartItem(
+        name: name,
+        quantity: quantity,
+        addUserId: addUserID,
+        productId: productId,
+        productUserId: productUserId,
+        productImage: productImage);
+    kFireStore
+        .collection(kCartItemCollection)
+        .add(cartItem.toMap())
+        .then((docRef) {
+      getMyCartProducts();
+      kShowSnackBar(
+          context: Get.context!,
+          message: 'Your Item Successfully Add Into Cart',
+          isSuccess: true);
+    }).catchError((error) {
+      kShowSnackBar(context: Get.context!, message: error, isSuccess: true);
+    });
+  }
+  void getMyCartProducts() {
+    myCartProductList.clear();
+    isCartProductLoading(true);
+    kFireStore
+        .collection(kCartItemCollection)
+        .where('user_id', isEqualTo: kStorage.read(kUserId) ?? '')
+        .snapshots()
+        .listen((snapshot) {
+      myCartProducts.clear();
+      for (var doc in snapshot.docs) {
+        MyCartProduct product = MyCartProduct.fromSnapshot(doc);
+        myCartProducts.add(product);
+      }
+      myCartProductList.assignAll(myCartProducts);
+      isCartProductLoading(false);
+      update();
+    });
+  }
+   updateMyCartProductQuantity({required String id}){
+    kFireStore.collection(kCartItemCollection).doc(id).update({
+      'quantity': myCartQuantityController.text,
+    }).then((value) {
+      myCartQuantityController.clear();
+      getMyCartProducts();
+      Get.back();
+      kShowSnackBar(
+          context: Get.context!,
+          message: 'Your Quantity Update',
+          isSuccess: true);
+      update();
+    }).catchError((error) {
+      kShowSnackBar(context: Get.context!, message: error, isSuccess: true);
+    });
+    update();
+  }
+  void removeFromCart({required String id}){
+    kFireStore.collection(kCartItemCollection).doc(id).delete().then((value) {
+      myCartProductList.removeWhere((element) => element.id == id);
+      kShowSnackBar(
+          context: Get.context!,
+          message: 'Your Item Successfully Remove From Cart',
+          isSuccess: true);
+    }).catchError((error) {
+      log('error_is_this $error');
+      kShowSnackBar(context: Get.context!, message: error, isSuccess: true);
+    });
+    update();
+  }
   @override
   void onInit() {
     super.onInit();
-    // getProducts(userId: kStorage.read(kUserId));
     getUserProducts();
+    getMyCartProducts();
   }
 }

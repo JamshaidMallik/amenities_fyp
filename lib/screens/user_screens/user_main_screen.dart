@@ -1,3 +1,4 @@
+import 'package:amenities_app/controller/product_controller.dart';
 import 'package:amenities_app/screens/user_screens/all_seller_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import '../../controller/auth_controller.dart';
 import '../../profile_screen.dart';
 import '../admin_screen/order_screen.dart';
 import 'building_type_screen.dart';
+import 'cart_screen.dart';
 
 class UserMainScreen extends StatelessWidget {
   const UserMainScreen({Key? key}) : super(key: key);
@@ -18,6 +20,30 @@ class UserMainScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home'),
         actions: [
+          GestureDetector(
+            onTap: (){
+              Get.to(() => const CartScreen());
+
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: Center(
+                child: GetBuilder<ProductController>(
+                    init: ProductController(),
+                    builder: (controller) {
+                      return controller.myCartProductList.isNotEmpty
+                          ? Badge(
+                              backgroundColor: Colors.red,
+                              isLabelVisible: true,
+                              textStyle: kPrimaryText.copyWith(
+                                  color: Colors.white, fontSize: 12.0),
+                              label: Text(controller.myCartProductList.length.toString()),
+                              child: const Icon(Icons.shopping_cart))
+                          : Icon(Icons.shopping_cart);
+                    }),
+              ),
+            ),
+          ),
           GetBuilder<AuthController>(
               init: AuthController(),
               builder: (c) {
@@ -65,7 +91,7 @@ class UserMainScreen extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.home_outlined),
               title: const Text("Home"),
-              onTap: () => null,
+              onTap: () => Get.back(),
             ),
             ListTile(
               leading: const Icon(Icons.account_box_outlined),
@@ -78,7 +104,7 @@ class UserMainScreen extends StatelessWidget {
                 leading: const Icon(Icons.emoji_people_sharp),
                 title: const Text("Orders"),
                 onTap: () {
-                  Get.to(()=>const OrderScreen());
+                  Get.to(() => const OrderScreen());
                 }),
           ],
         ),
@@ -93,23 +119,24 @@ class UserMainScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () => Get.to(() => const AllSellerScreen()),
                 child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  elevation: 10,
-                  child:SizedBox(
-                    height: 200,
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.network("https://img.freepik.com/free-vector/two-storey-house-with-red-roof_1308-34753.jpg?size=626&ext=jpg&ga=GA1.1.2048458770.1673854843&semt=sph",height: 100,),
-                        Text("Get Product")
-                      ],
-                    ),
-                  )
-
-                ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    elevation: 10,
+                    child: SizedBox(
+                      height: 200,
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.network(
+                            "https://img.freepik.com/free-vector/two-storey-house-with-red-roof_1308-34753.jpg?size=626&ext=jpg&ga=GA1.1.2048458770.1673854843&semt=sph",
+                            height: 100,
+                          ),
+                          Text("Get Product")
+                        ],
+                      ),
+                    )),
               ),
               20.0.height,
               GestureDetector(
@@ -118,17 +145,19 @@ class UserMainScreen extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),
                   elevation: 10,
-                  child:  SizedBox(
+                  child: SizedBox(
                     height: 200,
                     width: double.infinity,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.network('https://img.freepik.com/free-vector/concept-house-searching-landing-page_52683-25530.jpg?size=626&ext=jpg&ga=GA1.1.2048458770.1673854843&semt=ais',height: 100,),
+                        Image.network(
+                          'https://img.freepik.com/free-vector/concept-house-searching-landing-page_52683-25530.jpg?size=626&ext=jpg&ga=GA1.1.2048458770.1673854843&semt=ais',
+                          height: 100,
+                        ),
                         Text("Estimate"),
                       ],
                     ),
-
                   ),
                 ),
               ),

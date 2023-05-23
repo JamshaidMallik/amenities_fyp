@@ -13,7 +13,7 @@ class AllSellerScreen extends StatelessWidget {
       init: UserController(),
       builder: (c) {
         return Scaffold(
-          appBar: AppBar(title: const Text("User Detail"),),
+          appBar: AppBar(title: const Text("Sellers"),),
           body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView.builder(
