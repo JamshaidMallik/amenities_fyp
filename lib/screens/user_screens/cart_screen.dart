@@ -2,6 +2,7 @@ import 'package:amenities_app/controller/product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constant.dart';
+import '../../widgets/button_widgets.dart';
 import '../../widgets/custom_text_field.dart';
 import 'check_out_screen.dart';
 
@@ -179,33 +180,11 @@ class CartScreen extends StatelessWidget {
                   ),
             bottomSheet: c.myCartProductList.isNotEmpty
                 ? Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const CheckOutScreen()));
-                      },
-                      child: Container(
-                        height: 50,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: Colors.teal),
-                        child: const Padding(
-                          padding: EdgeInsets.all(15),
-                          child: Center(
-                            child: Text(
-                              "Check Out",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
+                  padding: const EdgeInsets.all(8.0),
+                  child: primarybutton(btnText: 'Check Out',press: () async{
+              Get.to(()=>CheckOutScreen());
+            }),
+                )
                 : const SizedBox(
                     height: 100,
                     width: 100,
