@@ -88,9 +88,7 @@ class SellerProductsScreen extends StatelessWidget {
                                         Text(product.productName,
                                             style: kHeadingText),
                                         const Spacer(),
-                                        if (kStorage.read(kUserType) ==
-                                            'Seller')
-                                          TextButton(
+                                        if (kStorage.read(kUserType) == 'Seller')TextButton(
                                               onPressed: () {
                                                 AwesomeDialog(
                                                   context: context,
@@ -119,7 +117,8 @@ class SellerProductsScreen extends StatelessWidget {
                                                 style: TextStyle(
                                                     color: Colors.red),
                                               )),
-                                        TextButton(
+                                       if(kStorage.read(kUserType) == 'User')
+                                         TextButton(
                                             onPressed: () {
                                               c.addToCartItem(
                                                   name: product.productName,
@@ -136,7 +135,6 @@ class SellerProductsScreen extends StatelessWidget {
                                               style: TextStyle(
                                                   color: kPrimaryColor),
                                             )),
-                                        //
                                       ],
                                     ),
                                     if (last) 70.0.height,
