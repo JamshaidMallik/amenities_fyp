@@ -2,7 +2,6 @@ import 'package:amenities_app/constant.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
-
 class CheckOutScreen extends StatelessWidget {
   const CheckOutScreen({Key? key}) : super(key: key);
 
@@ -11,17 +10,7 @@ class CheckOutScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Your Cart'),
-        leading: const Icon(
-          Icons.menu,
-          color: kWhiteColor,
-        ),
-        actions: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.shopping_cart_outlined),
-          ),
-        ],
+        title: const Text('Check Out'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -186,7 +175,7 @@ class CheckOutScreen extends StatelessWidget {
                   padding: EdgeInsets.all(15),
                   child: Center(
                     child: Text(
-                      "Confirm Detail",
+                      "Confirm Order",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,

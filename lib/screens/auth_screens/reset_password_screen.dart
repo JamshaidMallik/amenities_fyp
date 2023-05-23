@@ -8,6 +8,8 @@ import '../../widgets/button_widgets.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
 AuthController controller = Get.find<AuthController>();
+
+  ResetPasswordScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

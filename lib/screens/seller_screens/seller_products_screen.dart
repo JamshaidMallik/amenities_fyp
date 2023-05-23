@@ -4,7 +4,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constant.dart';
-import '../../controller/auth_controller.dart';
 import '../../model/product_model.dart';
 
 class SellerProductsScreen extends StatelessWidget {
@@ -77,7 +76,7 @@ class SellerProductsScreen extends StatelessWidget {
                                     context: context,
                                     dialogType: DialogType.question,
                                     animType: AnimType.rightSlide,
-                                    title: 'Are you sure you want to Delete',
+                                    title: 'Are you sure you want to Delet',
                                     btnCancelOnPress: () {
                                       Get.back();
                                     },
@@ -108,7 +107,7 @@ class SellerProductsScreen extends StatelessWidget {
               onPressed: kStorage.read(kUserType) == 'Seller' ?  () {
                 Get.to(() => const SellerAddProduct());
               }:null,
-              child:  kStorage.read(kUserType) == 'Seller' ?  Icon(Icons.add): null,
+              child:  kStorage.read(kUserType) == 'Seller' ?  const Icon(Icons.add): null,
             ),
           );
         });

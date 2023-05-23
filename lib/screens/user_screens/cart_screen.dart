@@ -16,10 +16,10 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Cart'),
-        actions: [
+        title: const Text('Your Cart'),
+        actions: const [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Icon(Icons.shopping_cart_outlined),
           ),
         ],
@@ -34,7 +34,7 @@ class CartScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         maxRadius: 30,
                         backgroundImage: NetworkImage("https://i.pinimg.com/564x/ee/55/08/ee5508020993c264524edce53aeb3636.jpg"),
                       ),
@@ -63,7 +63,7 @@ class CartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: GestureDetector(
           onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CheckOutScreen()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const CheckOutScreen()));
           },
           child: Container(
             height: 50,
@@ -71,11 +71,11 @@ class CartScreen extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 color: Colors.teal),
-            child: Padding(
-              padding: const EdgeInsets.all(15),
+            child: const Padding(
+              padding: EdgeInsets.all(15),
               child: Center(
                 child: Text(
-                  "Estimation",
+                  "Check Out",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

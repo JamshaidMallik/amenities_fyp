@@ -99,15 +99,15 @@ class AdminMainScreen extends StatelessWidget {
               child: Container(
                 height: 50,
                 width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.teal,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Center(
                     child: Text(
                   "Get Estimation",
                   style: kSecondaryText,
                 )),
-                decoration: BoxDecoration(
-                  color: Colors.teal,
-                  borderRadius: BorderRadius.circular(10),
-                ),
               ),
             ),
           ],
@@ -129,6 +129,11 @@ class AdminMainScreen extends StatelessWidget {
                         Card(
                           elevation: 10,
                           child: Container(
+                            height: 100,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4.0),
+                                color: Colors.teal.shade300),
                             child: const Center(
                                 child: Text(
                               "Users",
@@ -136,11 +141,6 @@ class AdminMainScreen extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             )),
-                            height: 100,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4.0),
-                                color: Colors.teal.shade300),
                           ),
                         ),
                       ],
@@ -155,6 +155,11 @@ class AdminMainScreen extends StatelessWidget {
                         Card(
                           elevation: 10,
                           child: Container(
+                            height: 100,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4.0),
+                                color: Colors.teal.shade300),
                             child: const Center(
                                 child: Text(
                               "Products",
@@ -162,11 +167,6 @@ class AdminMainScreen extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             )),
-                            height: 100,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4.0),
-                                color: Colors.teal.shade300),
                           ),
                         ),
                       ],
@@ -185,6 +185,11 @@ class AdminMainScreen extends StatelessWidget {
                         Card(
                           elevation: 10,
                           child: Container(
+                            height: 100,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4.0),
+                                color: Colors.teal.shade300),
                             child: const Center(
                                 child: Text(
                               "Orders",
@@ -192,11 +197,6 @@ class AdminMainScreen extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             )),
-                            height: 100,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4.0),
-                                color: Colors.teal.shade300),
                           ),
                         ),
                       ],
@@ -212,6 +212,12 @@ class AdminMainScreen extends StatelessWidget {
                         Card(
                           elevation: 10,
                           child: Container(
+                            height: 100,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4.0),
+                              color: Colors.teal.shade300,
+                            ),
                             child: const Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Center(
@@ -221,12 +227,6 @@ class AdminMainScreen extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
                               )),
-                            ),
-                            height: 100,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0),
-                              color: Colors.teal.shade300,
                             ),
                           ),
                         ),
