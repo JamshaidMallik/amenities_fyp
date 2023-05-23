@@ -16,10 +16,6 @@ class UserMainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Choose your Building Type'),
-        leading: const Icon(
-          Icons.arrow_back,
-          color: kWhiteColor,
-        ),
         actions: [
           GetBuilder<AuthController>(
               init: AuthController(),

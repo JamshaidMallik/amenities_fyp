@@ -9,7 +9,7 @@ class AllSellerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<UserController>(
+    return GetBuilder(
       init: UserController(),
       builder: (c) {
         return Scaffold(

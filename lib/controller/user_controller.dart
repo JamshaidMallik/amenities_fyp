@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:amenities_app/constant.dart';
 import 'package:get/get.dart';
 
@@ -14,10 +13,10 @@ class UserController extends GetxController{
         .where(kUserType, isEqualTo: 'Seller')
         .snapshots()
         .listen((querySnapshot) {
-          Get.back();
       _allSeller.assignAll(querySnapshot.docs
           .map((e) => UserModel.fromJson(e.data()))
           .toList());
+      Get.back();
       update();
     }, onError: (error) {
       Get.back();
