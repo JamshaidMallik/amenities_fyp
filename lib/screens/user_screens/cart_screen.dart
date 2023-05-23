@@ -182,7 +182,7 @@ class CartScreen extends StatelessWidget {
                 ? Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: primarybutton(btnText: 'Check Out',press: () async{
-              Get.to(()=>CheckOutScreen());
+              Get.to(()=>CheckOutScreen(c.myCartProductList,));
             }),
                 )
                 : const SizedBox(

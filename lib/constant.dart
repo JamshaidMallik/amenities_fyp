@@ -28,6 +28,7 @@ String kUserId = 'User_id';
 String kUserCollection = 'users';
 String kProductCollection = 'products';
 String kCartItemCollection = 'cart_item';
+String kCheckOutCollection = 'check_out';
 String kProfileImage = 'ProfileImage';
 FirebaseFirestore kFireStore = FirebaseFirestore.instance;
 FirebaseStorage kStorageRef = FirebaseStorage.instance;
