@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../constant.dart';
+import 'input_estimate_screen.dart';
 
 class BuildingTypeScreen extends StatelessWidget {
   const BuildingTypeScreen({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class BuildingTypeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text('Choose your Building Type'),
+        title: Text('Choose your Building'),
       ),
       body: Center(
         child: Padding(
@@ -40,7 +41,7 @@ class BuildingTypeScreen extends StatelessWidget {
               ),
               20.0.height,
               GestureDetector(
-                onTap: () => Get.to(() => const BuildingTypeScreen()),
+                onTap: () =>  Get.to(() => const InputEstimateScreen()),
                 child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),
