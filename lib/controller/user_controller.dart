@@ -154,9 +154,9 @@ class UserController extends GetxController {
     });
     update();
   }
-  updateMyCartProductQuantity({required String id}){
+  confirmOrder({required String id, required int status}){
     kFireStore.collection(kOrderCollection).doc(id).update({
-      'order_status': 1,
+      'order_status': status,
     }).then((value) {
       kShowSnackBar(
           context: Get.context!,

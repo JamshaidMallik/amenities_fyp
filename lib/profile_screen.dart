@@ -43,17 +43,7 @@ class ProfileScreen extends GetView<ProfileController> {
                                           radius: 60,
                                           backgroundColor: Colors.grey.shade100,
                                           backgroundImage: NetworkImage(controller.userImage),
-
                                         ),
-                                        // CircleAvatar(
-                                        //   radius: 60,
-                                        //   backgroundColor: Colors.grey.shade100,
-                                        //   child: const Icon(
-                                        //     Icons.person_rounded,
-                                        //     size: 50,
-                                        //     color: Colors.teal,
-                                        //   ),
-                                        // ),
                                       ],
                                     ),
                                     Padding(
@@ -62,7 +52,9 @@ class ProfileScreen extends GetView<ProfileController> {
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: <Widget>[
                                             InkWell(
-                                              onTap: () {},
+                                              onTap: () async{
+                                               await controller.uploadProfileImage();
+                                              },
                                               child: const CircleAvatar(
                                                 backgroundColor: kPrimaryColor,
                                                 radius: 12.0,
@@ -90,8 +82,8 @@ class ProfileScreen extends GetView<ProfileController> {
                                 children: [
                                   Text(
                                       controller.isView == true
-                                          ? "View"
-                                          : "Update",
+                                          ? "Update"
+                                          : "View",
                                       style: kSecondaryText.copyWith(
                                           color: kPrimaryColor)),
                                   5.0.width,
@@ -134,7 +126,9 @@ class ProfileScreen extends GetView<ProfileController> {
                                 ),
                           30.0.height,
                           controller.isView == true
-                              ? primarybutton(btnText: 'Update',press: (){}): Container()
+                              ? primarybutton(btnText: 'Update',press: (){
+                                controller.updateProfile();
+                          }): Container()
 
                         ],
                       ),

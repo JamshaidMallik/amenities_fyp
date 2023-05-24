@@ -30,7 +30,7 @@ class AllUsersScreen extends StatelessWidget {
                               CircleAvatar(
                                 backgroundColor: kPrimaryColor,
                                 maxRadius: 30,
-                                backgroundImage: NetworkImage(users.userImage),
+                                backgroundImage: NetworkImage(users.userImage.toString()),
                               ),
                               10.0.width,
                               Expanded(
@@ -40,9 +40,9 @@ class AllUsersScreen extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text(users.fullName,style: kHeadingText,),
-                                      Text(users.email,style: kSubHeadingText),
-                                      Text(users.userPhone,style: kSecondaryText,),
+                                      Text(users.fullName.toString(),style: kHeadingText,),
+                                      Text(users.email.toString(),style: kSubHeadingText),
+                                      Text(users.userPhone.toString(),style: kSecondaryText,),
                                     ],
                                   ),
                                 ),
@@ -50,7 +50,7 @@ class AllUsersScreen extends StatelessWidget {
                               ElevatedButton(
                                   style: ElevatedButton.styleFrom(primary: Colors.teal,),
                                   onPressed: (){
-                                    Get.to(()=> SellerProductsScreen(users.userId));
+                                    Get.to(()=> SellerProductsScreen(users.userId.toString()));
                                   }, child: const Text("View")),
                             ],
                           ),

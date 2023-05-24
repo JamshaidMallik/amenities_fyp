@@ -1,5 +1,6 @@
 import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/controller/user_controller.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,11 +40,47 @@ class SellerOrderScreen extends StatelessWidget {
                                 Text(item.address, style: kPrimaryText.copyWith(fontSize: 12.0, color: Colors.grey)),
                               ],
                             ),
-                            Text(
-                              item.orderStatus == 1 ? 'Pending' : item.orderStatus == 2 ? "Complete" : 'Pending',
-                              style: kSecondaryText.copyWith(
-                                color: item.orderStatus == 0 ? Colors.red : item.orderStatus == 1 ? Colors.red : Colors.green,
-                              ),
+                            Column(
+                              children: [
+                                Text(
+                                  item.orderStatus == 1 ? 'Pending' : item.orderStatus == 2 ? "Confirm" : 'Pending',
+                                  style: kSecondaryText.copyWith(
+                                    color: item.orderStatus == 0 ? Colors.red : item.orderStatus == 1 ? Colors.red : Colors.green,
+                                  ),
+                                ),
+                                item.orderStatus == 0 || item.orderStatus == 1?  GestureDetector(
+                                  onTap: (){
+                                    AwesomeDialog(
+                                      context: context,
+                                      dialogType: DialogType.warning,
+                                      animType: AnimType.rightSlide,
+                                      title: 'Are you sure to confirm this order?',
+                                      btnCancelOnPress: () {
+                                        Get.back();
+                                      },
+                                      btnOkOnPress: () async{
+                                        c.confirmOrder(id: item.id, status: 2);
+                                      },
+                                      btnCancelText: 'Cancel',
+                                      btnOkText: "Confirm",
+                                      btnOkColor: Colors.teal,
+                                    ).show();
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                        color: kPrimaryColor,
+                                        borderRadius: BorderRadius.circular(10.0),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+                                        child: Text(
+                                          'Confirm',
+                                          style: kSecondaryText.copyWith(
+                                              color: Colors.white,fontSize: 10.0),
+                                        ),
+                                      )),
+                                ):Container(),
+                              ],
                             ),
                           ],
                         ),

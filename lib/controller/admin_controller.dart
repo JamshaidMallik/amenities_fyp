@@ -45,6 +45,7 @@ class AdminController extends GetxController{
       update();
     });
   }
+
   @override
   void onReady() {
     super.onReady();

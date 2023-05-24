@@ -78,7 +78,7 @@ class AdminOrdersScreen extends StatelessWidget {
                                         Get.back();
                                       },
                                       btnOkOnPress: () async{
-                                        c.updateMyCartProductQuantity(id: item.id);
+                                        c.confirmOrder(id: item.id, status: 1);
                                       },
                                       btnCancelText: 'Cancel',
                                       btnOkText: "Confirm",
