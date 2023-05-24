@@ -3,8 +3,8 @@ import 'package:amenities_app/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SellerOrderScreen extends StatelessWidget {
-  const SellerOrderScreen({Key? key}) : super(key: key);
+class UserOrders extends StatelessWidget {
+  const UserOrders({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,9 @@ class SellerOrderScreen extends StatelessWidget {
       init: UserController(),
       builder: (c) {
         return Scaffold(
-          appBar: AppBar(title: const Text("Orders"),),
+          appBar: AppBar(
+            title: const Text("Orders"),
+          ),
           body: ListView.builder(
             physics: const BouncingScrollPhysics(),
             itemCount: c.myOrdersList.length,
@@ -52,7 +54,6 @@ class SellerOrderScreen extends StatelessWidget {
                         children: item.products.map((product) {
                           return ListTile(
                             leading: CircleAvatar(
-                              radius: 30.0,
                               backgroundColor: kPrimaryColor,
                               backgroundImage: NetworkImage(product['product_image']),
                             ),
@@ -86,7 +87,7 @@ class SellerOrderScreen extends StatelessWidget {
             },
           ),
         );
-      }
+      },
     );
   }
 }

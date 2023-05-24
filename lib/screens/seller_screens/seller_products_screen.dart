@@ -33,9 +33,6 @@ class SellerProductsScreen extends StatelessWidget {
                       child: c.myCartProductList.isNotEmpty
                           ? Badge(
                               backgroundColor: Colors.red,
-                              isLabelVisible: true,
-                              textStyle: kPrimaryText.copyWith(
-                                  color: Colors.white, fontSize: 12.0),
                               label:
                                   Text(c.myCartProductList.length.toString()),
                               child: const Icon(Icons.shopping_cart))

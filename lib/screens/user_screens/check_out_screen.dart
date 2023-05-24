@@ -1,18 +1,15 @@
 import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/controller/user_controller.dart';
 import 'package:amenities_app/model/my_cart_model.dart';
-import 'package:amenities_app/screens/user_screens/user_main_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../../widgets/button_widgets.dart';
 import '../../widgets/custom_text_field.dart';
 
 class CheckOutScreen extends StatelessWidget {
   final RxList<MyCartProduct> myCartProductList;
   const CheckOutScreen(this.myCartProductList, {super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +42,18 @@ class CheckOutScreen extends StatelessWidget {
                             child: Text('Fill In the Blanks',style: kHeadingText.copyWith(color: Colors.black,fontSize: 14.0),),
                           ),
                             10.0.height,
-                          customTextField( hintText: 'Name'),
+                          customTextField( hintText: 'Full Name',controller: c.nameController),
                           20.0.height,
-                          customTextField( hintText: 'Address'),
+                          customTextField( hintText: 'Email', controller: c.emailController),
                           20.0.height,
-                          customTextField( hintText: 'Email'),
+                          customTextField( hintText: 'Phone No', controller: c.contactNoController),
                           20.0.height,
-                          customTextField( hintText: 'Contect No:'),
+                          customTextField( hintText: 'Complete Address', controller: c.addressController),
                         ],),
                       ),
                     ),
                     10.0.height,
+                    if(myCartProductList.isNotEmpty)
                     Card(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                       elevation: 15.0,
@@ -108,12 +106,14 @@ class CheckOutScreen extends StatelessWidget {
             child: primarybutton(btnText: 'Confirm Order',press: () async{
               AwesomeDialog(
                 context: context,
-                dialogType: DialogType.success,
+                dialogType: DialogType.question,
                 animType: AnimType.rightSlide,
                 title: 'Are You Sure To Send Order?',
                 btnOkOnPress: () {
                 c.sendOrder(myCartProductList);
                 },
+                btnCancelOnPress: () {},
+                btnCancelText: "Cancel",
                 btnOkText: "Continue shopping",
                 btnOkColor: kTealColor,
               ).show();
