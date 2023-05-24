@@ -67,7 +67,7 @@ class AdminOrdersScreen extends StatelessWidget {
                                             : Colors.green,
                                   ),
                                 ),
-                                GestureDetector(
+                                item.orderStatus == 0?  GestureDetector(
                                   onTap: (){
                                     AwesomeDialog(
                                       context: context,
@@ -98,7 +98,7 @@ class AdminOrdersScreen extends StatelessWidget {
                                               color: Colors.white,fontSize: 10.0),
                                         ),
                                       )),
-                                ),
+                                ):Container(),
                               ],
                             ),
                           ],

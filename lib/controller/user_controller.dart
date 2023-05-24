@@ -98,7 +98,6 @@ class UserController extends GetxController {
     }
     update();
   }
-
   void fetchMyOrders() {
     myOrdersList.clear();
     kFireStore
@@ -118,7 +117,6 @@ class UserController extends GetxController {
     });
     update();
   }
-
   void fetchSellerOrders() {
     myOrdersList.clear();
     kFireStore
@@ -138,7 +136,6 @@ class UserController extends GetxController {
     });
     update();
   }
-
   void fetchAdminAllOrders() {
     myOrdersList.clear();
     kFireStore
@@ -157,13 +154,10 @@ class UserController extends GetxController {
     });
     update();
   }
-
   updateMyCartProductQuantity({required String id}){
     kFireStore.collection(kOrderCollection).doc(id).update({
       'order_status': 1,
     }).then((value) {
-      fetchAdminAllOrders();
-      Get.back();
       kShowSnackBar(
           context: Get.context!,
           message: 'Product Confirmed Successfully',

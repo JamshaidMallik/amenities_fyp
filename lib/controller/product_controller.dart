@@ -32,11 +32,11 @@ TextEditingController myCartQuantityController = TextEditingController();
       update();
     }
   }
- void removeImage(){
-    image = null;
-    update();
-  }
- void addProduct({required String userId}) async {
+  void removeImage(){
+      image = null;
+      update();
+    }
+  void addProduct({required String userId}) async {
     kShowLoading(Get.context!);
     if (productNameController.text.isEmpty) {
       Get.back();
@@ -77,7 +77,7 @@ TextEditingController myCartQuantityController = TextEditingController();
     }
     update();
   }
- void getProducts({required String userId}) {
+  void getProducts({required String userId}) {
     productList.clear();
     isProductLoading(true);
     kFireStore
@@ -94,6 +94,19 @@ TextEditingController myCartQuantityController = TextEditingController();
       isProductLoading(false);
       update();
     });
+  }
+  Future getUserProducts() async {
+    int? productLength;
+    kFireStore
+        .collection(kProductCollection)
+        .where('userId', isEqualTo: kStorage.read(kUserId))
+        .snapshots()
+        .listen((snapshot) {
+      productLength = snapshot.docs.length;
+      _userProductsCount = RxInt(productLength!);
+      update();
+    });
+    return productLength;
   }
   Future<void> deleteProduct({required String productId, required int index, required String imageUrl}) async {
     kShowLoading(Get.context!);
@@ -127,19 +140,6 @@ TextEditingController myCartQuantityController = TextEditingController();
     }
 
     update();
-  }
-  Future getUserProducts() async {
-    int? productLength;
-    kFireStore
-        .collection(kProductCollection)
-        .where('userId', isEqualTo: kStorage.read(kUserId))
-        .snapshots()
-        .listen((snapshot) {
-        productLength = snapshot.docs.length;
-        _userProductsCount = RxInt(productLength!);
-        update();
-    });
-    return productLength;
   }
   void addToCartItem({required String name, required String quantity, required String addUserID, required String productId, required String productUserId, required String productImage}) {
     var cartItem = CartItem(
@@ -180,7 +180,7 @@ TextEditingController myCartQuantityController = TextEditingController();
       update();
     });
   }
-   updateMyCartProductQuantity({required String id}){
+  updateMyCartProductQuantity({required String id}){
     kFireStore.collection(kCartItemCollection).doc(id).update({
       'quantity': myCartQuantityController.text,
     }).then((value) {

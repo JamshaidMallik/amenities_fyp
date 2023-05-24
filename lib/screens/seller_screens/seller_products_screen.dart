@@ -23,7 +23,7 @@ class SellerProductsScreen extends StatelessWidget {
             appBar: AppBar(
               title: const Text('Products'),
               actions: [
-                GestureDetector(
+             kStorage.read(kUserType) != 'Admin'?   GestureDetector(
                   onTap: () {
                     Get.to(() => const CartScreen());
                   },
@@ -39,7 +39,7 @@ class SellerProductsScreen extends StatelessWidget {
                           : const Icon(Icons.shopping_cart),
                     ),
                   ),
-                ),
+                ):Container(),
               ],
             ),
             body: c.isProductLoading.isTrue
@@ -52,8 +52,7 @@ class SellerProductsScreen extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
                           Product product = c.productList[index];
-                          bool last =
-                              index == c.productList.length - 1 ? true : false;
+                          bool last = index == c.productList.length - 1 ? true : false;
                           return Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Column(
