@@ -1,10 +1,10 @@
-import 'package:amenities_app/screens/user_screens/area_screen.dart';
+import 'package:amenities_app/screens/user_screens/commercial_area_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constant.dart';
-import 'input_estimate_screen.dart';
+import 'residetial_area_screen.dart';
 
 class BuildingTypeScreen extends StatelessWidget {
   const BuildingTypeScreen({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class BuildingTypeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () => Get.to(() => const AreaScreen()),
+                onTap: () => Get.to(() => const ResidentialAreaScreen()),
                 child: Card(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),
@@ -44,7 +44,7 @@ class BuildingTypeScreen extends StatelessWidget {
               ),
               20.0.height,
               GestureDetector(
-                onTap: () => Get.to(() => const InputEstimateScreen()),
+                onTap: () => Get.to(() => const CommercialAreaScreen()),
                 child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),

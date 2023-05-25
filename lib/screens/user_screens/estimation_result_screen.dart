@@ -11,7 +11,7 @@ class EstimateResultScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Estimate',
+          'Estimate Result',
           style: kSubHeadingText,
         ),
       ),

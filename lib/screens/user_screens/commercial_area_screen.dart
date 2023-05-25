@@ -7,8 +7,8 @@ import '../../constant.dart';
 import 'estimation_result_screen.dart';
 
 
-class AreaScreen extends StatelessWidget {
-  const AreaScreen({Key? key}) : super(key: key);
+class CommercialAreaScreen extends StatelessWidget {
+  const CommercialAreaScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class AreaScreen extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             title: const Text(
-              'Choose Area',
+              'Choose Commercial Area',
             ),
           ),
           body: Padding(
