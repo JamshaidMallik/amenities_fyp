@@ -4,6 +4,7 @@ import 'package:amenities_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constant.dart';
+import 'estimation_result_screen.dart';
 
 
 class AreaScreen extends StatelessWidget {
@@ -17,9 +18,8 @@ class AreaScreen extends StatelessWidget {
         return Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            title: Text(
+            title: const Text(
               'Choose Area',
-              style: kSubHeadingText,
             ),
           ),
           body: Padding(
@@ -56,22 +56,22 @@ class AreaScreen extends StatelessWidget {
                     }).toList(),
                     value: c.valueChoose,
                     onChanged: (newValue)=> c.chooseValue(newValue)),
+                c.valueChoose == 'Custom'?  customTextField(hintText: 'Enter Custom Area',controller: c.customAreaController):Container(),
                 10.0.height,
-                c.valueChoose == 'Custom'?  customTextField(hintText: 'Enter Your Desired Area'):Container(),
+                customTextField(hintText: 'Numbers of Floor', controller: c.floorController),
                 10.0.height,
-                customTextField(hintText: 'Numbers of Floor'),
+                customTextField(hintText: 'Numbers of Room',controller: c.roomController),
                 10.0.height,
-                customTextField(hintText: 'Numbers of Room'),
-                10.0.height,
-                customTextField(hintText: 'Room Dimension'),
+                customTextField(hintText: 'Room Dimension', controller: c.roomDimensionController),
                 40.0.height,
-
               ],
             ),
           ),
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: primarybutton(btnText: 'Get Estimate',press: (){}),
+            child: primarybutton(btnText: 'Get Estimate',press: (){
+              Get.to(()=> const EstimateResultScreen());
+            }),
           ),
         );
       }

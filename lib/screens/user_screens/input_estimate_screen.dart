@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constant.dart';
-import 'estimate_raw_marerial_screen.dart';
+import 'estimation_result_screen.dart';
 
 
 class InputEstimateScreen extends StatefulWidget {
@@ -118,7 +118,7 @@ List<String> listItem = [
             Center(
               child: GestureDetector(
                 onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EstimateRawMaterialScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EstimateResultScreen()));
                 },
                 child: Container(
                   height: 50,

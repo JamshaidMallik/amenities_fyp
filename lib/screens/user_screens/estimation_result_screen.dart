@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../constant.dart';
 import 'cart_screen.dart';
 
-class EstimateRawMaterialScreen extends StatelessWidget {
-  const EstimateRawMaterialScreen({Key? key}) : super(key: key);
+class EstimateResultScreen extends StatelessWidget {
+  const EstimateResultScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
