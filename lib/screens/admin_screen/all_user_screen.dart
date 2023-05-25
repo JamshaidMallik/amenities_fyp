@@ -48,6 +48,7 @@ class AllUsersScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              if(users.userType == 'Seller')
                               ElevatedButton(
                                   style: ElevatedButton.styleFrom(primary: Colors.teal,),
                                   onPressed: (){

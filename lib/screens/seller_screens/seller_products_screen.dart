@@ -204,8 +204,6 @@ class SellerProductsScreen extends StatelessWidget {
                                                                         colorText: kWhiteColor,
                                                                         duration: const Duration(seconds: 3),
                                                                       );
-
-
                                                                     }else{
                                                                       c.addToCartItem(
                                                                           name: product.productName,
