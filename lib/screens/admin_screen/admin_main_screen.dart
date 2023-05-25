@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../constant.dart';
 import '../../controller/auth_controller.dart';
-import '../user_screens/user_order_Screen.dart';
 import 'admin_orders_screen.dart';
 import 'all_products_screen.dart';
 import 'all_user_screen.dart';

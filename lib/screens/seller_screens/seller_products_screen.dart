@@ -1,10 +1,10 @@
 import 'package:amenities_app/controller/product_controller.dart';
-import 'package:amenities_app/controller/user_controller.dart';
 import 'package:amenities_app/screens/seller_screens/seller_add_product.dart';
 import 'package:amenities_app/screens/user_screens/cart_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../constant.dart';
 import '../../model/product_model.dart';
 

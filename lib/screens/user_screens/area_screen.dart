@@ -1,78 +1,81 @@
+import 'package:amenities_app/controller/estimation_controller.dart';
+import 'package:amenities_app/widgets/button_widgets.dart';
+import 'package:amenities_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../constant.dart';
-import 'input_estimate_screen.dart';
+
 
 class AreaScreen extends StatelessWidget {
   const AreaScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Select Area',
-          style: kSubHeadingText,
-        ),
-      ),
-      body: ListView.builder(
-        itemCount: 15,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
+    return GetBuilder<EstimationController>(
+      init: EstimationController(),
+      builder: (c) {
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            title: Text(
+              'Choose Area',
+              style: kSubHeadingText,
+            ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
+                10.0.height,
+                DropdownButtonFormField(
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
+                        borderSide: const BorderSide(color: kPrimaryColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
+                        borderSide: const BorderSide(color: kPrimaryColor),
+                      ),
+                    ),
+                    hint: const Text("Select Area"),
+                    items: c.listItem.map((valueItem){
+                      if (valueItem == "Custom") {
+                        return DropdownMenuItem(
+                          value: valueItem,
+                          child: Text(valueItem),
+                        );
+                      } else {
+                        return DropdownMenuItem(
+                          value: valueItem,
+                          child: Text('$valueItem Marla'),
+                        );
+                      }
+                    }).toList(),
+                    value: c.valueChoose,
+                    onChanged: (newValue)=> c.chooseValue(newValue)),
+                10.0.height,
+                c.valueChoose == 'Custom'?  customTextField(hintText: 'Enter Your Desired Area'):Container(),
+                10.0.height,
+                customTextField(hintText: 'Numbers of Floor'),
+                10.0.height,
+                customTextField(hintText: 'Numbers of Room'),
+                10.0.height,
+                customTextField(hintText: 'Room Dimension'),
+                40.0.height,
 
-                        },
-                        child: Container(
-                          height: 100,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: kGreyColor),
-                          child: Center(
-                              child: Text(
-                            "3",
-                            style: kBigHeadingText,
-                          )),
-                        ),
-                      ),
-                      const Text("Marla")
-                    ],
-                  ),
-                ),
-                10.0.width,
-                Expanded(
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 100,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: kGreyColor),
-                        child: Center(
-                            child: Text(
-                          "5",
-                          style: kBigHeadingText,
-                        )),
-                      ),
-                      const Text("Marla")
-                    ],
-                  ),
-                ),
               ],
             ),
-          );
-        },
-      ),
+          ),
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: primarybutton(btnText: 'Get Estimate',press: (){}),
+          ),
+        );
+      }
     );
   }
 }
+

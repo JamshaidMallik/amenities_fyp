@@ -1,16 +1,16 @@
 import 'package:amenities_app/controller/product_controller.dart';
-import 'package:amenities_app/controller/user_controller.dart';
 import 'package:amenities_app/screens/user_screens/all_seller_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import '../../constant.dart';
 import '../../controller/auth_controller.dart';
 import '../../profile_screen.dart';
-import 'user_order_Screen.dart';
 import 'building_type_screen.dart';
 import 'cart_screen.dart';
+import 'user_order_Screen.dart';
 
 class UserMainScreen extends StatelessWidget {
   const UserMainScreen({Key? key}) : super(key: key);
@@ -121,10 +121,7 @@ class UserMainScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.network(
-                            "https://img.freepik.com/free-vector/two-storey-house-with-red-roof_1308-34753.jpg?size=626&ext=jpg&ga=GA1.1.2048458770.1673854843&semt=sph",
-                            height: 100,
-                          ),
+                          CachedNetworkImage(imageUrl: 'https://img.freepik.com/free-vector/building-material-heaps-set_74855-938.jpg?w=1060&t=st=1684997554~exp=1684998154~hmac=93d25a1387fb413384c7ceb16fae98a62b909ecbf6b25affa45e404941c0167f',height: 150),
                           10.0.height,
                           Text("Buy Products", style: kSecondaryText),
                         ],
@@ -144,10 +141,7 @@ class UserMainScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.network(
-                          'https://img.freepik.com/free-vector/concept-house-searching-landing-page_52683-25530.jpg?size=626&ext=jpg&ga=GA1.1.2048458770.1673854843&semt=ais',
-                          height: 100,
-                        ),
+                        CachedNetworkImage(imageUrl: 'https://img.freepik.com/free-vector/engineering-construction-illustration_23-2148890150.jpg?w=1380&t=st=1684996978~exp=1684997578~hmac=37d3acbf66972a380053717d41997e9ea02c357c16e0bde803dc137f9491f18c',height: 150),
                         10.0.height,
                         Text("Estimate", style: kSecondaryText),
                       ],

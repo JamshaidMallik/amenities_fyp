@@ -1,7 +1,7 @@
 import 'package:amenities_app/screens/user_screens/area_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../constant.dart';
 import 'input_estimate_screen.dart';
@@ -25,34 +25,40 @@ class BuildingTypeScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () => Get.to(() => const AreaScreen()),
                 child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  elevation: 10,
-                  child: const SizedBox(
-                    height: 200,
-                    width: double.infinity,
-                    child: Icon(
-                      Icons.home_outlined,
-                      size: 50,
-                      color: Colors.teal,
-                    ),
-                  ),
-                ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    elevation: 10,
+                    child: SizedBox(
+                      height: 200,
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CachedNetworkImage(imageUrl: 'https://img.freepik.com/free-vector/beach-house-concept-illustration_114360-9433.jpg?w=1380&t=st=1684998205~exp=1684998805~hmac=dd0c03b93463d267a572d2d5855b030439edcc629b55ca9e0e7b9e1fe8893108',height: 150),
+                          10.0.height,
+                          Text("Residential", style: kSecondaryText),
+                        ],
+                      ),
+                    )),
               ),
               20.0.height,
               GestureDetector(
-                onTap: () =>  Get.to(() => const InputEstimateScreen()),
+                onTap: () => Get.to(() => const InputEstimateScreen()),
                 child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),
                   elevation: 10,
-                  child: const SizedBox(
+                  child: SizedBox(
                     height: 200,
                     width: double.infinity,
-                    child: Icon(
-                      Icons.add_card,
-                      size: 50,
-                      color: Colors.teal,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CachedNetworkImage(imageUrl: 'https://img.freepik.com/free-vector/urban-landscape-with-houses-buildings_1308-126447.jpg?w=1480&t=st=1684998069~exp=1684998669~hmac=b4b004e0f578e9c99fc6bac0bf016b850d983bb205f68579b154e4fff11c5eba',height: 150),
+                        10.0.height,
+                        Text("Commercial", style: kSecondaryText),
+                      ],
                     ),
                   ),
                 ),

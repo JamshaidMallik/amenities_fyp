@@ -1,4 +1,3 @@
-import 'package:amenities_app/controller/product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

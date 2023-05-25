@@ -5,6 +5,7 @@ import 'package:amenities_app/screens/user_screens/user_main_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../model/my_cart_model.dart';
 import '../model/order_model.dart';
 import '../model/user_model.dart';
@@ -18,7 +19,6 @@ class UserController extends GetxController {
   List<UserModel> get allSeller => _allSeller;
   final RxList<OrderModel> myOrdersList = <OrderModel>[].obs;
   List<OrderModel> myOrders = [];
-
   void fetchAllSeller() {
     kShowLoading(Get.context!);
     kFireStore

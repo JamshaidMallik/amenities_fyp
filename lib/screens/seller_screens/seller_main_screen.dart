@@ -5,6 +5,7 @@ import 'package:amenities_app/screens/seller_screens/seller_order_screen.dart';
 import 'package:amenities_app/screens/seller_screens/seller_products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../widgets/logout_widget.dart';
 
 class SellerMainScreen extends StatelessWidget {
