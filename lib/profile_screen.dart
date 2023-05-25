@@ -20,8 +20,8 @@ class ProfileScreen extends GetView<ProfileController> {
               title: const Text("Profile"),
             ),
             body: controller.isProfileLoading.isTrue
-                ? const Center(
-                    child: CircularProgressIndicator(),
+                ?  const Center(
+                    child: CircularProgressIndicator(color: kPrimaryColor,),
                   )
                 : Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 60),

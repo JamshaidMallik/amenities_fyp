@@ -23,9 +23,9 @@ class ProductController extends GetxController {
   RxList<MyCartProduct> myCartProductList = RxList<MyCartProduct>();
   List<MyCartProduct> myCartProducts = [];
   RxBool isCartProductLoading = false.obs;
-TextEditingController myCartQuantityController = TextEditingController();
+  TextEditingController myCartQuantityController = TextEditingController();
   CartItem? cartItem;
- void pickImage() async {
+  void pickImage() async {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       this.image = File(image.path);
@@ -210,6 +210,7 @@ TextEditingController myCartQuantityController = TextEditingController();
     });
     update();
   }
+
   @override
   void onInit() {
     super.onInit();

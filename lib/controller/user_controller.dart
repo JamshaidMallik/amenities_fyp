@@ -18,6 +18,9 @@ class UserController extends GetxController {
   final RxList<UserModel> _allSeller = <UserModel>[].obs;
   List<UserModel> get allSeller => _allSeller;
   final RxList<OrderModel> myOrdersList = <OrderModel>[].obs;
+  final List<OrderModel>  _myPendingOrders  = <OrderModel>[].obs;
+  int get myPendingOrders => _myPendingOrders.length;
+  int get sellerOrders => myOrdersList.length;
   List<OrderModel> myOrders = [];
   void fetchAllSeller() {
     kShowLoading(Get.context!);
@@ -119,6 +122,7 @@ class UserController extends GetxController {
   }
   void fetchSellerOrders() {
     myOrdersList.clear();
+    _myPendingOrders.clear();
     kFireStore
         .collection(kOrderCollection)
         .where('product_user_id', isEqualTo: kStorage.read(kUserId) ?? '')
@@ -127,6 +131,9 @@ class UserController extends GetxController {
       myOrders.clear();
       for (var doc in snapshot.docs) {
         OrderModel orders = OrderModel.fromFirestore(doc);
+        orders.orderStatus == 0 || orders.orderStatus == 1
+            ? _myPendingOrders.add(orders)
+            : null;
         myOrders.add(orders);
       }
       myOrdersList.assignAll(myOrders);
@@ -158,6 +165,7 @@ class UserController extends GetxController {
     kFireStore.collection(kOrderCollection).doc(id).update({
       'order_status': status,
     }).then((value) {
+      fetchSellerOrders();
       kShowSnackBar(
           context: Get.context!,
           message: 'Product Confirmed Successfully',

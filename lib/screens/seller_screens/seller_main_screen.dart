@@ -1,5 +1,6 @@
 import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/controller/product_controller.dart';
+import 'package:amenities_app/controller/user_controller.dart';
 import 'package:amenities_app/profile_screen.dart';
 import 'package:amenities_app/screens/seller_screens/seller_order_screen.dart';
 import 'package:amenities_app/screens/seller_screens/seller_products_screen.dart';
@@ -18,7 +19,7 @@ class SellerMainScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            title:  const Text("Home"),
+            title:  const Text("Amenities"),
             actions: [
               logOutMethod(context),
             ],
@@ -63,17 +64,28 @@ class SellerMainScreen extends StatelessWidget {
                          onTap: (){
                            Get.to(()=>const SellerOrderScreen());
                          },
-                         child: Card(
-                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                           ),
-                           elevation: 10.0,
-                           child:  SizedBox(
-                             height: 200,
-                             child: Center(
-                               child: Text("Orders",style: kPrimaryText.copyWith(fontSize: 16.0,fontWeight: FontWeight.bold),),
-                             ),
-                           ),
+                         child: GetBuilder<UserController>(
+                           init: UserController(),
+                           builder: (cc) {
+                             return Card(
+                               shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                               ),
+                               elevation: 10.0,
+                               child: SizedBox(
+                                 height: 200,
+                                 child: Center(
+                                   child: Column(
+                                     mainAxisAlignment: MainAxisAlignment.center,
+                                     children: [
+                                       Text("Orders",style: kPrimaryText.copyWith(fontSize: 16.0,fontWeight: FontWeight.bold),),
+                                       Text(cc.myPendingOrders.toString() ?? "0",style: kPrimaryText.copyWith(fontSize: 16.0,fontWeight: FontWeight.bold),),
+                                     ],
+                                   ),
+                                 ),
+                               ),
+                             );
+                           }
                          ),
                        ),
                      ),
