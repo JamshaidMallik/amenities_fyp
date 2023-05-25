@@ -24,7 +24,10 @@ class CartScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        Text('Swipe Left for delete item', style: kPrimaryGrayText,),
+                        Text(
+                          'Swipe Left for delete item',
+                          style: kPrimaryGrayText,
+                        ),
                         10.0.height,
                         ListView.builder(
                             shrinkWrap: true,
@@ -32,7 +35,7 @@ class CartScreen extends StatelessWidget {
                             itemBuilder: (context, index) {
                               var item = c.myCartProductList[index];
                               return Dismissible(
-                               direction: DismissDirection.endToStart,
+                                direction: DismissDirection.endToStart,
                                 key: UniqueKey(),
                                 background: Container(
                                   color: Colors.red,
@@ -181,11 +184,15 @@ class CartScreen extends StatelessWidget {
                   ),
             bottomSheet: c.myCartProductList.isNotEmpty
                 ? Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: primarybutton(btnText: 'Check Out',press: () async{
-              Get.to(()=>CheckOutScreen(c.myCartProductList,));
-            }),
-                )
+                    padding: const EdgeInsets.all(8.0),
+                    child: primarybutton(
+                        btnText: 'Check Out',
+                        press: () async {
+                          Get.to(() => CheckOutScreen(
+                                c.myCartProductList,
+                              ));
+                        }),
+                  )
                 : const SizedBox(
                     height: 100,
                     width: 100,

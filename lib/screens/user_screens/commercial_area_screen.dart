@@ -55,7 +55,7 @@ class CommercialAreaScreen extends StatelessWidget {
                       }
                     }).toList(),
                     value: c.valueChoose,
-                    onChanged: (newValue)=> c.chooseValue(newValue)),
+                    onChanged: (newValue)=> c.chooseArea(newValue)),
                 c.valueChoose == 'Custom'?  customTextField(hintText: 'Enter Custom Area',controller: c.customAreaController):Container(),
                 10.0.height,
                 customTextField(hintText: 'Numbers of Floor', controller: c.floorController),
@@ -70,7 +70,8 @@ class CommercialAreaScreen extends StatelessWidget {
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(8.0),
             child: primarybutton(btnText: 'Get Estimate',press: (){
-              Get.to(()=> const EstimateResultScreen());
+
+              // Get.to(()=> const EstimateResultScreen());
             }),
           ),
         );

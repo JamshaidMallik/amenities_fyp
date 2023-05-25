@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constant.dart';
-Widget customTextField({TextEditingController? controller ,required String hintText, Icon? suffixIcon, bool? readOnly, Function(String)? onSubmitted}) {
+Widget customTextField({TextEditingController? controller ,required String hintText, Icon? suffixIcon, bool? readOnly, Function(String)? onSubmitted, TextInputType? keyboardType}) {
   return Container(
     height: 50,
     width: double.infinity,
@@ -9,6 +9,7 @@ Widget customTextField({TextEditingController? controller ,required String hintT
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(20)),
     child: TextField(
+      keyboardType:keyboardType ?? TextInputType.text,
       cursorColor: kPrimaryColor,
       onSubmitted: onSubmitted,
       readOnly: readOnly ?? false,

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../constant.dart';
 import '../../model/product_model.dart';
+import '../../widgets/custom_text_field.dart';
 
 class SellerProductsScreen extends StatelessWidget {
   final String userId;
@@ -23,23 +24,25 @@ class SellerProductsScreen extends StatelessWidget {
             appBar: AppBar(
               title: const Text('Products'),
               actions: [
-             kStorage.read(kUserType) != 'Admin'?   GestureDetector(
-                  onTap: () {
-                    Get.to(() => const CartScreen());
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Center(
-                      child: c.myCartProductList.isNotEmpty
-                          ? Badge(
-                              backgroundColor: Colors.red,
-                              label:
-                                  Text(c.myCartProductList.length.toString()),
-                              child: const Icon(Icons.shopping_cart))
-                          : const Icon(Icons.shopping_cart),
-                    ),
-                  ),
-                ):Container(),
+                kStorage.read(kUserType) != 'Admin'
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.to(() => const CartScreen());
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 10.0),
+                          child: Center(
+                            child: c.myCartProductList.isNotEmpty
+                                ? Badge(
+                                    backgroundColor: Colors.red,
+                                    label: Text(
+                                        c.myCartProductList.length.toString()),
+                                    child: const Icon(Icons.shopping_cart))
+                                : const Icon(Icons.shopping_cart),
+                          ),
+                        ),
+                      )
+                    : Container(),
               ],
             ),
             body: c.isProductLoading.isTrue
@@ -52,7 +55,8 @@ class SellerProductsScreen extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
                           Product product = c.productList[index];
-                          bool last = index == c.productList.length - 1 ? true : false;
+                          bool last =
+                              index == c.productList.length - 1 ? true : false;
                           return Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Column(
@@ -84,7 +88,9 @@ class SellerProductsScreen extends StatelessWidget {
                                         Text(product.productName,
                                             style: kHeadingText),
                                         const Spacer(),
-                                        if (kStorage.read(kUserType) == 'Seller')TextButton(
+                                        if (kStorage.read(kUserType) ==
+                                            'Seller')
+                                          TextButton(
                                               onPressed: () {
                                                 AwesomeDialog(
                                                   context: context,
@@ -113,24 +119,123 @@ class SellerProductsScreen extends StatelessWidget {
                                                 style: TextStyle(
                                                     color: Colors.red),
                                               )),
-                                       if(kStorage.read(kUserType) == 'User')
-                                         TextButton(
-                                            onPressed: () {
-                                              c.addToCartItem(
-                                                  name: product.productName,
-                                                  quantity: '1',
-                                                  addUserID:
-                                                      kStorage.read(kUserId) ??
-                                                          '',
-                                                  productId: product.id,
-                                                  productUserId: product.userId,
-                                                  productImage: product.image);
-                                            },
-                                            child: const Text(
-                                              'Add To Cart',
-                                              style: TextStyle(
-                                                  color: kPrimaryColor),
-                                            )),
+                                        if (kStorage.read(kUserType) == 'User')
+                                          TextButton(
+                                              onPressed: () {
+                                                Get.bottomSheet(
+                                                  Container(
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                20.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                20.0),
+                                                      ),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              20.0),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Text(
+                                                            'Enter Quantity',
+                                                            style: kHeadingText,
+                                                          ),
+                                                          10.0.height,
+                                                          Text(
+                                                            'Please Enter New Quantity That You Want To Buy',
+                                                            style: kPrimaryGrayText
+                                                                .copyWith(
+                                                                    fontSize:
+                                                                        14.0),
+                                                          ),
+                                                          10.0.height,
+                                                          customTextField(
+                                                            hintText:
+                                                                'Enter Your Quantity',
+                                                            controller: c
+                                                                .myCartQuantityController,
+                                                          ),
+                                                          20.0.height,
+                                                          Row(
+                                                            children: [
+                                                              Expanded(
+                                                                child:
+                                                                    MaterialButton(
+                                                                  textColor:
+                                                                      kWhiteColor,
+                                                                  color:
+                                                                      kPrimaryColor,
+                                                                  onPressed:
+                                                                      () {
+                                                                    Get.back();
+                                                                  },
+                                                                  child: const Text(
+                                                                      'Close'),
+                                                                ),
+                                                              ),
+                                                              20.0.width,
+                                                              Expanded(
+                                                                child:
+                                                                    MaterialButton(
+                                                                  textColor:
+                                                                      kWhiteColor,
+                                                                  color:
+                                                                      kPrimaryColor,
+                                                                  onPressed:
+                                                                      () {
+                                                                    if(c.myCartQuantityController.text.isEmpty){
+                                                                      Get.snackbar(
+                                                                        "Important",
+                                                                        "Please Enter Quantity",
+                                                                        backgroundColor: Colors.red,
+                                                                        snackPosition: SnackPosition.TOP,
+                                                                        colorText: kWhiteColor,
+                                                                        duration: const Duration(seconds: 3),
+                                                                      );
+
+
+                                                                    }else{
+                                                                      c.addToCartItem(
+                                                                          name: product.productName,
+                                                                          quantity: c.myCartQuantityController.text,
+                                                                          addUserID: kStorage.read(kUserId) ?? '',
+                                                                          productId: product.id,
+                                                                          productUserId: product.userId,
+                                                                          productImage: product.image);
+                                                                      c.myCartQuantityController.clear();
+                                                                      Get.back();
+                                                                    }
+                                                                  },
+                                                                  child: const Text(
+                                                                      'Update'),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          20.0.height,
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                              child: const Text(
+                                                'Add To Cart',
+                                                style: TextStyle(
+                                                    color: kPrimaryColor),
+                                              )),
                                       ],
                                     ),
                                     if (last) 70.0.height,

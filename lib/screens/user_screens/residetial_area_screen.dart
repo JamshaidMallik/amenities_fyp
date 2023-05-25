@@ -29,6 +29,8 @@ class ResidentialAreaScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   10.0.height,
+                  Text('Please Choose Your Correct Area Or Type Custom', style: kHeadingText.copyWith(fontSize: 12.0),),
+                  10.0.height,
                   DropdownButtonFormField(
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
@@ -43,27 +45,36 @@ class ResidentialAreaScreen extends StatelessWidget {
                       ),
                       hint: const Text("Select Area"),
                       items: c.listItem.map((valueItem){
-                        if (valueItem == "Custom") {
-                          return DropdownMenuItem(
-                            value: valueItem,
-                            child: Text(valueItem),
-                          );
-                        } else {
-                          return DropdownMenuItem(
-                            value: valueItem,
-                            child: Text('$valueItem Marla'),
-                          );
-                        }
+                        return DropdownMenuItem(
+                          value: valueItem,
+                          child: Text(valueItem, style:kPrimaryText.copyWith(fontSize: 14.0),),
+                        );
                       }).toList(),
                       value: c.valueChoose,
-                      onChanged: (newValue)=> c.chooseValue(newValue)),
-                  c.valueChoose == 'Custom'?  customTextField(hintText: 'Enter Custom Area',controller: c.customAreaController):Container(),
+                      onChanged: (newValue)=> c.chooseArea(newValue)),
+                  c.valueChoose == 'Custom'?  Column(
+                    children: [
+                      10.0.height,
+                      customTextField(hintText: 'Enter Custom Area',controller: c.customAreaController),
+                    ],
+                  ):Container(),
+                  20.0.height,
+                  Text('Enter Total Room', style: kHeadingText.copyWith(fontSize: 12.0),),
                   10.0.height,
-                  customTextField(hintText: 'Numbers of Floor', controller: c.floorController),
+                  customTextField(hintText: 'Numbers of Room', controller: c.roomController, keyboardType: TextInputType.number),
+                  30.0.height,
+                  Text('Room Dimension', style: kHeadingText.copyWith(fontSize: 12.0),),
                   10.0.height,
-                  customTextField(hintText: 'Numbers of Room',controller: c.roomController),
-                  10.0.height,
-                  customTextField(hintText: 'Room Dimension', controller: c.roomDimensionController),
+                  Row(
+                    children: [
+                      Expanded(child: customTextField(hintText: 'Height',controller: c.roomHeightController,keyboardType: TextInputType.number)),
+                      5.0.width,
+                      Expanded(child: customTextField(hintText: 'Width',controller: c.roomWidthController,keyboardType: TextInputType.number)),
+                      5.0.width,
+                      Expanded(child: customTextField(hintText: 'Length',controller: c.roomLengthController,keyboardType: TextInputType.number)),
+                    ],
+                  ),
+
                   40.0.height,
                 ],
               ),
@@ -71,6 +82,7 @@ class ResidentialAreaScreen extends StatelessWidget {
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.all(8.0),
               child: primarybutton(btnText: 'Get Estimate',press: (){
+                c.calculateEstimation();
                 Get.to(()=> const EstimateResultScreen());
               }),
             ),
