@@ -43,62 +43,60 @@ class UserMainScreen extends StatelessWidget {
           ),
         ],
       ),
-      drawer: SafeArea(
-        child: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              20.0.height,
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Text("Amenities", style: kHeadingText),
-              ),
-              ListTile(
-                leading: const Icon(Icons.home_outlined),
-                title:  Text("Home", style: kSecondaryText),
-                onTap: () => Get.back(),
-              ),
-              ListTile(
-                leading: const Icon(Icons.account_box_outlined),
-                title:  Text("Profile",style: kSecondaryText),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            60.0.height,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50.0),
+              child: Text("Amenities", style: kHeadingText),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home_outlined),
+              title:  Text("Home", style: kSecondaryText),
+              onTap: () => Get.back(),
+            ),
+            ListTile(
+              leading: const Icon(Icons.account_box_outlined),
+              title:  Text("Profile",style: kSecondaryText),
+              onTap: () {
+                Get.to(() => ProfileScreen());
+              },
+            ),
+            ListTile(
+                leading: const Icon(Icons.emoji_people_sharp),
+                title: Text("My Orders", style: kSecondaryText),
                 onTap: () {
-                  Get.to(() => ProfileScreen());
-                },
-              ),
-              ListTile(
-                  leading: const Icon(Icons.emoji_people_sharp),
-                  title: Text("My Orders", style: kSecondaryText),
-                  onTap: () {
-                      Get.to(() => const UserOrders());
-                  }),
-              const Divider(),
-              GetBuilder<AuthController>(
-                init: AuthController(),
-                builder: (c) {
-                  return ListTile(
-                      leading: const Icon(Icons.logout,color: Colors.red,),
-                      title:  Text("logout", style: kSecondaryText.copyWith(color: Colors.red)),
-                      onTap: () {
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.question,
-                          animType: AnimType.rightSlide,
-                          title: 'Are you sure you want to logout',
-                          btnCancelOnPress: () {
-                            Get.back();
-                          },
-                          btnOkOnPress: () async {
-                            await c.logOut();
-                          },
-                          btnCancelText: 'Cancel',
-                          btnOkText: "LogOut",
-                          btnOkColor: Colors.teal,
-                        ).show();
-                      });
-                }
-              ),
-            ],
-          ),
+                    Get.to(() => const UserOrders());
+                }),
+            const Divider(),
+            GetBuilder<AuthController>(
+              init: AuthController(),
+              builder: (c) {
+                return ListTile(
+                    leading: const Icon(Icons.logout,color: Colors.red,),
+                    title:  Text("logout", style: kSecondaryText.copyWith(color: Colors.red)),
+                    onTap: () {
+                      AwesomeDialog(
+                        context: context,
+                        dialogType: DialogType.question,
+                        animType: AnimType.rightSlide,
+                        title: 'Are you sure you want to logout',
+                        btnCancelOnPress: () {
+                          Get.back();
+                        },
+                        btnOkOnPress: () async {
+                          await c.logOut();
+                        },
+                        btnCancelText: 'Cancel',
+                        btnOkText: "LogOut",
+                        btnOkColor: Colors.teal,
+                      ).show();
+                    });
+              }
+            ),
+          ],
         ),
       ),
       body: Center(

@@ -63,7 +63,7 @@ class ResidentialAreaScreen extends StatelessWidget {
                   10.0.height,
                   customTextField(hintText: 'Numbers of Room', controller: c.roomController, keyboardType: TextInputType.number),
                   30.0.height,
-                  Text('Room Dimension', style: kHeadingText.copyWith(fontSize: 12.0),),
+                  Text('Room Dimension in (Foot)', style: kHeadingText.copyWith(fontSize: 12.0),),
                   10.0.height,
                   Row(
                     children: [

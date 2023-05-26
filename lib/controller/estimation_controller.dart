@@ -46,8 +46,8 @@ class EstimationController extends GetxController {
     update();
   }
 
-  void calculateEstimation() {
-    if (valueChoose != null && valueChoose != "Custom") {
+     calculateEstimation()async {
+     if (valueChoose != null && valueChoose != "Custom") {
       String intValue = valueChoose!.split(' ')[0];
       int selectedValue = int.tryParse(intValue) ?? 0;
       double areaInMarla = selectedValue.toDouble();
@@ -92,4 +92,8 @@ class EstimationController extends GetxController {
     // Example formula: Quantity of cement = areaInMarla * 3.2
     return areaInMarla * 3.2;
   }
+
+
+
+
 }
