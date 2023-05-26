@@ -135,6 +135,7 @@ class EstimateResultScreen extends StatelessWidget {
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(8.0),
             child: primarybutton(btnText: 'Proceed to Order', press: () {
+              c.floorController.clear();
              Get.off(() => const UserMainScreen());
             }),
           ),
