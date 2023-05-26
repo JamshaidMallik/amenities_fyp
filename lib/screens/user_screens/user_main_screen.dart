@@ -119,7 +119,10 @@ class UserMainScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CachedNetworkImage(imageUrl: 'https://img.freepik.com/free-vector/building-material-heaps-set_74855-938.jpg?w=1060&t=st=1684997554~exp=1684998154~hmac=93d25a1387fb413384c7ceb16fae98a62b909ecbf6b25affa45e404941c0167f',height: 150),
+                          CachedNetworkImage(
+                              fadeInDuration: const Duration(milliseconds: 500),
+                              fadeInCurve: Curves.slowMiddle,
+                              imageUrl: 'https://img.freepik.com/free-vector/building-material-heaps-set_74855-938.jpg?w=1060&t=st=1684997554~exp=1684998154~hmac=93d25a1387fb413384c7ceb16fae98a62b909ecbf6b25affa45e404941c0167f',height: 150),
                           10.0.height,
                           Text("Buy Products", style: kSecondaryText),
                         ],
@@ -139,7 +142,10 @@ class UserMainScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CachedNetworkImage(imageUrl: 'https://img.freepik.com/free-vector/engineering-construction-illustration_23-2148890150.jpg?w=1380&t=st=1684996978~exp=1684997578~hmac=37d3acbf66972a380053717d41997e9ea02c357c16e0bde803dc137f9491f18c',height: 150),
+                        CachedNetworkImage(
+                            fadeInDuration: const Duration(milliseconds: 500),
+                            fadeInCurve: Curves.easeInCirc,
+                            imageUrl: 'https://img.freepik.com/free-vector/engineering-construction-illustration_23-2148890150.jpg?w=1380&t=st=1684996978~exp=1684997578~hmac=37d3acbf66972a380053717d41997e9ea02c357c16e0bde803dc137f9491f18c',height: 150),
                         10.0.height,
                         Text("Estimate", style: kSecondaryText),
                       ],

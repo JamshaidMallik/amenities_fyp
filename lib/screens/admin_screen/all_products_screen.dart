@@ -60,7 +60,6 @@ class AllProductScreen extends StatelessWidget {
                              child: Row(
                                children: [
                                  Text(product.productName, style: kSubHeadingText.copyWith(fontSize: 18.0),),
-                                 
                                ],
                              ),
                            ),

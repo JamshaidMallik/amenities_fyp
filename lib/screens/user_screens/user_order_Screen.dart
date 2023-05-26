@@ -15,7 +15,9 @@ class UserOrders extends StatelessWidget {
           appBar: AppBar(
             title: const Text("Orders"),
           ),
-          body: ListView.builder(
+          body: c.myOrdersList.isEmpty? const Center(
+            child: Text('No Orders'),
+          ): ListView.builder(
             physics: const BouncingScrollPhysics(),
             itemCount: c.myOrdersList.length,
             itemBuilder: (BuildContext context, int index) {

@@ -35,7 +35,10 @@ class BuildingTypeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CachedNetworkImage(imageUrl: 'https://img.freepik.com/free-vector/beach-house-concept-illustration_114360-9433.jpg?w=1380&t=st=1684998205~exp=1684998805~hmac=dd0c03b93463d267a572d2d5855b030439edcc629b55ca9e0e7b9e1fe8893108',height: 150),
+                          CachedNetworkImage(
+                              fadeInDuration: const Duration(milliseconds: 500),
+                              fadeInCurve: Curves.easeInCirc,
+                              imageUrl: 'https://img.freepik.com/free-vector/beach-house-concept-illustration_114360-9433.jpg?w=1380&t=st=1684998205~exp=1684998805~hmac=dd0c03b93463d267a572d2d5855b030439edcc629b55ca9e0e7b9e1fe8893108',height: 150),
                           10.0.height,
                           Text("Residential", style: kSecondaryText),
                         ],
@@ -55,7 +58,10 @@ class BuildingTypeScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CachedNetworkImage(imageUrl: 'https://img.freepik.com/free-vector/urban-landscape-with-houses-buildings_1308-126447.jpg?w=1480&t=st=1684998069~exp=1684998669~hmac=b4b004e0f578e9c99fc6bac0bf016b850d983bb205f68579b154e4fff11c5eba',height: 150),
+                        CachedNetworkImage(
+                            fadeInDuration: const Duration(milliseconds: 500),
+                            fadeInCurve: Curves.easeInCirc,
+                            imageUrl: 'https://img.freepik.com/free-vector/urban-landscape-with-houses-buildings_1308-126447.jpg?w=1480&t=st=1684998069~exp=1684998669~hmac=b4b004e0f578e9c99fc6bac0bf016b850d983bb205f68579b154e4fff11c5eba',height: 150),
                         10.0.height,
                         Text("Commercial", style: kSecondaryText),
                       ],

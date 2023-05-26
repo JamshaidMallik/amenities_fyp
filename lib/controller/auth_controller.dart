@@ -24,6 +24,14 @@ class AuthController extends GetxController{
   TextEditingController passwordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   final Rx<String> selectedUserType = ''.obs;
+  final RxBool _isVisible = true.obs;
+  RxBool get isVisible => _isVisible;
+  void changeVisibility() {
+    _isVisible.toggle();
+    update();
+  }
+
+
   void updateSelectedStatus(String status) {
     selectedUserType.value = status;
   }
