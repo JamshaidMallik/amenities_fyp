@@ -16,7 +16,7 @@ class AdminOrdersScreen extends StatelessWidget {
           appBar: AppBar(
             title: const Text("Manage Orders"),
           ),
-          body: ListView.builder(
+          body: c.myOrdersList.isEmpty ? const Center(child: Text('No Orders')): ListView.builder(
             physics: const BouncingScrollPhysics(),
             itemCount: c.myOrdersList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -24,8 +24,7 @@ class AdminOrdersScreen extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   elevation: 5.0,
                   shadowColor: Colors.teal.withOpacity(0.3),
                   child: Column(
@@ -109,14 +108,11 @@ class AdminOrdersScreen extends StatelessWidget {
                           return ListTile(
                             leading: CircleAvatar(
                               backgroundColor: kPrimaryColor,
-                              backgroundImage:
-                                  NetworkImage(product['product_image']),
+                              backgroundImage: NetworkImage(product['product_image']),
                             ),
                             title: Row(
                               children: [
-                                Text('Product Name:',
-                                    style:
-                                        kHeadingText.copyWith(fontSize: 13.0)),
+                                Text('Product Name:', style: kHeadingText.copyWith(fontSize: 13.0)),
                                 10.0.width,
                                 Text(product['productName'],
                                     style: kSecondaryText.copyWith(

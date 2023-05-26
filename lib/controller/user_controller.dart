@@ -101,7 +101,8 @@ class UserController extends GetxController {
     }
     update();
   }
-  void fetchMyOrders() {
+  void fetchMyOrders() async {
+    kShowLoading(Get.context!);
     myOrdersList.clear();
     kFireStore
         .collection(kOrderCollection)
@@ -114,9 +115,11 @@ class UserController extends GetxController {
         myOrders.add(orders);
       }
       myOrdersList.assignAll(myOrders);
+      Get.back();
       update();
     }, onError: (error) {
-      kShowSnackBar(context: Get.context!, message: error.toString(), isSuccess: true);
+          Get.back();
+      kShowSnackBar(context: Get.context!, message: error.toString(), isSuccess: false);
     });
     update();
   }
@@ -143,7 +146,8 @@ class UserController extends GetxController {
     });
     update();
   }
-  void fetchAdminAllOrders() {
+  void fetchAdminAllOrders() async{
+    kShowLoading(Get.context!);
     myOrdersList.clear();
     kFireStore
         .collection(kOrderCollection)
@@ -155,9 +159,11 @@ class UserController extends GetxController {
         myOrders.add(orders);
       }
       myOrdersList.assignAll(myOrders);
+      Get.back();
       update();
     }, onError: (error) {
-      kShowSnackBar(context: Get.context!, message: error.toString(), isSuccess: true);
+      Get.back();
+      kShowSnackBar(context: Get.context!, message: error.toString(), isSuccess: false);
     });
     update();
   }
@@ -181,8 +187,16 @@ class UserController extends GetxController {
   void onReady() {
     super.onReady();
     fetchAllSeller();
-    fetchMyOrders();
-    fetchSellerOrders();
-    fetchAdminAllOrders();
+    if(kStorage.read(kUserType) == 'User'){
+      log('this_is_user');
+      fetchMyOrders();
+    } else if(kStorage.read(kUserType) == 'Seller'){
+      log('this_is_seller');
+      fetchSellerOrders();
+    } else {
+      log('this_is_admin');
+      fetchAdminAllOrders();
+    }
+
   }
 }

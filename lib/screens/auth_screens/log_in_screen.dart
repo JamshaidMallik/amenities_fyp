@@ -28,7 +28,20 @@ class LogInScreen extends StatelessWidget {
               20.0.height,
               customTextField(controller: controller.emailController, hintText: 'Email'),
               20.0.height,
-              customTextField(hintText: 'Password', controller: controller.passwordController, suffixIcon: const Icon(Icons.visibility_off_sharp,)),
+              customTextField(hintText: 'Password', controller: controller.passwordController,  suffixIcon: Obx(() {
+                return GestureDetector(
+                  onTap: () {
+                    controller.changeVisibility();
+                  },
+                  child: Icon(
+                    controller.isVisible.value
+                        ? Icons.visibility
+                        : Icons.visibility_off_sharp,
+                    color: Colors.teal,
+                  ),
+                );
+              }),
+              ),
               30.0.height,
               Padding(
                 padding: const EdgeInsets.only(right: 25, top: 10),
