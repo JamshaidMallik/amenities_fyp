@@ -1,6 +1,7 @@
 import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/controller/profile_controller.dart';
 import 'package:amenities_app/widgets/custom_text_field.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,7 +43,7 @@ class ProfileScreen extends GetView<ProfileController> {
                                         CircleAvatar(
                                           radius: 60,
                                           backgroundColor: Colors.grey.shade100,
-                                          backgroundImage: NetworkImage(controller.userImage),
+                                          backgroundImage: CachedNetworkImageProvider(controller.userImage),
                                         ),
                                       ],
                                     ),

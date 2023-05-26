@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final userType = kStorage.read(kUserType);
     return GetMaterialApp(
+      defaultTransition: Transition.cupertino,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(

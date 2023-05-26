@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constant.dart';
-import 'cart_screen.dart';
 
 class EstimateResultScreen extends StatelessWidget {
   const EstimateResultScreen({Key? key}) : super(key: key);
@@ -136,6 +135,12 @@ class EstimateResultScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: primarybutton(btnText: 'Proceed to Order', press: () {
               c.floorController.clear();
+              c.customAreaController.clear();
+              c.roomLengthController.clear();
+              c.roomWidthController.clear();
+              c.roomHeightController.clear();
+              c.roomController.clear();
+              c.valueChoose = null;
              Get.off(() => const UserMainScreen());
             }),
           ),
