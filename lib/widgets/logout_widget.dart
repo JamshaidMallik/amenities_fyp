@@ -22,8 +22,8 @@ GetBuilder<AuthController> logOutMethod(BuildContext context) {
                   await c.logOut();
                 },
                 btnCancelColor: Colors.grey,
-                btnCancelText: 'Cancel',
-                btnOkText: "LogOut",
+                btnCancelText: 'No',
+                btnOkText: "Yes",
                 btnOkColor: Colors.teal,
               ).show();
             },

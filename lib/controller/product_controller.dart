@@ -16,6 +16,7 @@ class ProductController extends GetxController {
   List<Product> products = [];
   final ImagePicker _picker = ImagePicker();
   TextEditingController productNameController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
   RxBool isProductLoading = false.obs;
   File? image;
   RxInt _userProductsCount = 0.obs;
@@ -44,6 +45,9 @@ class ProductController extends GetxController {
           context: Get.context!,
           message: 'Please enter product name',
           isSuccess: false);
+    } else if(priceController.text.isEmpty){
+      Get.back();
+      kShowSnackBar(context: Get.context!, message: "Please enter Price", isSuccess: false);
     } else if (image != null) {
       String imageName = DateTime.now().millisecondsSinceEpoch.toString();
       Reference ref = kStorageRef.ref().child('$kProductCollection/$imageName.jpg');
@@ -53,6 +57,7 @@ class ProductController extends GetxController {
       kFireStore.collection(kProductCollection).doc().set({
         "createdAt": DateTime.now(),
         "product_name": productNameController.text,
+        "product_price": priceController.text,
         "userId": kStorage.read(kUserId) ?? '',
         "image": imageUrl,
         "status": "available",

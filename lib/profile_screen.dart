@@ -90,8 +90,8 @@ class ProfileScreen extends GetView<ProfileController> {
                                 children: [
                                   Text(
                                       controller.isView == true
-                                          ? "Update"
-                                          : "View",
+                                          ? "View"
+                                          : "Update",
                                       style: kSecondaryText.copyWith(
                                           color: kPrimaryColor)),
                                   5.0.width,

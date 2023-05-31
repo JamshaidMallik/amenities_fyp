@@ -49,8 +49,8 @@ class AllSellerScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(users.fullName.toString(),style: kHeadingText,),
-                                      Text(users.email.toString(),style: kSubHeadingText),
-                                      Text(users.userPhone.toString(),style: kSecondaryText,),
+                                      // Text(users.email.toString(),style: kSubHeadingText),
+                                      // Text(users.userPhone.toString(),style: kSecondaryText,),
                                     ],
                                   ),
                                 ),

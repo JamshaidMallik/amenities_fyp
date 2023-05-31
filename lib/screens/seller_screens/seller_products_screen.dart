@@ -87,7 +87,13 @@ class SellerProductsScreen extends StatelessWidget {
                                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                         child: Row(
                                           children: [
-                                            Text(product.productName, style: kSubHeadingText.copyWith(fontSize: 18.0),),
+                                            Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(product.productName, style: kSubHeadingText.copyWith(fontSize: 18.0),),
+                                                Text(product.price, style: kPrimaryGrayText.copyWith(fontSize: 16.0),),
+                                              ],
+                                            ),
                                             const Spacer(),
                                             if (kStorage.read(kUserType) ==
                                                 'Seller')
@@ -253,6 +259,7 @@ class SellerProductsScreen extends StatelessWidget {
                                           ],
                                         ),
                                       ),
+
                                     ],
                                   ),
                                   15.0.height,
