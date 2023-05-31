@@ -104,18 +104,18 @@ class CheckOutScreen extends StatelessWidget {
           ),
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: primarybutton(btnText: 'Confirm Order',press: () async{
+            child: primarybutton(btnText: 'Submit Order',press: () async{
               AwesomeDialog(
                 context: context,
                 dialogType: DialogType.question,
                 animType: AnimType.rightSlide,
-                title: 'Are You Sure To Send Order?',
+                title: 'Are You Sure To Submit Order?',
                 btnOkOnPress: () {
                 c.sendOrder(myCartProductList);
                 },
                 btnCancelOnPress: () {},
-                btnCancelText: "Cancel",
-                btnOkText: "Continue shopping",
+                btnCancelText: "No",
+                btnOkText: "Yes",
                 btnOkColor: kTealColor,
               ).show();
             }),

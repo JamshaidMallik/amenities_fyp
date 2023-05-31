@@ -39,9 +39,10 @@ class SellerMainScreen extends StatelessWidget {
                            Get.to(()=> SellerProductsScreen(kStorage.read(kUserId)));
                          },
                          child: Card(
+                           shadowColor: kPrimaryColor,
                            elevation: 10.0,
                            shape: RoundedRectangleBorder(
-                             borderRadius: BorderRadius.circular(20),
+                             borderRadius: BorderRadius.circular(10),
                            ),
                            child:  SizedBox(
                              height: 200,
@@ -68,8 +69,9 @@ class SellerMainScreen extends StatelessWidget {
                            init: UserController(),
                            builder: (cc) {
                              return Card(
+                               shadowColor: kPrimaryColor,
                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(10),
                                ),
                                elevation: 10.0,
                                child: SizedBox(
@@ -99,11 +101,12 @@ class SellerMainScreen extends StatelessWidget {
                       Get.to(()=> ProfileScreen());
                     },
                     child: Card(
+                      shadowColor: kPrimaryColor,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       elevation: 10.0,
-                      child:  SizedBox(
+                      child: SizedBox(
                         height: 200,
                         width: double.infinity,
                         child: Center(
