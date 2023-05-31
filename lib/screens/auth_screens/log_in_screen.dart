@@ -34,9 +34,7 @@ class LogInScreen extends StatelessWidget {
                     controller.changeVisibility();
                   },
                   child: Icon(
-                    controller.isVisible.value
-                        ? Icons.visibility
-                        : Icons.visibility_off_sharp,
+                    controller.isVisible.value ? Icons.visibility : Icons.visibility_off_sharp,
                     color: Colors.teal,
                   ),
                 );

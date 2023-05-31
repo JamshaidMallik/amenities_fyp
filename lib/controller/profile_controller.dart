@@ -16,6 +16,8 @@ class ProfileController extends GetxController{
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   String userImage = '';
+  String userName = '';
+  String userPhone = '';
   void profileUpdateToggle(){
     _isView.toggle();
     update();
@@ -31,6 +33,8 @@ class ProfileController extends GetxController{
         nameController.text = userProfile.fullName!;
         emailController.text = userProfile.email!;
         phoneController.text = userProfile.userPhone!;
+        userName = userProfile.fullName!;
+        userPhone = userProfile.userPhone!;
       }
       isProfileLoading(false);
       update();

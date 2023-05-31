@@ -111,6 +111,9 @@ class SellerAddProduct extends StatelessWidget {
                     customTextField(
                         controller: c.productNameController,
                         hintText: 'Enter Product Name'),
+                    customTextField(
+                        controller: c.productNameController,
+                        hintText: 'Enter Product Name'),
                   ],
                 ),
               ),

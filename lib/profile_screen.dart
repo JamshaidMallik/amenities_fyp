@@ -1,9 +1,11 @@
 import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/controller/profile_controller.dart';
 import 'package:amenities_app/widgets/custom_text_field.dart';
+import 'package:amenities_app/widgets/photo_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:photo_view/photo_view.dart';
 
 import 'widgets/button_widgets.dart';
 
@@ -40,10 +42,15 @@ class ProfileScreen extends GetView<ProfileController> {
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
-                                        CircleAvatar(
-                                          radius: 60,
-                                          backgroundColor: Colors.grey.shade100,
-                                          backgroundImage: CachedNetworkImageProvider(controller.userImage),
+                                        GestureDetector(
+                                          onTap: (){
+                                            Get.to(()=> PhotoViewPage(controller.userImage));
+                                          },
+                                          child: CircleAvatar(
+                                              radius: 60,
+                                              backgroundColor: Colors.grey.shade100,
+                                              backgroundImage: CachedNetworkImageProvider(controller.userImage),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -128,7 +135,13 @@ class ProfileScreen extends GetView<ProfileController> {
                           30.0.height,
                           controller.isView == true
                               ? primarybutton(btnText: 'Update',press: (){
-                                controller.updateProfile();
+                                if(controller.userName == controller.nameController.text && controller.userPhone == controller.phoneController.text){
+                                  kShowSnackBar(context: context, message: 'please change values', isSuccess: false);
+                                }
+                                else{
+                                  controller.updateProfile();
+                                }
+
                           }): Container()
 
                         ],

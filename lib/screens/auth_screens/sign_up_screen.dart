@@ -139,12 +139,23 @@ class SignUpScreen extends GetView<AuthController> {
               20.0.height,
               customTextField(controller: controller.emailController, hintText: 'Email'),
               20.0.height,
-              customTextField(hintText: 'Password', controller: controller.passwordController, suffixIcon: const Icon(Icons.visibility_off_sharp,)),
+              customTextField(hintText: 'Password', controller: controller.passwordController, suffixIcon: Obx((){
+                return GestureDetector(
+                  onTap: () {
+                    controller.changeVisibility();
+                  },
+                  child: Icon(
+                    controller.isVisible.value
+                        ? Icons.visibility
+                        : Icons.visibility_off_sharp,
+                    color: Colors.teal,
+                  ),
+                );
+              }),
+              ),
               30.0.height,
               primarybutton(btnText: 'Sign Up',press: () async{
-                if(controller.image == null){
-                 kShowSnackBar(context: context, message: 'Please Select Profile Image', isSuccess: false);
-                }else if (controller.selectedUserType == ''){
+                 if (controller.selectedUserType == ''){
                   kShowSnackBar(context: context, message: 'Please Select User Type', isSuccess: false);
                 } else{
                   await controller.signup();
@@ -172,7 +183,7 @@ class SignUpScreen extends GetView<AuthController> {
                   ),
                 ),
               ),
-            ],
+              ],
           ),
         ),
       ),

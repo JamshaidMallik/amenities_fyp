@@ -110,7 +110,7 @@ class AuthController extends GetxController{
           'user_image': imageUrl,
           'user_phone': phoneController.text,
         }).then((value) {
-          kShowSnackBar(context: Get.context!, message: 'Account Create Successfully', isSuccess: true);
+          kShowSnackBar(context: Get.context!, message: 'Account Created Successfully', isSuccess: true);
           Get.offAll(()=> LogInScreen());
           image = null;
           fullNameController.clear();
