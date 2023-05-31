@@ -116,8 +116,8 @@ class SellerProductsScreen extends StatelessWidget {
                                                             imageUrl:
                                                                 product.image);
                                                       },
-                                                      btnCancelText: 'Cancel',
-                                                      btnOkText: "Delete",
+                                                      btnCancelText: 'No',
+                                                      btnOkText: "Yes",
                                                       btnOkColor: Colors.teal,
                                                     ).show();
                                                   },

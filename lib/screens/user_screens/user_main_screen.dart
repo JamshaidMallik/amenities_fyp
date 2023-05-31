@@ -52,11 +52,11 @@ class UserMainScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 50.0),
               child: Text("Amenities", style: kHeadingText),
             ),
-            ListTile(
-              leading: const Icon(Icons.home_outlined),
-              title:  Text("Home", style: kSecondaryText),
-              onTap: () => Get.back(),
-            ),
+            // ListTile(
+            //   leading: const Icon(Icons.home_outlined),
+            //   title:  Text("Home", style: kSecondaryText),
+            //   onTap: () => Get.back(),
+            // ),
             ListTile(
               leading: const Icon(Icons.account_box_outlined),
               title:  Text("Profile",style: kSecondaryText),
@@ -89,8 +89,8 @@ class UserMainScreen extends StatelessWidget {
                         btnOkOnPress: () async {
                           await c.logOut();
                         },
-                        btnCancelText: 'Cancel',
-                        btnOkText: "LogOut",
+                        btnCancelText: 'No',
+                        btnOkText: "Yes",
                         btnOkColor: Colors.teal,
                       ).show();
                     });

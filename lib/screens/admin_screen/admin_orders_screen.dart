@@ -79,8 +79,8 @@ class AdminOrdersScreen extends StatelessWidget {
                                       btnOkOnPress: () async{
                                         c.confirmOrder(id: item.id, status: 1);
                                       },
-                                      btnCancelText: 'Cancel',
-                                      btnOkText: "Confirm",
+                                      btnCancelText: 'No',
+                                      btnOkText: "Yes",
                                       btnOkColor: Colors.teal,
                                     ).show();
                                   },
