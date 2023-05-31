@@ -9,6 +9,8 @@ class MyCartProduct {
   String productUserId;
   String productImage;
   String createdAt;
+  int price;
+  int totalPrice;
 
   MyCartProduct(
       {required this.id,
@@ -18,7 +20,10 @@ class MyCartProduct {
       required this.productId,
       required this.productUserId,
       required this.productImage,
-      required this.createdAt});
+      required this.createdAt,
+      required this.price,
+      required this.totalPrice
+      });
 
   MyCartProduct.fromSnapshot(DocumentSnapshot snapshot)
       : id = snapshot.id,
@@ -28,5 +33,7 @@ class MyCartProduct {
         productId = snapshot['product_id'],
         productUserId = snapshot['product_user_id'],
         productImage = snapshot['product_image'],
-        createdAt = snapshot['created_at'].toDate().toString();
+        createdAt = snapshot['created_at'].toDate().toString(),
+        price = snapshot['price'],
+        totalPrice = snapshot['total_price'];
 }

@@ -1,22 +1,20 @@
-import 'dart:developer';
-
-import 'package:amenities_app/model/product_model.dart';
+import 'package:amenities_app/model/my_cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../constant.dart';
 import '../../controller/product_controller.dart';
 import '../../widgets/custom_text_field.dart';
 
-class MyBottomSheet extends StatelessWidget {
-  final Product product;
-  const MyBottomSheet(this.product, {super.key});
+class CartPageBottomSheet extends StatelessWidget {
+  final MyCartProduct product;
+  const CartPageBottomSheet(this.product, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductController>(
         init: ProductController(),
         builder: (c) {
+          c.totalPrice =  product.totalPrice;
           return GestureDetector(
             onTap: () {
               Get.back();
@@ -37,28 +35,37 @@ class MyBottomSheet extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Product Name: ${product.productName}',
+                        'Product Name: ${product.name}',
                         style: kSubHeadingText,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Price: ${product.price}',
-                            style: kSubHeadingText,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Price: ${product.price}',
+                                style: kSubHeadingText,
+                              ),
+                              Text(
+                              'Quantity: ${product.quantity}',
+                                style: kSubHeadingText,
+                              ),
+                            ],
                           ),
-                          if (c.myCartQuantityController.text.isNotEmpty)
+                          if(c.myCartQuantityController.text.isNotEmpty)
                             Row(
                               children: [
                                 Text(
-                                  'New Price: ',
+                                  'Total Price: ',
                                   style: kSubHeadingText,
                                 ),
                                 Text(
                                   c.totalPrice.toString(),
-                                  style: kSubHeadingText.copyWith(
-                                      color: Colors.red),
+                                  style: kSubHeadingText.copyWith(color: Colors.red),
                                 ),
+
                               ],
                             ),
                         ],
@@ -93,7 +100,7 @@ class MyBottomSheet extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              c.totalPriceCount(product.price);
+                              c.totalPriceCount(product.price.toString());
                             },
                             child: const Text('Save'),
                           ),
@@ -102,14 +109,8 @@ class MyBottomSheet extends StatelessWidget {
                       10.0.height,
                       Row(
                         children: [
-                          Text(
-                            'Note: ',
-                            style: kPrimaryGrayText.copyWith(fontSize: 10.0),
-                          ),
-                          Text(
-                            'Please add values in feet like (150) feet ',
-                            style: kPrimaryGrayText.copyWith(fontSize: 10.0),
-                          ),
+                          Text('Note: ', style: kPrimaryGrayText.copyWith(fontSize: 10.0),),
+                          Text('Please add values in feet like (150) feet ', style: kPrimaryGrayText.copyWith(fontSize: 10.0),),
                         ],
                       ),
                       const SizedBox(height: 20.0),
@@ -130,7 +131,7 @@ class MyBottomSheet extends StatelessWidget {
                             child: MaterialButton(
                               textColor: kWhiteColor,
                               color: kPrimaryColor,
-                              onPressed: () {
+                              onPressed: () async{
                                 if (c.myCartQuantityController.text.isEmpty) {
                                   Get.snackbar(
                                     "Important",
@@ -141,16 +142,7 @@ class MyBottomSheet extends StatelessWidget {
                                     duration: const Duration(seconds: 3),
                                   );
                                 } else {
-                                  c.addToCartItem(
-                                    name: product.productName,
-                                    quantity: c.myCartQuantityController.text,
-                                    addUserID: kStorage.read(kUserId) ?? '',
-                                    productId: product.id,
-                                    productUserId: product.userId,
-                                    productImage: product.image,
-                                    price: product.price,
-                                    totalPrice: c.totalPrice!,
-                                  );
+                                  await c.updateMyCartProductQuantity(id: product.id);
                                   c.myCartQuantityController.clear();
                                   Get.back();
                                 }
@@ -167,6 +159,7 @@ class MyBottomSheet extends StatelessWidget {
               ),
             ),
           );
-        });
+        }
+    );
   }
 }

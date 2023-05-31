@@ -5,7 +5,9 @@ class CartItem {
   String productId;
   String productUserId;
   String productImage;
-  CartItem({required this.name, required this.quantity, required this.addUserId, required this.productId, required this.productUserId, required this.productImage});
+  int price;
+  int totalPrice;
+  CartItem({required this.name, required this.quantity, required this.addUserId, required this.productId, required this.productUserId, required this.productImage, required this.price, required this.totalPrice});
 
   Map<String, dynamic> toMap() {
     return {
@@ -16,6 +18,8 @@ class CartItem {
       'created_at': DateTime.now(),
       'product_user_id': productUserId,
       'product_image': productImage,
+      'price': price,
+      'total_price': totalPrice,
     };
   }
 }

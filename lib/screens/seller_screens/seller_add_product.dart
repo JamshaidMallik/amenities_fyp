@@ -22,6 +22,7 @@ class SellerAddProduct extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GestureDetector(
                       onTap: () => c.pickImage(),
@@ -114,7 +115,11 @@ class SellerAddProduct extends StatelessWidget {
                     15.0.height,
                     customTextField(
                         controller: c.priceController,
-                        hintText: 'Enter Price'),
+                        hintText: 'Enter Price',
+                    keyboardType: TextInputType.number,
+                    ),
+                    10.0.height,
+                    Text('Please add price of 1 Unit, for example 1 foot Sand price (80), 1 Brick price (20), 1/kg iron rod price (300) and 1 cement bag price (1500)', style: kPrimaryGrayText.copyWith(fontSize: 9.0),),
                   ],
                 ),
               ),

@@ -92,7 +92,7 @@ class SellerProductsScreen extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Text(product.productName, style: kSubHeadingText.copyWith(fontSize: 16.0),),
-                                                Text(product.price, style: kPrimaryGrayText.copyWith(fontSize: 15.0),),
+                                                Text(product.price.toString(), style: kPrimaryGrayText.copyWith(fontSize: 15.0),),
                                               ],
                                             ),
                                             const Spacer(),

@@ -26,6 +26,19 @@ class ProductController extends GetxController {
   RxBool isCartProductLoading = false.obs;
   TextEditingController myCartQuantityController = TextEditingController();
   CartItem? cartItem;
+  int? totalPrice;
+  int? totalCartItemPrice;
+  totalPriceCount(String productPrice){
+    totalPrice = int.parse(productPrice) * int.parse(myCartQuantityController.text);
+    update();
+  }
+
+   cartITemPriceCount(int productPrice){
+     totalCartItemPrice = productPrice * int.parse(myCartQuantityController.text);
+    update();
+    update();
+  }
+
   void pickImage() async {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
@@ -67,6 +80,7 @@ class ProductController extends GetxController {
         Get.back();
         Get.back();
         productNameController.clear();
+        priceController.clear();
         image = null;
         kShowSnackBar(
             context: Get.context!,
@@ -146,14 +160,17 @@ class ProductController extends GetxController {
 
     update();
   }
-  void addToCartItem({required String name, required String quantity, required String addUserID, required String productId, required String productUserId, required String productImage}) {
+  void addToCartItem({required String name, required String quantity, required String addUserID, required String productId, required String productUserId, required String productImage, required String price, required int totalPrice}) {
     var cartItem = CartItem(
         name: name,
         quantity: quantity,
         addUserId: addUserID,
         productId: productId,
         productUserId: productUserId,
-        productImage: productImage);
+        productImage: productImage,
+        price: int.parse(price),
+        totalPrice: totalPrice,
+    );
     kFireStore
         .collection(kCartItemCollection)
         .add(cartItem.toMap())
@@ -178,6 +195,7 @@ class ProductController extends GetxController {
       myCartProducts.clear();
       for (var doc in snapshot.docs) {
         MyCartProduct product = MyCartProduct.fromSnapshot(doc);
+        log('');
         myCartProducts.add(product);
       }
       myCartProductList.assignAll(myCartProducts);

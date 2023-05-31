@@ -1,4 +1,5 @@
 import 'package:amenities_app/controller/product_controller.dart';
+import 'package:amenities_app/screens/user_screens/cart_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -74,10 +75,20 @@ class CartScreen extends StatelessWidget {
                                               ),
                                               Row(
                                                 children: [
-                                                  Text('Quantity:  ',
-                                                      style: kHeadingText.copyWith(fontSize: 12)),
-                                                  Text(item.quantity,
-                                                      style: kSecondaryText),
+                                                  Text('Price:  ', style: kHeadingText.copyWith(fontSize: 12)),
+                                                  Text(item.price.toString(), style: kSecondaryText),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text('Quantity:  ', style: kHeadingText.copyWith(fontSize: 12)),
+                                                  Text(item.quantity, style: kSecondaryText),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text('Total Price:  ', style: kHeadingText.copyWith(fontSize: 12)),
+                                                  Text(item.totalPrice.toString(), style: kSecondaryText),
                                                 ],
                                               ),
                                             ],
@@ -88,88 +99,7 @@ class CartScreen extends StatelessWidget {
                                           textColor: Colors.white,
                                           onPressed: () {
                                             Get.bottomSheet(
-                                              Container(
-                                                decoration: const BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(20.0),
-                                                    topRight:
-                                                        Radius.circular(20.0),
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      20.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Text(
-                                                        'Enter Quantity',
-                                                        style: kHeadingText,
-                                                      ),
-                                                      10.0.height,
-                                                      Text(
-                                                        'Please Enter New Quantity That You Want To Buy',
-                                                        style: kPrimaryGrayText
-                                                            .copyWith(
-                                                                fontSize: 16.0),
-                                                      ),
-                                                      10.0.height,
-                                                      customTextField(
-                                                        hintText:
-                                                            'Example 200 Feet Sand or 1000 Bricks',
-                                                        controller: c
-                                                            .myCartQuantityController,
-                                                      ),
-                                                      20.0.height,
-                                                      Row(
-                                                        children: [
-                                                          Expanded(
-                                                            child:
-                                                                MaterialButton(
-                                                              textColor:
-                                                                  kWhiteColor,
-                                                              color:
-                                                                  kPrimaryColor,
-                                                              onPressed: () {
-                                                                Get.back();
-                                                              },
-                                                              child: const Text(
-                                                                  'Close'),
-                                                            ),
-                                                          ),
-                                                          20.0.width,
-                                                          Expanded(
-                                                            child:
-                                                                MaterialButton(
-                                                              textColor:
-                                                                  kWhiteColor,
-                                                              color:
-                                                                  kPrimaryColor,
-                                                              onPressed:
-                                                                  () async {
-                                                                await c
-                                                                    .updateMyCartProductQuantity(
-                                                                        id: item
-                                                                            .id);
-                                                              },
-                                                              child: const Text(
-                                                                  'Update'),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      20.0.height,
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
+                                              CartPageBottomSheet(item),
                                             );
                                           },
                                           child: Text(
