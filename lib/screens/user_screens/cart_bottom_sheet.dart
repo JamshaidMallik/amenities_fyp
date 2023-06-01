@@ -146,7 +146,7 @@ class CartPageBottomSheet extends StatelessWidget {
                               onPressed: () {
                                 Get.back();
                               },
-                              child: const Text('Close'),
+                              child: const Text('Cancel'),
                             ),
                           ),
                           const SizedBox(width: 20.0),
@@ -169,7 +169,7 @@ class CartPageBottomSheet extends StatelessWidget {
                                   c.myCartQuantityController.clear();
                                 }
                               },
-                              child: const Text('Add To Cart'),
+                              child: const Text('Update'),
                             ),
                           ),
                         ],
