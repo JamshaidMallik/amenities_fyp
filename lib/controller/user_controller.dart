@@ -39,7 +39,7 @@ class UserController extends GetxController {
           context: Get.context!, message: error.toString(), isSuccess: true);
     });
   }
-  void sendOrder(List<MyCartProduct> myCartProductList) async {
+  void sendOrder(List<MyCartProduct> myCartProductList, totalPrice) async {
     kShowLoading(Get.context!);
     final orderData = {
       'user_name': nameController.text,
@@ -48,12 +48,15 @@ class UserController extends GetxController {
       'user_phone': contactNoController.text,
       'user_id': kStorage.read(kUserId) ?? '',
       'order_status': 0,
+      'all_product_price': totalPrice,
       'product_user_id': myCartProductList.first.productUserId,
       'products': myCartProductList.map((product) {
         return {
           'user_id': product.addUserId,
           'productName': product.name,
           'quantity': product.quantity,
+          'totalPrice': product.totalPrice,
+          'productPrice': product.price,
           'product_image': product.productImage,
           'product_user_id': product.productUserId,
           'created_at': DateTime.now().millisecondsSinceEpoch.toString(),
@@ -77,13 +80,14 @@ class UserController extends GetxController {
             .then((value) async {
           kShowSnackBar(
               context: Get.context!,
-              message: 'Order Send Successfully',
+              message: 'Order Submit Successfully',
               isSuccess: true);
           fetchMyOrders();
           // Delete cart items
           QuerySnapshot cartItemsSnapshot = await kFireStore
               .collection(kCartItemCollection)
               .where('user_id', isEqualTo: kStorage.read(kUserId) ?? '')
+              .where('is_selected', isEqualTo: true)
               .get();
           List<Future<void>> deleteFutures = [];
           for (DocumentSnapshot ds in cartItemsSnapshot.docs) {

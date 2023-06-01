@@ -141,7 +141,7 @@ class CheckOutScreen extends StatelessWidget {
                 animType: AnimType.rightSlide,
                 title: 'Are You Sure To Submit Order?',
                 btnOkOnPress: () {
-                c.sendOrder(myCartProductList);
+                c.sendOrder(myCartProductList, totalPrice);
                 },
                 btnCancelOnPress: () {},
                 btnCancelText: "No",
