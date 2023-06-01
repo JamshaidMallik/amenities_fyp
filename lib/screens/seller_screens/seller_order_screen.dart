@@ -110,12 +110,30 @@ class SellerOrderScreen extends StatelessWidget {
                                     Text(product['quantity'], style: kSecondaryText.copyWith(fontSize: 12.0)),
                                   ],
                                 ),
+                                Row(
+                                  children: [
+                                    Text('Price:', style: kHeadingText.copyWith(fontSize: 13.0,color: Colors.black)),
+                                    10.0.width,
+                                    Text(product['totalPrice'].toString(), style: kSecondaryText.copyWith(fontSize: 12.0)),
+                                  ],
+                                ),
                               ],
                             ),
                             isThreeLine: true,
                           );
                         }).toList(),
                       ),
+                      const Divider(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text('Total Price:', style: kHeadingText.copyWith(fontSize: 13.0)),
+                            10.0.width,
+                            Text(item.allProductPrice.toString(), style: kSecondaryText.copyWith(fontSize: 12.0)),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

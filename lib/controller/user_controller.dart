@@ -73,7 +73,8 @@ class UserController extends GetxController {
             context: Get.context!,
             message: 'Please fill all the fields',
             isSuccess: false);
-      } else {
+      }
+      else {
         kFireStore
             .collection(kOrderCollection)
             .add(orderData)
@@ -97,10 +98,10 @@ class UserController extends GetxController {
           Get.offAll(() => const UserMainScreen());
         });
       }
-    } catch (error) {
+    }
+    catch (error) {
       Get.back();
-      kShowSnackBar(
-          context: Get.context!, message: error.toString(), isSuccess: true);
+      kShowSnackBar(context: Get.context!, message: error.toString(), isSuccess: true);
       log('Error_placing_order: $error');
     }
     update();

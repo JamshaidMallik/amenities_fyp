@@ -140,7 +140,17 @@ class MyBottomSheet extends StatelessWidget {
                                     colorText: kWhiteColor,
                                     duration: const Duration(seconds: 3),
                                   );
-                                } else {
+                                } else if(c.totalPrice == null){
+                                  Get.snackbar(
+                                    "Important",
+                                    "Please Save Quantity First",
+                                    backgroundColor: Colors.red,
+                                    snackPosition: SnackPosition.TOP,
+                                    colorText: kWhiteColor,
+                                    duration: const Duration(seconds: 3),
+                                  );
+                                }
+                                else {
                                   c.addToCartItem(
                                     name: product.productName,
                                     quantity: c.myCartQuantityController.text,

@@ -176,6 +176,7 @@ class ProductController extends GetxController {
         .collection(kCartItemCollection)
         .add(cartItem.toMap())
         .then((docRef) {
+          myCartQuantityController.clear();
       getMyCartProducts();
       kShowSnackBar(
           context: Get.context!,
