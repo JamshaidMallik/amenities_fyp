@@ -198,7 +198,9 @@ class ProductController extends GetxController {
       for (var doc in snapshot.docs) {
         MyCartProduct product = MyCartProduct.fromSnapshot(doc);
         myCartProducts.add(product);
-        // totalCartOriginalPrice += int.parse(product.totalPrice.toString());
+        if(product.isSelected == true){
+          totalCartOriginalPrice += int.parse(product.totalPrice.toString());
+        }
       }
       myCartProductList.assignAll(myCartProducts);
       isCartProductLoading(false);

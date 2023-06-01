@@ -140,13 +140,18 @@ class CartScreen extends StatelessWidget {
                 ? Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: primarybutton(
-                        btnText: 'Check Out ${int.parse(c.totalCartOriginalPrice.toStringAsFixed(0))}',
+                        btnText: c.totalCartOriginalPrice != 0? 'Check Out ${int.parse(c.totalCartOriginalPrice.toStringAsFixed(0))}' : 'Check Out',
                         press: () async {
                           List<MyCartProduct> selectedItems = c.getSelectedCartItems();
-                          Get.to(() => CheckOutScreen(
-                               selectedItems,
-                               c.totalCartOriginalPrice,
-                              ));
+                              if( selectedItems.isNotEmpty){
+                                Get.to(() =>  CheckOutScreen(
+                                  selectedItems,
+                                  c.totalCartOriginalPrice,
+                                ));
+                              }else{
+                                kShowSnackBar(context: context, message: 'Please select at least one item For Checkout', isSuccess: false);
+                              }
+
                         }),
                   )
                 : const SizedBox(
