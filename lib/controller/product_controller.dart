@@ -198,7 +198,7 @@ class ProductController extends GetxController {
       for (var doc in snapshot.docs) {
         MyCartProduct product = MyCartProduct.fromSnapshot(doc);
         myCartProducts.add(product);
-        totalCartOriginalPrice += int.parse(product.totalPrice.toString());
+        // totalCartOriginalPrice += int.parse(product.totalPrice.toString());
       }
       myCartProductList.assignAll(myCartProducts);
       isCartProductLoading(false);
@@ -238,18 +238,21 @@ class ProductController extends GetxController {
   }
 
   void toggleCartItemSelection(int index) {
+    totalCartOriginalPrice = 0;
     var cartItem = myCartProductList[index];
     cartItem.toggleSelection();
     update();
-
     // Update the 'is_selected' field in Firebase
     kFireStore
         .collection(kCartItemCollection)
         .doc(cartItem.id)
         .update({'is_selected': cartItem.isSelected})
         .then((_) {
-    })
-        .catchError((error) {
+      List<MyCartProduct> selectedItems = getSelectedCartItems();
+      totalCartOriginalPrice = selectedItems.fold(0, (sum, item) => sum + item.totalPrice);
+      log('totalCartItemPrice ${totalCartOriginalPrice.toString()}');
+      update();
+    }).catchError((error) {
           log(error.toString());
     });
   }

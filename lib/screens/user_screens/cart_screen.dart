@@ -1,14 +1,11 @@
 import 'dart:developer';
-
 import 'package:amenities_app/controller/product_controller.dart';
 import 'package:amenities_app/model/my_cart_model.dart';
 import 'package:amenities_app/screens/user_screens/cart_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../constant.dart';
 import '../../widgets/button_widgets.dart';
-import '../../widgets/custom_text_field.dart';
 import 'check_out_screen.dart';
 
 class CartScreen extends StatelessWidget {
@@ -57,67 +54,76 @@ class CartScreen extends StatelessWidget {
                                 child: Card(
                                   elevation: 8.0,
                                   shadowColor: kPrimaryColor,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Row(
-                                      children: [
-                                        Checkbox(
+                                  child: Stack(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(20.0),
+                                        child: Row(
+                                          children: [
+                                            CircleAvatar(
+                                              backgroundColor: kTealColor,
+                                              maxRadius: 30,
+                                              backgroundImage: NetworkImage(item.productImage),
+                                            ),
+                                            10.0.width,
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    item.name,
+                                                    style: kHeadingText,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text('Price:  ', style: kHeadingText.copyWith(fontSize: 12)),
+                                                      Text(item.price.toString(), style: kSecondaryText),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text('Quantity:  ', style: kHeadingText.copyWith(fontSize: 12)),
+                                                      Text(item.quantity, style: kSecondaryText),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text('Total Price:  ', style: kHeadingText.copyWith(fontSize: 12)),
+                                                      Text(item.totalPrice.toString(), style: kSecondaryText),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            MaterialButton(
+                                              color: kTealColor,
+                                              textColor: Colors.white,
+                                              onPressed: () {
+                                                Get.bottomSheet(
+                                                  CartPageBottomSheet(item),
+                                                );
+                                              },
+                                              child: Text(
+                                                'Edit',
+                                                style: kSecondaryText,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 0,
+                                        child: Checkbox(
+                                          side:  BorderSide(color: kGreyColor.withOpacity(0.3)),
+                                          fillColor: MaterialStateProperty.all(kTealColor),
                                           value: item.isSelected,
                                           onChanged: (_) {
                                             c.toggleCartItemSelection(index);
                                           },
                                         ),
-                                        CircleAvatar(
-                                          backgroundColor: kTealColor,
-                                          maxRadius: 30,
-                                          backgroundImage: NetworkImage(item.productImage),
-                                        ),
-                                        10.0.width,
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                item.name,
-                                                style: kHeadingText,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Text('Price:  ', style: kHeadingText.copyWith(fontSize: 12)),
-                                                  Text(item.price.toString(), style: kSecondaryText),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Text('Quantity:  ', style: kHeadingText.copyWith(fontSize: 12)),
-                                                  Text(item.quantity, style: kSecondaryText),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Text('Total Price:  ', style: kHeadingText.copyWith(fontSize: 12)),
-                                                  Text(item.totalPrice.toString(), style: kSecondaryText),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        MaterialButton(
-                                          color: kTealColor,
-                                          textColor: Colors.white,
-                                          onPressed: () {
-                                            Get.bottomSheet(
-                                              CartPageBottomSheet(item),
-                                            );
-                                          },
-                                          child: Text(
-                                            'Edit',
-                                            style: kSecondaryText,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -134,13 +140,12 @@ class CartScreen extends StatelessWidget {
                 ? Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: primarybutton(
-                        btnText: 'Check Out ${int.parse(c.totalCartOriginalPrice.toStringAsFixed(0)) ?? '0'}',
+                        btnText: 'Check Out ${int.parse(c.totalCartOriginalPrice.toStringAsFixed(0))}',
                         press: () async {
                           List<MyCartProduct> selectedItems = c.getSelectedCartItems();
-                          log('selectedItems: ${selectedItems.length}');
                           Get.to(() => CheckOutScreen(
                                selectedItems,
-                                c.totalCartOriginalPrice,
+                               c.totalCartOriginalPrice,
                               ));
                         }),
                   )
