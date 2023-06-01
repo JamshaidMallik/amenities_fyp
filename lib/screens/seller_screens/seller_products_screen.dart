@@ -8,12 +8,14 @@ import 'package:get/get.dart';
 
 import '../../constant.dart';
 import '../../model/product_model.dart';
+import '../user_screens/user_search_screen.dart';
 import '../../widgets/custom_text_field.dart';
+import 'seller_search_screen.dart';
 
 class SellerProductsScreen extends StatelessWidget {
   final String userId;
   SellerProductsScreen(this.userId, {Key? key}) : super(key: key);
-  var controller = Get.put(ProductController());
+  final controller = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,16 @@ class SellerProductsScreen extends StatelessWidget {
             appBar: AppBar(
               title: const Text('Products'),
               actions: [
+                kStorage.read(kUserType) == 'User' || kStorage.read(kUserType) == 'Seller'
+                    ? IconButton(onPressed: (){
+                  if(kStorage.read(kUserType) == 'User'){
+                    Get.to(() => const UserSearchScreen());
+                  }else if (kStorage.read(kUserType) == 'Seller'){
+                    Get.to(() => const SellerSearchScreen());
+                  }else{
+                    return;
+                  }
+                }, icon: const Icon(Icons.search)):Container(),
                 kStorage.read(kUserType) != 'Admin' && kStorage.read(kUserType) != 'Seller'
                     ? GestureDetector(
                         onTap: () {
