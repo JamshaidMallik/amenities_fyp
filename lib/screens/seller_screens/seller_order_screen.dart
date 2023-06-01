@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:amenities_app/constant.dart';
 import 'package:amenities_app/controller/user_controller.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -19,6 +21,7 @@ class SellerOrderScreen extends StatelessWidget {
             itemCount: c.myOrdersList.length,
             itemBuilder: (BuildContext context, int index) {
               var item = c.myOrdersList[index];
+              log('orderStatus: ${item.orderStatus}');
               return Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Card(
@@ -43,12 +46,13 @@ class SellerOrderScreen extends StatelessWidget {
                             Column(
                               children: [
                                 Text(
-                                  item.orderStatus == 1 ? 'Pending' : item.orderStatus == 2 ? "Confirm" : 'Pending',
+                                  item.orderStatus == 1 ? 'Pending' : item.orderStatus == 2? "Confirm" : 'Pending',
                                   style: kSecondaryText.copyWith(
                                     color: item.orderStatus == 0 ? Colors.red : item.orderStatus == 1 ? Colors.red : Colors.green,
                                   ),
                                 ),
-                                item.orderStatus == 0 || item.orderStatus == 1?  GestureDetector(
+                                item.orderStatus == 1
+                                    ?  GestureDetector(
                                   onTap: (){
                                     AwesomeDialog(
                                       context: context,
@@ -79,7 +83,8 @@ class SellerOrderScreen extends StatelessWidget {
                                               color: Colors.white,fontSize: 10.0),
                                         ),
                                       )),
-                                ):Container(),
+                                )
+                                    :  Container(),
                               ],
                             ),
                           ],
