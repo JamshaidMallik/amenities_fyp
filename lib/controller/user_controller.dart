@@ -39,7 +39,7 @@ class UserController extends GetxController {
           context: Get.context!, message: error.toString(), isSuccess: true);
     });
   }
-  void sendOrder(RxList<MyCartProduct> myCartProductList) async {
+  void sendOrder(List<MyCartProduct> myCartProductList) async {
     kShowLoading(Get.context!);
     final orderData = {
       'user_name': nameController.text,
@@ -188,13 +188,10 @@ class UserController extends GetxController {
     super.onReady();
     fetchAllSeller();
     if(kStorage.read(kUserType) == 'User'){
-      log('this_is_user');
       fetchMyOrders();
     } else if(kStorage.read(kUserType) == 'Seller'){
-      log('this_is_seller');
       fetchSellerOrders();
     } else {
-      log('this_is_admin');
       fetchAdminAllOrders();
     }
 

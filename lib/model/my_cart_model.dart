@@ -11,6 +11,7 @@ class MyCartProduct {
   String createdAt;
   int price;
   int totalPrice;
+  bool isSelected;
 
   MyCartProduct(
       {required this.id,
@@ -22,8 +23,13 @@ class MyCartProduct {
       required this.productImage,
       required this.createdAt,
       required this.price,
-      required this.totalPrice
+      required this.totalPrice,
+       this.isSelected = false
       });
+
+      void toggleSelection() {
+        isSelected = !isSelected;
+      }
 
   MyCartProduct.fromSnapshot(DocumentSnapshot snapshot)
       : id = snapshot.id,
@@ -35,5 +41,6 @@ class MyCartProduct {
         productImage = snapshot['product_image'],
         createdAt = snapshot['created_at'].toDate().toString(),
         price = snapshot['price'],
-        totalPrice = snapshot['total_price'];
+        totalPrice = snapshot['total_price'],
+        isSelected = snapshot['is_selected'];
 }

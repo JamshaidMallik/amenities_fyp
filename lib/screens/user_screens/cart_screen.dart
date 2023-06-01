@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:amenities_app/controller/product_controller.dart';
+import 'package:amenities_app/model/my_cart_model.dart';
 import 'package:amenities_app/screens/user_screens/cart_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,6 +61,12 @@ class CartScreen extends StatelessWidget {
                                     padding: const EdgeInsets.all(20.0),
                                     child: Row(
                                       children: [
+                                        Checkbox(
+                                          value: item.isSelected,
+                                          onChanged: (_) {
+                                            c.toggleCartItemSelection(index);
+                                          },
+                                        ),
                                         CircleAvatar(
                                           backgroundColor: kTealColor,
                                           maxRadius: 30,
@@ -125,10 +134,13 @@ class CartScreen extends StatelessWidget {
                 ? Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: primarybutton(
-                        btnText: 'Check Out',
+                        btnText: 'Check Out ${int.parse(c.totalCartOriginalPrice.toStringAsFixed(0)) ?? '0'}',
                         press: () async {
+                          List<MyCartProduct> selectedItems = c.getSelectedCartItems();
+                          log('selectedItems: ${selectedItems.length}');
                           Get.to(() => CheckOutScreen(
-                                c.myCartProductList,
+                               selectedItems,
+                                c.totalCartOriginalPrice,
                               ));
                         }),
                   )

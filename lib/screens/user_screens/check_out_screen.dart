@@ -9,8 +9,9 @@ import '../../widgets/button_widgets.dart';
 import '../../widgets/custom_text_field.dart';
 
 class CheckOutScreen extends StatelessWidget {
-  final RxList<MyCartProduct> myCartProductList;
-  const CheckOutScreen(this.myCartProductList, {super.key});
+  final List<MyCartProduct> myCartProductList;
+  final double totalPrice;
+  const CheckOutScreen(this.myCartProductList, this.totalPrice, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +92,35 @@ class CheckOutScreen extends StatelessWidget {
                                   const Divider(),
                                 ],
                               )).toList(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    15.0.height,
+                    Card(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      elevation: 15.0,
+                      shadowColor: Colors.teal.withOpacity(0.3),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('Total Price', style: kHeadingText.copyWith(color: Colors.black,fontSize: 14.0),),
+                                      Text(totalPrice.toString() ??'0', style: kSecondaryText,),
+                                    ],
+                                  ),
+                                ),
+                              ]
                             ),
                           ],
                         ),

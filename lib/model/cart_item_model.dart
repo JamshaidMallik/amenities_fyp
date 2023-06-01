@@ -7,8 +7,8 @@ class CartItem {
   String productImage;
   int price;
   int totalPrice;
-  CartItem({required this.name, required this.quantity, required this.addUserId, required this.productId, required this.productUserId, required this.productImage, required this.price, required this.totalPrice});
-
+  bool isSelected = false;
+  CartItem({required this.name, required this.quantity, required this.addUserId, required this.productId, required this.productUserId, required this.productImage, required this.price, required this.totalPrice, required this.isSelected});
   Map<String, dynamic> toMap() {
     return {
       'name': name,
@@ -20,6 +20,7 @@ class CartItem {
       'product_image': productImage,
       'price': price,
       'total_price': totalPrice,
+      'is_selected': isSelected,
     };
   }
 }

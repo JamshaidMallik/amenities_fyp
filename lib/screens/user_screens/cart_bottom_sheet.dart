@@ -14,7 +14,7 @@ class CartPageBottomSheet extends StatelessWidget {
     return GetBuilder<ProductController>(
         init: ProductController(),
         builder: (c) {
-          c.totalPrice =  product.totalPrice;
+          // c.totalCartItemPrice = product.totalPrice;
           return GestureDetector(
             onTap: () {
               Get.back();
@@ -52,24 +52,47 @@ class CartPageBottomSheet extends StatelessWidget {
                               'Quantity: ${product.quantity}',
                                 style: kSubHeadingText,
                               ),
+                              Text(
+                              'Total Price: ${product.totalPrice}',
+                                style: kSubHeadingText,
+                              ),
                             ],
                           ),
                           if(c.myCartQuantityController.text.isNotEmpty)
-                            Row(
+                            Column(
                               children: [
-                                Text(
-                                  'Total Price: ',
-                                  style: kSubHeadingText,
+                                Row(
+                                  children: [
+                                    Text(
+                                      'New Price: ',
+                                      style: kSubHeadingText,
+                                    ),
+                                    if(c.myCartQuantityController.text.isNotEmpty)
+                                    Text(
+                                      c.totalCartItemPrice.toString(),
+                                      style: kSubHeadingText.copyWith(color: Colors.red),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  c.totalPrice.toString(),
-                                  style: kSubHeadingText.copyWith(color: Colors.red),
-                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'New Quantity: ',
+                                      style: kSubHeadingText,
+                                    ),
+                                      Text(
+                                        c.myCartQuantityController.text.toString(),
+                                        style: kSubHeadingText.copyWith(color: Colors.red),
+                                      ),
 
+                                  ],
+                                ),
                               ],
                             ),
+
                         ],
                       ),
+                      Divider(),
                       10.0.height,
                       Text(
                         'Enter Quantity',
@@ -100,7 +123,7 @@ class CartPageBottomSheet extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              c.totalPriceCount(product.price.toString());
+                              c.cartITemPriceCount(product.price.toString());
                             },
                             child: const Text('Save'),
                           ),
@@ -142,9 +165,8 @@ class CartPageBottomSheet extends StatelessWidget {
                                     duration: const Duration(seconds: 3),
                                   );
                                 } else {
-                                  await c.updateMyCartProductQuantity(id: product.id);
+                                  await c.updateMyCartProductValues(id: product.id);
                                   c.myCartQuantityController.clear();
-                                  Get.back();
                                 }
                               },
                               child: const Text('Add To Cart'),

@@ -28,17 +28,17 @@ class ProductController extends GetxController {
   CartItem? cartItem;
   int? totalPrice;
   int? totalCartItemPrice;
+  double totalCartOriginalPrice = 0;
   totalPriceCount(String productPrice){
     totalPrice = int.parse(productPrice) * int.parse(myCartQuantityController.text);
     update();
   }
+  cartITemPriceCount(String pPrice){
+     totalCartItemPrice = int.parse(pPrice) * int.parse(myCartQuantityController.text);
+     log("totalCartItemPrice: ${totalCartItemPrice.toString()}");
+    update();
 
-   cartITemPriceCount(int productPrice){
-     totalCartItemPrice = productPrice * int.parse(myCartQuantityController.text);
-    update();
-    update();
   }
-
   void pickImage() async {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
@@ -170,6 +170,7 @@ class ProductController extends GetxController {
         productImage: productImage,
         price: int.parse(price),
         totalPrice: totalPrice,
+        isSelected: false,
     );
     kFireStore
         .collection(kCartItemCollection)
@@ -193,19 +194,21 @@ class ProductController extends GetxController {
         .snapshots()
         .listen((snapshot) {
       myCartProducts.clear();
+      totalCartOriginalPrice = 0;
       for (var doc in snapshot.docs) {
         MyCartProduct product = MyCartProduct.fromSnapshot(doc);
-        log('');
         myCartProducts.add(product);
+        totalCartOriginalPrice += int.parse(product.totalPrice.toString());
       }
       myCartProductList.assignAll(myCartProducts);
       isCartProductLoading(false);
       update();
     });
   }
-  updateMyCartProductQuantity({required String id}){
+  updateMyCartProductValues({required String id}){
     kFireStore.collection(kCartItemCollection).doc(id).update({
       'quantity': myCartQuantityController.text,
+      'total_price': totalCartItemPrice,
     }).then((value) {
       myCartQuantityController.clear();
       getMyCartProducts();
@@ -232,6 +235,27 @@ class ProductController extends GetxController {
       kShowSnackBar(context: Get.context!, message: error, isSuccess: true);
     });
     update();
+  }
+
+  void toggleCartItemSelection(int index) {
+    var cartItem = myCartProductList[index];
+    cartItem.toggleSelection();
+    update();
+
+    // Update the 'is_selected' field in Firebase
+    kFireStore
+        .collection(kCartItemCollection)
+        .doc(cartItem.id)
+        .update({'is_selected': cartItem.isSelected})
+        .then((_) {
+    })
+        .catchError((error) {
+          log(error.toString());
+    });
+  }
+
+  List<MyCartProduct> getSelectedCartItems() {
+    return myCartProductList.where((item) => item.isSelected).toList();
   }
 
   @override
