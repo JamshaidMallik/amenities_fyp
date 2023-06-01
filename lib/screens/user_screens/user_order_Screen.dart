@@ -35,12 +35,19 @@ class UserOrders extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            if(kStorage.read(kUserId) != item.userId)
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(item.userName, style: kHeadingText.copyWith(fontSize: 14.0)),
                                 Text(item.userEmail, style: kPrimaryText.copyWith(fontSize: 12.0, color: Colors.black)),
                                 Text(item.address, style: kPrimaryText.copyWith(fontSize: 12.0, color: Colors.grey)),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('My Order', style: kHeadingText.copyWith(fontSize: 14.0)),
                               ],
                             ),
                             Text(
