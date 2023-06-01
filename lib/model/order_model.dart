@@ -9,6 +9,7 @@ class OrderModel {
   final String userId;
   final int orderStatus;
   final String productUserId;
+  final num allProductPrice;
   final List<Map<String, dynamic>> products;
 
   OrderModel({
@@ -21,6 +22,7 @@ class OrderModel {
     required this.orderStatus,
     required this.productUserId,
     required this.products,
+    required this.allProductPrice,
   });
 
   factory OrderModel.fromFirestore(DocumentSnapshot doc) {
@@ -34,6 +36,7 @@ class OrderModel {
       userId: data['user_id'],
       orderStatus: data['order_status'],
       productUserId: data['product_user_id'],
+      allProductPrice: data['all_product_price'],
       products: List<Map<String, dynamic>>.from(data['products']),
     );
   }
