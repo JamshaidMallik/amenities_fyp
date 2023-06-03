@@ -4,23 +4,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class EstimationController extends GetxController {
-  TextEditingController floorController = TextEditingController();
-  String? valueChoose;
-  List<String> listItem = [
-    "1 Marla",
-    "2 Marla",
+  String? chooseAreaValue;
+  List<String> areaList = [
     "3 Marla",
     "4 Marla",
     "5 Marla",
-    "6 Marla",
     "7 Marla",
-    "8 Marla",
-    "9 Marla",
     "10 Marla",
-    "Custom"
+    "1 Kanal",
+    "2 Kanal",
   ];
   void chooseArea(String? value) {
-    valueChoose = value;
+    chooseAreaValue = value;
     if (value != null) {
       String intValue = value.split(' ')[0];
       int selectedValue = int.tryParse(intValue) ?? 0;
@@ -29,114 +24,72 @@ class EstimationController extends GetxController {
     update();
   }
 
-  /// Residential area values
-  TextEditingController customAreaController = TextEditingController();
-  TextEditingController roomController = TextEditingController();
-  TextEditingController roomHeightController = TextEditingController();
-  TextEditingController roomWidthController = TextEditingController();
-  TextEditingController roomLengthController = TextEditingController();
-
-  int estimatedBricks = 0;
-  double estimatedSand = 0.0;
-  double estimatedGravel = 0.0;
-  double estimatedIronRod = 0.0;
-  double estimatedCement = 0.0;
-  // void calculateEstimation() {
-  //   int roomCount = int.tryParse(roomController.text) ?? 0;
-  //   double customArea = double.tryParse(customAreaController.text) ?? 0.0;
-  //   double roomHeight = double.tryParse(roomHeightController.text) ?? 0.0;
-  //   double roomWidth = double.tryParse(roomWidthController.text) ?? 0.0;
-  //   double roomLength = double.tryParse(roomLengthController.text) ?? 0.0;
-  //
-  //   // Get the selected area value
-  //   if (valueChoose != null) {
-  //     if (valueChoose == "Custom") {
-  //       // Perform estimation calculations for custom area
-  //       estimatedBricks = (customArea * roomHeight * roomWidth * roomLength).toInt();
-  //     } else {
-  //       String intValue = valueChoose!.split(' ')[0];
-  //       int selectedValue = int.tryParse(intValue) ?? 0;
-  //       log('selectedValue $selectedValue');
-  //       // Perform estimation calculations based on the selected area
-  //       estimatedBricks = selectedValue * roomHeight.toInt() * roomWidth.toInt() * roomLength.toInt();
-  //     }
-  //
-  //     // Perform other estimation calculations as needed
-  //     estimatedSand = roomHeight * roomWidth * roomLength * 0.5; // Sample calculation
-  //     estimatedGravel = roomHeight * roomWidth * roomLength * 0.75; // Sample calculation
-  //     estimatedIronRod = roomWidth + roomLength; // Sample calculation
-  //     estimatedCement = roomHeight + roomWidth + roomLength; // Sample calculation
-  //   }
-  //
-  //   update();
-  // }
-
-  void calculateEstimation() {
-    int roomCount = int.tryParse(roomController.text) ?? 0;
-    double customArea = double.tryParse(customAreaController.text) ?? 0.0;
-    double roomHeight = double.tryParse(roomHeightController.text) ?? 0.0;
-    double roomWidth = double.tryParse(roomWidthController.text) ?? 0.0;
-    double roomLength = double.tryParse(roomLengthController.text) ?? 0.0;
-
-    // Get the selected area value
-    if (valueChoose != null) {
-      if (valueChoose == "Custom") {
-        // Perform estimation calculations for custom area
-        estimatedBricks =
-            (customArea * roomCount * roomHeight * roomWidth * roomLength)
-                .toInt();
-        estimatedSand = roomCount *
-            roomHeight *
-            roomWidth *
-            roomLength *
-            0.5; // Sample calculation
-        estimatedGravel = roomCount *
-            roomHeight *
-            roomWidth *
-            roomLength *
-            0.75; // Sample calculation
-        estimatedIronRod =
-            roomCount * (roomWidth + roomLength); // Sample calculation
-        estimatedCement = roomCount *
-            (roomHeight + roomWidth + roomLength); // Sample calculation
-      } else {
-        String intValue = valueChoose!.split(' ')[0];
-        int selectedValue = int.tryParse(intValue) ?? 0;
-        log('selectedValue $selectedValue');
-        // Perform estimation calculations based on the selected area
-        estimatedBricks = selectedValue *
-            roomCount *
-            roomHeight.toInt() *
-            roomWidth.toInt() *
-            roomLength.toInt();
-
-        // Perform other estimation calculations as needed
-        estimatedSand = roomCount *
-            roomHeight *
-            roomWidth *
-            roomLength *
-            0.5; // Sample calculation
-        estimatedGravel = roomCount *
-            roomHeight *
-            roomWidth *
-            roomLength *
-            0.75; // Sample calculation
-        estimatedIronRod =
-            roomCount * (roomWidth + roomLength); // Sample calculation
-        estimatedCement = roomCount *
-            (roomHeight + roomWidth + roomLength); // Sample calculation
-      }
+  int? chooseFloorValue;
+  List<int> floorList = [
+    1,
+    2,
+  ];
+  void chooseFloor(int? value) {
+    chooseFloorValue = value;
+    if (value != null) {
+      log('selectedValue $chooseFloorValue');
     }
     update();
   }
+  /// Residential area values
+  TextEditingController firstFloorTotalRoom = TextEditingController();
+  TextEditingController secondFloorRoomController = TextEditingController();
+
+  int estimatedBricks = 0;
+  int estimatedSand = 0;
+  int estimatedGravel = 0;
+  int estimatedIronRod = 0;
+  int estimatedCement = 0;
+  void calculateEstimation() {
+    if (chooseAreaValue != null) {
+      String intValue = chooseAreaValue!.split(' ')[0];
+      int selectedValue = int.tryParse(intValue) ?? 0;
+      double conversionFactor = 1.0;
+      if (chooseAreaValue!.contains("Kanal")) {
+        // Convert Kanal to Marla
+        conversionFactor = 20.0;
+      }
+      double areaInMarla = selectedValue * conversionFactor;
+
+      if (chooseFloorValue == 1) {
+        int totalRooms = int.tryParse(firstFloorTotalRoom.text) ?? 0;
+        // Calculate estimation for 1 floor
+        estimatedBricks = (areaInMarla * totalRooms * 1000).toInt();
+        estimatedSand = (areaInMarla * totalRooms * 10).toInt();
+        estimatedGravel = (areaInMarla * totalRooms * 20).toInt();
+        estimatedIronRod = (areaInMarla * totalRooms * 25).toInt();
+        estimatedCement = (areaInMarla * totalRooms * 10).toInt();
+      } else if (chooseFloorValue == 2) {
+        int firstFloorTotalRooms = int.tryParse(firstFloorTotalRoom.text) ?? 0;
+        int secondFloorTotalRooms = int.tryParse(secondFloorRoomController.text) ?? 0;
+        // Calculate estimation for 2 floors
+        estimatedBricks = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms) * 1000).toInt();
+        estimatedSand = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms) * 10).toInt();
+        estimatedGravel = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms) * 20).toInt();
+        estimatedIronRod = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms) * 25).toInt();
+        estimatedCement = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms) * 10).toInt();
+      }
+      log('Estimated Bricks: $estimatedBricks');
+      log('Estimated Sand: $estimatedSand');
+      log('Estimated Gravel: $estimatedGravel');
+      log('Estimated Iron Rod: $estimatedIronRod');
+      log('Estimated Cement: $estimatedCement');
+    }
+  }
+
+
 
   @override
   void dispose() {
     super.dispose();
-    customAreaController.clear();
-    roomHeightController.clear();
-    roomWidthController.clear();
-    roomLengthController.clear();
-    roomController.clear();
+    firstFloorTotalRoom.clear();
+    secondFloorRoomController.clear();
+    chooseFloorValue = null;
+    chooseAreaValue = null;
   }
 }

@@ -35,7 +35,7 @@ class EstimateResultScreen extends StatelessWidget {
                               height: 150,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                  image:  DecorationImage(
+                                  image: const DecorationImage(
                                       image: CachedNetworkImageProvider(
                                           "https://s.alicdn.com/@sc04/kf/Ac3f0ecc79a334393bb8d2e8c2ce52ea0I.png_300x300.png"),
                                       fit: BoxFit.cover),
@@ -43,7 +43,7 @@ class EstimateResultScreen extends StatelessWidget {
                                   color: kWhiteColor),
                             ),
                             10.0.height,
-                            Text("Cement ${c.estimatedCement.toInt()}", style: kHeadingText,)
+                            Text("Cement Bag ${c.estimatedCement.toInt()}", style: kHeadingText.copyWith(fontSize: 14.0),)
                           ],
                         ),
                       ),
@@ -55,7 +55,7 @@ class EstimateResultScreen extends StatelessWidget {
                               height: 150,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                  image:  DecorationImage(
+                                  image:  const DecorationImage(
                                       image: CachedNetworkImageProvider(
                                           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR66RqWP4uFp8cSJooxZCJo2wrH50u3IindFUoZGvVkjsPcw7QZ_hZp5-dKz4K9Xs5UO5o&usqp=CAU"),
                                       fit: BoxFit.fill),
@@ -63,7 +63,7 @@ class EstimateResultScreen extends StatelessWidget {
                                   color: kWhiteColor),
                             ),
                             10.0.height,
-                             Text("Bricks ${c.estimatedBricks}", style: kHeadingText,)
+                             Text("Bricks ${c.estimatedBricks}", style: kHeadingText.copyWith(fontSize: 14.0),)
                           ],
                         ),
                       ),
@@ -87,7 +87,7 @@ class EstimateResultScreen extends StatelessWidget {
                                   color: kWhiteColor),
                             ),
                              10.0.height,
-                             Text("Gravel ${c.estimatedGravel.toInt()}", style: kHeadingText,)
+                             Text("Gravel ${c.estimatedGravel.toInt()} feet", style: kHeadingText.copyWith(fontSize: 14.0))
                           ],
                         ),
                       ),
@@ -107,7 +107,7 @@ class EstimateResultScreen extends StatelessWidget {
                                   color: kWhiteColor),
                             ),
                             10.0.height,
-                             Text("Sand ${c.estimatedSand.toInt()}", style: kHeadingText,),
+                             Text("Sand ${c.estimatedSand.toInt()} feet", style:  kHeadingText.copyWith(fontSize: 14.0),),
                           ],
                         ),
                       ),
@@ -126,7 +126,7 @@ class EstimateResultScreen extends StatelessWidget {
                         color: kWhiteColor),
                   ),
                   10.0.height,
-                  Text("Iron Rod ${c.estimatedIronRod.toInt()}", style: kHeadingText,),
+                  Text("Iron Rod ${c.estimatedIronRod.toInt()} kg", style:  kHeadingText.copyWith(fontSize: 14.0),),
                 ],
               ),
             ),
@@ -134,13 +134,10 @@ class EstimateResultScreen extends StatelessWidget {
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(8.0),
             child: primarybutton(btnText: 'Proceed to Order', press: () {
-              c.floorController.clear();
-              c.customAreaController.clear();
-              c.roomLengthController.clear();
-              c.roomWidthController.clear();
-              c.roomHeightController.clear();
-              c.roomController.clear();
-              c.valueChoose = null;
+              c.firstFloorTotalRoom.clear();
+              c.secondFloorRoomController.clear();
+              c.chooseAreaValue = null;
+              c.chooseFloorValue = null;
              Get.off(() => const UserMainScreen());
             }),
           ),
