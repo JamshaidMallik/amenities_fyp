@@ -25,32 +25,35 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userType = kStorage.read(kUserType);
-    return GetMaterialApp(
-      defaultTransition: Transition.cupertino,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          color: Colors.teal
-        ),
+    return GestureDetector(
+      onTap: (){ FocusScope.of(context).unfocus();},
+      child: GetMaterialApp(
+        defaultTransition: Transition.cupertino,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            color: Colors.teal
+          ),
 
-      ),
-      home: StreamBuilder(
-        stream: AuthController().auth.authStateChanges(),
-        builder: (context, AsyncSnapshot snapshot){
-          if(snapshot.hasData){
-            if(userType == 'Admin'){
-              return const AdminMainScreen();
-            }else if(userType == 'Seller'){
-              return const SellerMainScreen();
-            }else if(userType == 'User'){
-              return const UserMainScreen();
+        ),
+        home: StreamBuilder(
+          stream: AuthController().auth.authStateChanges(),
+          builder: (context, AsyncSnapshot snapshot){
+            if(snapshot.hasData){
+              if(userType == 'Admin'){
+                return const AdminMainScreen();
+              }else if(userType == 'Seller'){
+                return const SellerMainScreen();
+              }else if(userType == 'User'){
+                return const UserMainScreen();
+              }else{
+                return LogInScreen();
+              }
             }else{
               return LogInScreen();
             }
-          }else{
-            return LogInScreen();
-          }
-        },
+          },
+        ),
       ),
     );
   }

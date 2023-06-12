@@ -133,9 +133,15 @@ class EstimateResultScreen extends StatelessWidget {
           ),
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: primarybutton(btnText: 'Proceed to Order', press: () {
+            child: primarybutton(
+                btnText: 'Proceed to Order',
+                press: () {
               c.firstFloorTotalRoom.clear();
               c.secondFloorRoomController.clear();
+              c.firstFloorKitchenController.clear();
+              c.secondFloorKitchenController.clear();
+              c.firstFloorWashroomController.clear();
+              c.secondFloorWashroomController.clear();
               c.chooseAreaValue = null;
               c.chooseFloorValue = null;
              Get.off(() => const UserMainScreen());

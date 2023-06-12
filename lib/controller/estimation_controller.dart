@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class EstimationController extends GetxController {
+
+  final residentialAreaFormKey = GlobalKey<FormState>();
+
   String? chooseAreaValue;
   List<String> areaList = [
     "3 Marla",
@@ -36,9 +39,16 @@ class EstimationController extends GetxController {
     }
     update();
   }
-  /// Residential area values
+
+  /// firstFloor controller
   TextEditingController firstFloorTotalRoom = TextEditingController();
+  TextEditingController firstFloorKitchenController = TextEditingController();
+  TextEditingController firstFloorWashroomController = TextEditingController();
+
+  /// secondFloor controller
   TextEditingController secondFloorRoomController = TextEditingController();
+  TextEditingController secondFloorKitchenController = TextEditingController();
+  TextEditingController secondFloorWashroomController = TextEditingController();
 
   int estimatedBricks = 0;
   int estimatedSand = 0;
@@ -55,24 +65,31 @@ class EstimationController extends GetxController {
         conversionFactor = 20.0;
       }
       double areaInMarla = selectedValue * conversionFactor;
-
       if (chooseFloorValue == 1) {
         int totalRooms = int.tryParse(firstFloorTotalRoom.text) ?? 0;
+        int totalKitchen = int.tryParse(firstFloorKitchenController.text) ?? 0;
+        int totalWashroom = int.tryParse(firstFloorWashroomController.text) ?? 0;
+
+
         // Calculate estimation for 1 floor
-        estimatedBricks = (areaInMarla * totalRooms * 1000).toInt();
-        estimatedSand = (areaInMarla * totalRooms * 10).toInt();
-        estimatedGravel = (areaInMarla * totalRooms * 20).toInt();
-        estimatedIronRod = (areaInMarla * totalRooms * 25).toInt();
-        estimatedCement = (areaInMarla * totalRooms * 10).toInt();
+        estimatedBricks = (areaInMarla * totalRooms * totalKitchen * totalWashroom * 1000).toInt();
+        estimatedSand = (areaInMarla * totalRooms * totalKitchen * totalWashroom * 10).toInt();
+        estimatedGravel = (areaInMarla * totalRooms * totalKitchen * totalWashroom * 20).toInt();
+        estimatedIronRod = (areaInMarla * totalRooms * totalKitchen * totalWashroom * 25).toInt();
+        estimatedCement = (areaInMarla * totalRooms * totalKitchen * totalWashroom * 10).toInt();
       } else if (chooseFloorValue == 2) {
         int firstFloorTotalRooms = int.tryParse(firstFloorTotalRoom.text) ?? 0;
         int secondFloorTotalRooms = int.tryParse(secondFloorRoomController.text) ?? 0;
+        int firstFloorKitchen = int.tryParse(firstFloorKitchenController.text) ?? 0;
+        int secondFloorKitchen = int.tryParse(secondFloorKitchenController.text) ?? 0;
+        int firstFloorWashroom = int.tryParse(firstFloorWashroomController.text) ?? 0;
+        int secondFloorWashroom = int.tryParse(secondFloorWashroomController.text) ?? 0;
         // Calculate estimation for 2 floors
-        estimatedBricks = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms) * 1000).toInt();
-        estimatedSand = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms) * 10).toInt();
-        estimatedGravel = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms) * 20).toInt();
-        estimatedIronRod = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms) * 25).toInt();
-        estimatedCement = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms) * 10).toInt();
+        estimatedBricks = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorKitchen + secondFloorKitchen + firstFloorWashroom + secondFloorWashroom) * 1000).toInt();
+        estimatedSand = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorKitchen + secondFloorKitchen + firstFloorWashroom + secondFloorWashroom) * 10).toInt();
+        estimatedGravel = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms+ firstFloorKitchen + secondFloorKitchen + firstFloorWashroom + secondFloorWashroom) * 20).toInt();
+        estimatedIronRod = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms+ firstFloorKitchen + secondFloorKitchen + firstFloorWashroom + secondFloorWashroom) * 25).toInt();
+        estimatedCement = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms+ firstFloorKitchen + secondFloorKitchen + firstFloorWashroom + secondFloorWashroom) * 10).toInt();
       }
       log('Estimated Bricks: $estimatedBricks');
       log('Estimated Sand: $estimatedSand');
@@ -82,13 +99,15 @@ class EstimationController extends GetxController {
     }
   }
 
-
-
   @override
   void dispose() {
     super.dispose();
     firstFloorTotalRoom.clear();
     secondFloorRoomController.clear();
+    firstFloorKitchenController.clear();
+    secondFloorKitchenController.clear();
+    firstFloorWashroomController.clear();
+    secondFloorWashroomController.clear();
     chooseFloorValue = null;
     chooseAreaValue = null;
   }

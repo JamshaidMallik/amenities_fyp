@@ -16,123 +16,312 @@ class ResidentialAreaScreen extends StatelessWidget {
     return GetBuilder<EstimationController>(
         init: EstimationController(),
         builder: (c) {
-          return Scaffold(
-            resizeToAvoidBottomInset: false,
-            appBar: AppBar(
-              title: const Text(
-                'Choose Residential Area',
+          return GestureDetector(
+            onTap: (){
+              FocusScope.of(context).unfocus();},
+              child: Scaffold(
+              resizeToAvoidBottomInset: false,
+              appBar: AppBar(
+                title: const Text(
+                  'Choose Residential Area',
+                ),
               ),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  10.0.height,
-                  Text('Please Choose Your Correct Area', style: kHeadingText.copyWith(fontSize: 12.0),),
-                  10.0.height,
-                  DropdownButtonFormField(
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: const BorderSide(color: kPrimaryColor),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: const BorderSide(color: kPrimaryColor),
-                        ),
-                      ),
-                      hint: const Text("Select Area"),
-                      items: c.areaList.map((valueItem){
-                        return DropdownMenuItem(
-                          value: valueItem,
-                          child: Text(valueItem, style:kPrimaryText.copyWith(fontSize: 14.0),),
-                        );
-                      }).toList(),
-                      value: c.chooseAreaValue,
-                      onChanged: (newValue)=> c.chooseArea(newValue)),
-                  20.0.height,
-                  Text('Please Choose Your Numbers Of Floor', style: kHeadingText.copyWith(fontSize: 12.0),),
-                  10.0.height,
-                  DropdownButtonFormField(
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: const BorderSide(color: kPrimaryColor),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: const BorderSide(color: kPrimaryColor),
-                        ),
-                      ),
-                      hint: const Text("Select Floor"),
-                      items: c.floorList.map((valueItem){
-                        return DropdownMenuItem(
-                          value: valueItem,
-                          child: Text(valueItem.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
-                        );
-                      }).toList(),
-                      value: c.chooseFloorValue,
-                      onChanged: (newValue)=> c.chooseFloor(newValue)),
-
-                  if(c.chooseFloorValue ==  1)
-                    Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      15.0.height,
-                      Text('Enter First Floor Total Room', style: kHeadingText.copyWith(fontSize: 12.0),),
-                      10.0.height,
-                      customTextField(hintText: 'Numbers of Room', controller: c.firstFloorTotalRoom, keyboardType: TextInputType.number),
-                    ],
-                  ),
-                  if(c.chooseFloorValue == 2)
-                    Column(
+              body: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Form(
+                  key: c.residentialAreaFormKey,
+                  child: SingleChildScrollView(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        15.0.height,
-                        Text('Enter First Floor Total Room', style: kHeadingText.copyWith(fontSize: 12.0),),
                         10.0.height,
-                        customTextField(hintText: 'Numbers of Room', controller: c.firstFloorTotalRoom, keyboardType: TextInputType.number),
-                        15.0.height,
-                        Text('Enter Second Floor Total Room', style: kHeadingText.copyWith(fontSize: 12.0),),
+                        Text('Please Choose Your Correct Area', style: kHeadingText.copyWith(fontSize: 12.0),),
                         10.0.height,
-                        customTextField(hintText: 'Numbers of Room', controller: c.secondFloorRoomController, keyboardType: TextInputType.number),
+                        DropdownButtonFormField(
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: const BorderSide(color: kPrimaryColor),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: const BorderSide(color: kPrimaryColor),
+                              ),
+                            ),
+                            hint: const Text("Select Area"),
+                            items: c.areaList.map((valueItem){
+                              return DropdownMenuItem(
+                                value: valueItem,
+                                child: Text(valueItem, style:kPrimaryText.copyWith(fontSize: 14.0),),
+                              );
+                            }).toList(),
+                            value: c.chooseAreaValue,
+                            onChanged: (newValue)=> c.chooseArea(newValue)),
+                        20.0.height,
+                        Text('Please Choose Your Numbers Of Floor', style: kHeadingText.copyWith(fontSize: 12.0),),
+                        10.0.height,
+                        DropdownButtonFormField(
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: const BorderSide(color: kPrimaryColor),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: const BorderSide(color: kPrimaryColor),
+                              ),
+                            ),
+                            hint: const Text("Select Floor"),
+                            items: c.floorList.map((valueItem){
+                              return DropdownMenuItem(
+                                value: valueItem,
+                                child: Text(valueItem.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                              );
+                            }).toList(),
+                            value: c.chooseFloorValue,
+                            onChanged: (newValue)=> c.chooseFloor(newValue)),
+                        if(c.chooseFloorValue ==  1)
+                          Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            15.0.height,
+                            const Divider(),
+                            15.0.height,
+                            Text('Enter First Floor Detail', style: kHeadingText.copyWith(fontSize: 12.0),),
+                            20.0.height,
+                            customTextFieldForEstimation(
+                              hintText: 'Numbers of Room',
+                              controller: c.firstFloorTotalRoom,
+                              keyboardType: TextInputType.number,
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return 'Please Enter First Floor Room';
+                                }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! < 2){
+                                  return 'Enter Minimum 2 Room';
+                                }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! > 3){
+                                  return 'Enter Maximum 3 Room';
+                                }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! < 2){
+                                  return 'Enter Minimum 2 Room';
+                                }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! > 4){
+                                  return 'Enter Maximum 4 Room';
+                                }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! < 2){
+                                  return 'Enter Minimum 2 Room';
+                                }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! > 4){
+                                  return 'Enter Maximum 4 Room';
+                                }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! < 2){
+                                  return 'Enter Minimum 2 Room';
+                                }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! > 4){
+                                  return 'Enter Maximum 4 Room';
+                                }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! < 3){
+                                  return 'Enter Minimum 3 Room';
+                                }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! > 5){
+                                  return 'Enter Maximum 5 Room';
+                                }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! < 3){
+                                  return 'Enter Minimum 3 Room';
+                                }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! > 5){
+                                  return 'Enter Maximum 5 Room';
+                                }
+                                return null;
+                              },
+                            ),
+                            20.0.height,
+                            customTextFieldForEstimation(
+                              hintText: 'Numbers of Kitchen',
+                              controller: c.firstFloorKitchenController,
+                              keyboardType: TextInputType.number,
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return 'Please Enter First Floor Total Kitchen';
+                                }
+                                return null;
+                              },
+                            ),
+                            20.0.height,
+                            customTextFieldForEstimation(
+                              hintText: 'Numbers of Washroom',
+                              controller: c.firstFloorWashroomController,
+                              keyboardType: TextInputType.number,
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return 'Please Enter First Floor Total Washroom';
+                                }
+                                return null;
+                              },
+                            ),
+                          ],
+                        ),
+
+                        if(c.chooseFloorValue == 2)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              15.0.height,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Divider(),
+                                  15.0.height,
+                                  Text('Enter First Floor Detail', style: kHeadingText.copyWith(fontSize: 12.0),),
+                                  20.0.height,
+                                  customTextFieldForEstimation(
+                                    hintText: 'Numbers of Room',
+                                    controller: c.firstFloorTotalRoom,
+                                    keyboardType: TextInputType.number,
+                                    validator: (value){
+                                      if(value!.isEmpty){
+                                        return 'Please Enter First Floor Room';
+                                      }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! < 2){
+                                        return 'Enter Minimum 2 Room';
+                                      }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! > 3){
+                                        return 'Enter Maximum 3 Room';
+                                      }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! < 2){
+                                        return 'Enter Minimum 2 Room';
+                                      }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! > 4){
+                                        return 'Enter Maximum 4 Room';
+                                      }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! < 2){
+                                        return 'Enter Minimum 2 Room';
+                                      }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! > 4){
+                                        return 'Enter Maximum 4 Room';
+                                      }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! < 2){
+                                        return 'Enter Minimum 2 Room';
+                                      }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! > 4){
+                                        return 'Enter Maximum 4 Room';
+                                      }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! < 3){
+                                        return 'Enter Minimum 3 Room';
+                                      }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! > 5){
+                                        return 'Enter Maximum 5 Room';
+                                      }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! < 3){
+                                        return 'Enter Minimum 3 Room';
+                                      }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! > 5){
+                                        return 'Enter Maximum 5 Room';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  20.0.height,
+                                  customTextFieldForEstimation(
+                                    hintText: 'Numbers of Kitchen',
+                                    controller: c.firstFloorKitchenController,
+                                    keyboardType: TextInputType.number,
+                                    validator: (value){
+                                      if(value!.isEmpty){
+                                        return 'Please Enter First Floor Total Kitchen';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  20.0.height,
+                                  customTextFieldForEstimation(
+                                    hintText: 'Numbers of Washroom',
+                                    controller: c.firstFloorWashroomController,
+                                    keyboardType: TextInputType.number,
+                                    validator: (value){
+                                      if(value!.isEmpty){
+                                        return 'Please Enter First Floor Total Washroom';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ],
+                              ),
+
+                              /// second floor details
+                              const Divider(),
+                              15.0.height,
+                              Text('Enter Second Floor Detail', style: kHeadingText.copyWith(fontSize: 12.0),),
+                              20.0.height,
+                              customTextFieldForEstimation(
+                                hintText: 'Numbers of Room',
+                                controller: c.secondFloorRoomController,
+                                keyboardType: TextInputType.number,
+                                validator: (value){
+                                  if(value!.isEmpty){
+                                    return 'Please Enter Second Floor Room';
+                                  }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! < 2){
+                                    return 'Enter Minimum 2 Room';
+                                  }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! > 3){
+                                    return 'Enter Maximum 3 Room';
+                                  }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! < 2){
+                                    return 'Enter Minimum 2 Room';
+                                  }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! > 4){
+                                    return 'Enter Maximum 4 Room';
+                                  }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! < 2){
+                                    return 'Enter Minimum 2 Room';
+                                  }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! > 4){
+                                    return 'Enter Maximum 4 Room';
+                                  }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! < 2){
+                                    return 'Enter Minimum 2 Room';
+                                  }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! > 4){
+                                    return 'Enter Maximum 4 Room';
+                                  }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! < 3){
+                                    return 'Enter Minimum 3 Room';
+                                  }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! > 5){
+                                    return 'Enter Maximum 5 Room';
+                                  }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! < 3){
+                                    return 'Enter Minimum 3 Room';
+                                  }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! > 5){
+                                    return 'Enter Maximum 5 Room';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              20.0.height,
+                              customTextFieldForEstimation(
+                                hintText: 'Numbers of Kitchen',
+                                controller: c.secondFloorKitchenController,
+                                keyboardType: TextInputType.number,
+                                validator: (value){
+                                  if(value!.isEmpty){
+                                    return 'Please Enter second Floor Total Kitchen';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              20.0.height,
+                              customTextFieldForEstimation(
+                                hintText: 'Numbers of Washroom',
+                                controller: c.secondFloorWashroomController,
+                                keyboardType: TextInputType.number,
+                                validator: (value){
+                                  if(value!.isEmpty){
+                                    return 'Please Enter second Floor Total Washroom';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ],
+                          ),
+                        40.0.height,
                       ],
                     ),
-
-                  40.0.height,
-                ],
+                  ),
+                ),
               ),
-            ),
-            bottomNavigationBar: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: primarybutton(btnText: 'Get Estimate',press: (){
-                if(c.chooseAreaValue == null){
-                  Get.snackbar(
-                    colorText: Colors.white,
-                      'Alert!', 'Please Select Area');
-                  return;
-                }else if(c.chooseFloorValue == null){
-                  Get.snackbar(
+              bottomNavigationBar: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: primarybutton(btnText: 'Get Estimate',press: (){
+                  if(!c.residentialAreaFormKey.currentState!.validate()){
+                    return;
+                  }
+                  if(c.chooseAreaValue == null){
+                    Get.snackbar(
                       colorText: Colors.white,
-                      'Alert!', 'Please Select Floor');
-                  return;
-                } else if(c.firstFloorTotalRoom.text.isEmpty){
-                  Get.snackbar(
-                      colorText: Colors.white,
-                      'Alert!', 'Please Enter First Floor Total Room');
-                } else if(c.chooseFloorValue == 2 && c.secondFloorRoomController.text.isEmpty){
-                  Get.snackbar(
-                      colorText: Colors.white,
-                      'Alert!', 'Please Enter Second Floor Total Room');
-                } else{
-                  c.calculateEstimation();
-                  Get.to(()=> const EstimateResultScreen());
-                }
+                        'Alert!', 'Please Select Area');
+                    return;
+                  }else if(c.chooseFloorValue == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Floor');
+                    return;
+                  } else{
+                    c.calculateEstimation();
+                    Get.to(()=> const EstimateResultScreen());
+                  }
 
-              }),
+                }),
+              ),
             ),
           );
         }
