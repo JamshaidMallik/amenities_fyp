@@ -18,6 +18,7 @@ class CommercialAreaScreen extends StatelessWidget {
       builder: (c) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
+          
 
           appBar: AppBar(
             title: const Text(
