@@ -40,6 +40,42 @@ class EstimationController extends GetxController {
     update();
   }
 
+  List<String> DrawingRoom = [
+    "None",
+    "One",
+  ];
+  String? chooseDrawingRoomValue;
+
+  void chooseDrawingRoom(String? value) {
+    chooseDrawingRoomValue = value;
+    if (value != null) {
+      log('selectedValue $chooseDrawingRoomValue');
+    }
+    update();
+  }
+  List<String> TvLounch = [
+    "None",
+    "One",
+  ];  String? chooseTvLounchValue;
+  void chooseTvLounch(String? value) {
+    chooseTvLounchValue = value;
+    if (value != null) {
+      log('selectedValue $chooseTvLounchValue');
+    }
+    update();
+  }
+  List<String> Kitchen = [
+    "None",
+    "One",
+  ]; String? chooseKitchValue;
+  void chooseKitchen(String? value) {
+    chooseKitchValue = value;
+    if (value != null) {
+      log('selectedValue $chooseKitchValue');
+    }
+    update();
+  }
+
   /// firstFloor controller
   TextEditingController firstFloorTotalRoom = TextEditingController();
   TextEditingController firstFloorKitchenController = TextEditingController();

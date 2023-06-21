@@ -36,7 +36,8 @@ class SellerProductsScreen extends StatelessWidget {
                   }else{
                     return;
                   }
-                }, icon: const Icon(Icons.search)):Container(),
+                },
+                    icon: const Icon(Icons.search)):Container(),
                 kStorage.read(kUserType) != 'Admin' && kStorage.read(kUserType) != 'Seller'
                     ? GestureDetector(
                         onTap: () {

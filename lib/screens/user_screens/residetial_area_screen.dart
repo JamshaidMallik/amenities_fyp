@@ -127,17 +127,27 @@ class ResidentialAreaScreen extends StatelessWidget {
                               },
                             ),
                             20.0.height,
-                            customTextFieldForEstimation(
-                              hintText: 'Numbers of Kitchen',
-                              controller: c.firstFloorKitchenController,
-                              keyboardType: TextInputType.number,
-                              validator: (value){
-                                if(value!.isEmpty){
-                                  return 'Please Enter First Floor Total Kitchen';
-                                }
-                                return null;
-                              },
-                            ),
+                            DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                ),
+                                hint: const Text("Numbers of Kitchen"),
+                                items: c.Kitchen.map((chooseKitchValue){
+                                  return DropdownMenuItem(
+                                    value: chooseKitchValue.toString(),
+                                    child: Text(chooseKitchValue.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                  );
+                                }).toList(),
+                                value: c.chooseKitchValue,
+                                onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
                             20.0.height,
                             customTextFieldForEstimation(
                               hintText: 'Numbers of Washroom',
@@ -150,6 +160,50 @@ class ResidentialAreaScreen extends StatelessWidget {
                                 return null;
                               },
                             ),
+                            20.0.height,
+                            DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                ),
+                                hint: const Text("Drawing Room"),
+                                items: c.DrawingRoom.map((drawingValues){
+                                  return DropdownMenuItem(
+                                    value: drawingValues.toString(),
+                                    child: Text(drawingValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                  );
+                                }).toList(),
+                                value: c.chooseDrawingRoomValue,
+                                onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
+                            20.0.height,
+                            DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                ),
+                                hint: const Text("Tv Lounch"),
+                                items: c.TvLounch.map((TvLounchValues){
+                                  return DropdownMenuItem(
+                                    value: TvLounchValues.toString(),
+                                    child: Text(TvLounchValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                  );
+                                }).toList(),
+                                value: c.chooseTvLounchValue,
+                                onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
                           ],
                         ),
 
@@ -201,17 +255,27 @@ class ResidentialAreaScreen extends StatelessWidget {
                                     },
                                   ),
                                   20.0.height,
-                                  customTextFieldForEstimation(
-                                    hintText: 'Numbers of Kitchen',
-                                    controller: c.firstFloorKitchenController,
-                                    keyboardType: TextInputType.number,
-                                    validator: (value){
-                                      if(value!.isEmpty){
-                                        return 'Please Enter First Floor Total Kitchen';
-                                      }
-                                      return null;
-                                    },
-                                  ),
+                                  DropdownButtonFormField(
+                                      decoration: InputDecoration(
+                                        contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                      ),
+                                      hint: const Text("Numbers of Kitchen"),
+                                      items: c.Kitchen.map((chooseKitchValue){
+                                        return DropdownMenuItem(
+                                          value: chooseKitchValue.toString(),
+                                          child: Text(chooseKitchValue.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                        );
+                                      }).toList(),
+                                      value: c.chooseKitchValue,
+                                      onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
                                   20.0.height,
                                   customTextFieldForEstimation(
                                     hintText: 'Numbers of Washroom',
@@ -224,6 +288,50 @@ class ResidentialAreaScreen extends StatelessWidget {
                                       return null;
                                     },
                                   ),
+                                  20.0.height,
+                                  DropdownButtonFormField(
+                                      decoration: InputDecoration(
+                                        contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                      ),
+                                      hint: const Text("Drawing Room"),
+                                      items: c.DrawingRoom.map((drawingValues){
+                                        return DropdownMenuItem(
+                                          value: drawingValues.toString(),
+                                          child: Text(drawingValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                        );
+                                      }).toList(),
+                                      value: c.chooseDrawingRoomValue,
+                                      onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
+                                  20.0.height,
+                                  DropdownButtonFormField(
+                                      decoration: InputDecoration(
+                                        contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                      ),
+                                      hint: const Text("Tv Lounch"),
+                                      items: c.TvLounch.map((TvLounchValues){
+                                        return DropdownMenuItem(
+                                          value: TvLounchValues.toString(),
+                                          child: Text(TvLounchValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                        );
+                                      }).toList(),
+                                      value: c.chooseTvLounchValue,
+                                      onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
                                 ],
                               ),
 
@@ -268,17 +376,27 @@ class ResidentialAreaScreen extends StatelessWidget {
                                 },
                               ),
                               20.0.height,
-                              customTextFieldForEstimation(
-                                hintText: 'Numbers of Kitchen',
-                                controller: c.secondFloorKitchenController,
-                                keyboardType: TextInputType.number,
-                                validator: (value){
-                                  if(value!.isEmpty){
-                                    return 'Please Enter second Floor Total Kitchen';
-                                  }
-                                  return null;
-                                },
-                              ),
+                              DropdownButtonFormField(
+                                  decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: kPrimaryColor),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: kPrimaryColor),
+                                    ),
+                                  ),
+                                  hint: const Text("Numbers of Kitchen"),
+                                  items: c.Kitchen.map((chooseKitchValue){
+                                    return DropdownMenuItem(
+                                      value: chooseKitchValue.toString(),
+                                      child: Text(chooseKitchValue.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                    );
+                                  }).toList(),
+                                  value: c.chooseKitchValue,
+                                  onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
                               20.0.height,
                               customTextFieldForEstimation(
                                 hintText: 'Numbers of Washroom',
@@ -291,6 +409,50 @@ class ResidentialAreaScreen extends StatelessWidget {
                                   return null;
                                 },
                               ),
+                              20.0.height,
+                              DropdownButtonFormField(
+                                  decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: kPrimaryColor),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: kPrimaryColor),
+                                    ),
+                                  ),
+                                  hint: const Text("Drawing Room"),
+                                  items: c.DrawingRoom.map((drawingValues){
+                                    return DropdownMenuItem(
+                                      value: drawingValues.toString(),
+                                      child: Text(drawingValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                    );
+                                  }).toList(),
+                                  value: c.chooseDrawingRoomValue,
+                                  onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
+                              20.0.height,
+                              DropdownButtonFormField(
+                                  decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: kPrimaryColor),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: kPrimaryColor),
+                                    ),
+                                  ),
+                                  hint: const Text("Tv Lounch"),
+                                  items: c.TvLounch.map((TvLounchValues){
+                                    return DropdownMenuItem(
+                                      value: TvLounchValues.toString(),
+                                      child: Text(TvLounchValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                    );
+                                  }).toList(),
+                                  value: c.chooseTvLounchValue,
+                                  onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
                             ],
                           ),
                         40.0.height,
