@@ -19,12 +19,15 @@ class _PhotoViewPageState extends State<PhotoViewPage> {
         backgroundColor: Colors.black,
         elevation: 0,
       ),
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         child: Hero(
           tag: 'profileImage',
           child: PhotoView(
             imageProvider: NetworkImage(widget.imageUrl),
+            maxScale: PhotoViewComputedScale.covered,
+            minScale: PhotoViewComputedScale.contained,
+
           ),
         ),
       ),

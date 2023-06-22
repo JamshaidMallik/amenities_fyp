@@ -29,6 +29,7 @@ class ProductController extends GetxController {
   int? totalPrice;
   int? totalCartItemPrice;
   double totalCartOriginalPrice = 0;
+
   totalPriceCount(String productPrice){
     totalPrice = int.parse(productPrice) * int.parse(myCartQuantityController.text);
     update();
@@ -74,6 +75,7 @@ class ProductController extends GetxController {
         "userId": kStorage.read(kUserId) ?? '',
         "image": imageUrl,
         "status": "available",
+        "uppercase_name": productNameController.text.toUpperCase()
       }).then((value) {
         getProducts(userId: userId);
         update();
@@ -160,7 +162,7 @@ class ProductController extends GetxController {
 
     update();
   }
-  void addToCartItem({required String name, required String quantity, required String addUserID, required String productId, required String productUserId, required String productImage, required String price, required int totalPrice}) {
+  void addToCartItem({required String name, required String quantity, required String addUserID, required String productId, required String productUserId, required String productImage, required String price, required var totalPrice}) {
     var cartItem = CartItem(
         name: name,
         quantity: quantity,
@@ -169,7 +171,7 @@ class ProductController extends GetxController {
         productUserId: productUserId,
         productImage: productImage,
         price: int.parse(price),
-        totalPrice: totalPrice,
+        totalPrice: int.parse(totalPrice),
         isSelected: false,
     );
     kFireStore

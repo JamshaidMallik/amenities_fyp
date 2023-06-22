@@ -82,6 +82,8 @@ class ResidentialAreaScreen extends StatelessWidget {
                             }).toList(),
                             value: c.chooseFloorValue,
                             onChanged: (newValue)=> c.chooseFloor(newValue)),
+
+
                         if(c.chooseFloorValue ==  1)
                           Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,6 +103,11 @@ class ResidentialAreaScreen extends StatelessWidget {
                                 }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! < 2){
                                   return 'Enter Minimum 2 Room';
                                 }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! > 3){
+                                  return 'Enter Maximum 3 Room';
+                                }
+                                else if(c.chooseAreaValue == '4 Marla' && int.tryParse(value)! < 2){
+                                  return 'Enter Minimum 2 Room';
+                                }else if(c.chooseAreaValue == '4 Marla' && int.tryParse(value)! > 3){
                                   return 'Enter Maximum 3 Room';
                                 }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! < 2){
                                   return 'Enter Minimum 2 Room';
@@ -127,6 +134,20 @@ class ResidentialAreaScreen extends StatelessWidget {
                               },
                             ),
                             20.0.height,
+                            customTextFieldForEstimation(
+                              hintText: 'Numbers of Washroom',
+                              controller: c.firstFloorWashroomController,
+                              keyboardType: TextInputType.number,
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return 'Please Enter First Floor Total Washroom';
+                                }else if(int.parse(value) > int.parse(c.firstFloorTotalRoom.text)){
+                                  return 'Number of washrooms cant exceed number of rooms';
+                                }
+                                return null;
+                              },
+                            ),
+                            20.0.height,
                             DropdownButtonFormField(
                                 decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
@@ -140,26 +161,15 @@ class ResidentialAreaScreen extends StatelessWidget {
                                   ),
                                 ),
                                 hint: const Text("Numbers of Kitchen"),
-                                items: c.Kitchen.map((chooseKitchValue){
+                                items: c.Kitchen.map((chooseKitchenValue){
                                   return DropdownMenuItem(
-                                    value: chooseKitchValue.toString(),
-                                    child: Text(chooseKitchValue.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                    value: chooseKitchenValue.toString(),
+                                    child: Text(chooseKitchenValue.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
                                   );
                                 }).toList(),
-                                value: c.chooseKitchValue,
-                                onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
-                            20.0.height,
-                            customTextFieldForEstimation(
-                              hintText: 'Numbers of Washroom',
-                              controller: c.firstFloorWashroomController,
-                              keyboardType: TextInputType.number,
-                              validator: (value){
-                                if(value!.isEmpty){
-                                  return 'Please Enter First Floor Total Washroom';
-                                }
-                                return null;
-                              },
-                            ),
+                                value: c.chooseKitchenValue,
+                                onChanged: (newValue)=> c.chooseKitchen(newValue.toString())),
+
                             20.0.height,
                             DropdownButtonFormField(
                                 decoration: InputDecoration(
@@ -203,9 +213,13 @@ class ResidentialAreaScreen extends StatelessWidget {
                                   );
                                 }).toList(),
                                 value: c.chooseTvLounchValue,
-                                onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
+                                onChanged: (newValue)=> c.chooseTvLounch(newValue.toString())),
                           ],
                         ),
+
+
+
+
 
                         if(c.chooseFloorValue == 2)
                           Column(
@@ -215,6 +229,7 @@ class ResidentialAreaScreen extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  15.0.height,
                                   const Divider(),
                                   15.0.height,
                                   Text('Enter First Floor Detail', style: kHeadingText.copyWith(fontSize: 12.0),),
@@ -255,6 +270,20 @@ class ResidentialAreaScreen extends StatelessWidget {
                                     },
                                   ),
                                   20.0.height,
+                                  customTextFieldForEstimation(
+                                    hintText: 'Numbers of Washroom',
+                                    controller: c.firstFloorWashroomController,
+                                    keyboardType: TextInputType.number,
+                                    validator: (value){
+                                      if(value!.isEmpty){
+                                        return 'Please Enter First Floor Total Washroom';
+                                      }else if(int.parse(value) > int.parse(c.firstFloorTotalRoom.text)){
+                                        return 'Number of washrooms cant exceed number of rooms';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  20.0.height,
                                   DropdownButtonFormField(
                                       decoration: InputDecoration(
                                         contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
@@ -268,26 +297,15 @@ class ResidentialAreaScreen extends StatelessWidget {
                                         ),
                                       ),
                                       hint: const Text("Numbers of Kitchen"),
-                                      items: c.Kitchen.map((chooseKitchValue){
+                                      items: c.Kitchen.map((chooseKitchenValue){
                                         return DropdownMenuItem(
-                                          value: chooseKitchValue.toString(),
-                                          child: Text(chooseKitchValue.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                          value: chooseKitchenValue.toString(),
+                                          child: Text(chooseKitchenValue.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
                                         );
                                       }).toList(),
-                                      value: c.chooseKitchValue,
-                                      onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
-                                  20.0.height,
-                                  customTextFieldForEstimation(
-                                    hintText: 'Numbers of Washroom',
-                                    controller: c.firstFloorWashroomController,
-                                    keyboardType: TextInputType.number,
-                                    validator: (value){
-                                      if(value!.isEmpty){
-                                        return 'Please Enter First Floor Total Washroom';
-                                      }
-                                      return null;
-                                    },
-                                  ),
+                                      value: c.chooseKitchenValue,
+                                      onChanged: (newValue)=> c.chooseKitchen(newValue.toString())),
+
                                   20.0.height,
                                   DropdownButtonFormField(
                                       decoration: InputDecoration(
@@ -331,7 +349,7 @@ class ResidentialAreaScreen extends StatelessWidget {
                                         );
                                       }).toList(),
                                       value: c.chooseTvLounchValue,
-                                      onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
+                                      onChanged: (newValue)=> c.chooseTvLounch(newValue.toString())),
                                 ],
                               ),
 
@@ -350,6 +368,10 @@ class ResidentialAreaScreen extends StatelessWidget {
                                   }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! < 2){
                                     return 'Enter Minimum 2 Room';
                                   }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! > 3){
+                                    return 'Enter Maximum 3 Room';
+                                  }else if(c.chooseAreaValue == '4 Marla' && int.tryParse(value)! < 2){
+                                    return 'Enter Minimum 2 Room';
+                                  }else if(c.chooseAreaValue == '4 Marla' && int.tryParse(value)! > 3){
                                     return 'Enter Maximum 3 Room';
                                   }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! < 2){
                                     return 'Enter Minimum 2 Room';
@@ -376,37 +398,17 @@ class ResidentialAreaScreen extends StatelessWidget {
                                 },
                               ),
                               20.0.height,
-                              DropdownButtonFormField(
-                                  decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: kPrimaryColor),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: kPrimaryColor),
-                                    ),
-                                  ),
-                                  hint: const Text("Numbers of Kitchen"),
-                                  items: c.Kitchen.map((chooseKitchValue){
-                                    return DropdownMenuItem(
-                                      value: chooseKitchValue.toString(),
-                                      child: Text(chooseKitchValue.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
-                                    );
-                                  }).toList(),
-                                  value: c.chooseKitchValue,
-                                  onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
-                              20.0.height,
                               customTextFieldForEstimation(
                                 hintText: 'Numbers of Washroom',
                                 controller: c.secondFloorWashroomController,
                                 keyboardType: TextInputType.number,
                                 validator: (value){
-                                  if(value!.isEmpty){
-                                    return 'Please Enter second Floor Total Washroom';
-                                  }
-                                  return null;
+                                if(value!.isEmpty){
+                                return 'Please Enter Second Floor Total Washroom';
+                                }else if(int.parse(value) > int.parse(c.secondFloorRoomController.text)){
+                                return 'Number of washrooms cant exceed number of rooms';
+                                }
+                                return null;
                                 },
                               ),
                               20.0.height,
@@ -422,15 +424,37 @@ class ResidentialAreaScreen extends StatelessWidget {
                                       borderSide: const BorderSide(color: kPrimaryColor),
                                     ),
                                   ),
-                                  hint: const Text("Drawing Room"),
-                                  items: c.DrawingRoom.map((drawingValues){
+                                  hint: const Text("Numbers of Kitchen"),
+                                  items: c.Kitchen2.map((chooseKitchen2Value){
                                     return DropdownMenuItem(
-                                      value: drawingValues.toString(),
-                                      child: Text(drawingValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                      value: chooseKitchen2Value.toString(),
+                                      child: Text(chooseKitchen2Value.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
                                     );
                                   }).toList(),
-                                  value: c.chooseDrawingRoomValue,
-                                  onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
+                                  value: c.chooseKitchen2Value,
+                                  onChanged: (newValue)=> c.chooseKitchen2(newValue.toString())),
+                              20.0.height,
+                              DropdownButtonFormField(
+                                  decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: kPrimaryColor),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: kPrimaryColor),
+                                    ),
+                                  ),
+                                  hint: const Text("Drawing Room"),
+                                  items: c.DrawingRoom2.map((drawing2Values){
+                                    return DropdownMenuItem(
+                                      value: drawing2Values.toString(),
+                                      child: Text(drawing2Values.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                    );
+                                  }).toList(),
+                                  value: c.chooseDrawingRoom2Value,
+                                  onChanged: (newValue)=> c.chooseDrawingRoom2(newValue.toString())),
                               20.0.height,
                               DropdownButtonFormField(
                                   decoration: InputDecoration(
@@ -445,17 +469,18 @@ class ResidentialAreaScreen extends StatelessWidget {
                                     ),
                                   ),
                                   hint: const Text("Tv Lounch"),
-                                  items: c.TvLounch.map((TvLounchValues){
+                                  items: c.TvLounch2.map((TvLounch2Values){
                                     return DropdownMenuItem(
-                                      value: TvLounchValues.toString(),
-                                      child: Text(TvLounchValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                      value: TvLounch2Values.toString(),
+                                      child: Text(TvLounch2Values.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
                                     );
                                   }).toList(),
-                                  value: c.chooseTvLounchValue,
-                                  onChanged: (newValue)=> c.chooseDrawingRoom(newValue.toString())),
+                                  value: c.chooseTvLounch2Value,
+                                  onChanged: (newValue)=> c.chooseTvLounch2(newValue.toString())),
                             ],
                           ),
                         40.0.height,
+
                       ],
                     ),
                   ),
@@ -463,7 +488,7 @@ class ResidentialAreaScreen extends StatelessWidget {
               ),
               bottomNavigationBar: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: primarybutton(btnText: 'Get Estimate',press: (){
+                child: primarybutton(btnText: 'Get Estimate',press: ()async{
                   if(!c.residentialAreaFormKey.currentState!.validate()){
                     return;
                   }
@@ -477,8 +502,40 @@ class ResidentialAreaScreen extends StatelessWidget {
                         colorText: Colors.white,
                         'Alert!', 'Please Select Floor');
                     return;
-                  } else{
-                    c.calculateEstimation();
+                  }else if(c.chooseKitchenValue == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Kitchen Value');
+                    return;
+                  }else if(c.chooseTvLounchValue == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Tv lounch Value');
+                    return;
+                  }else if(c.chooseDrawingRoomValue == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select drawing room Value');
+                    return;
+                  }else if(c.chooseFloorValue == 2 && c.chooseKitchen2Value == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Second Floor Kitchen Value');
+                    return;
+                  }else if(c.chooseFloorValue == 2 && c.chooseDrawingRoom2Value == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Second Floor Drawing Room Value');
+                    return;
+                  }else if(c.chooseFloorValue == 2 && c.chooseTvLounch2Value == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Second Floor Tv lounch Value');
+                    return;
+                  }
+
+                  else{
+                    await c.calculateEstimation();
                     Get.to(()=> const EstimateResultScreen());
                   }
 

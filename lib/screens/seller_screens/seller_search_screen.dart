@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../constant.dart';
 import '../../controller/product_controller.dart';
 import '../../model/product_model.dart';
+import '../../widgets/photo_view.dart';
 import '../user_screens/quantity_bottom_sheet.dart';
 
 class SellerSearchScreen extends StatefulWidget {
@@ -71,17 +72,22 @@ class _SellerSearchScreenState extends State<SellerSearchScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  SizedBox(
-                                    height: 200,
-                                    width: double.infinity ,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: FadeInImage.assetNetwork(
-                                        fadeInDuration: const Duration(seconds: 1),
-                                        placeholder: placeHolderPic,
-                                        image: product.image,
-                                        fit: BoxFit.cover,
-                                        placeholderFit: BoxFit.cover,
+                                  GestureDetector(
+                                    onTap: (){
+                                      Get.to(()=> PhotoViewPage(product.image));
+                                    },
+                                    child: SizedBox(
+                                      height: 200,
+                                      width: double.infinity ,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(5),
+                                        child: FadeInImage.assetNetwork(
+                                          fadeInDuration: const Duration(seconds: 1),
+                                          placeholder: placeHolderPic,
+                                          image: product.image,
+                                          fit: BoxFit.cover,
+                                          placeholderFit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),

@@ -121,6 +121,7 @@ class MyBottomSheet extends StatelessWidget {
                               color: kPrimaryColor,
                               onPressed: () {
                                 Get.back();
+                                c.myCartQuantityController.clear();
                               },
                               child: const Text('Close'),
                             ),
@@ -159,7 +160,7 @@ class MyBottomSheet extends StatelessWidget {
                                     productUserId: product.userId,
                                     productImage: product.image,
                                     price: product.price,
-                                    totalPrice: c.totalPrice!,
+                                    totalPrice: c.totalPrice.toString(),
                                   );
                                   c.myCartQuantityController.clear();
                                   Get.back();

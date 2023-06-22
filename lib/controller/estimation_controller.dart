@@ -40,12 +40,24 @@ class EstimationController extends GetxController {
     update();
   }
 
+
+  List<String> Kitchen = [
+    "None",
+    "One",
+  ];
+  String? chooseKitchenValue;
+  void chooseKitchen(String? value) {
+    chooseKitchenValue = value;
+    if (value != null) {
+      log('selectedValue $chooseKitchenValue');
+    }
+    update();
+  }
   List<String> DrawingRoom = [
     "None",
     "One",
   ];
   String? chooseDrawingRoomValue;
-
   void chooseDrawingRoom(String? value) {
     chooseDrawingRoomValue = value;
     if (value != null) {
@@ -56,7 +68,8 @@ class EstimationController extends GetxController {
   List<String> TvLounch = [
     "None",
     "One",
-  ];  String? chooseTvLounchValue;
+  ];
+  String? chooseTvLounchValue;
   void chooseTvLounch(String? value) {
     chooseTvLounchValue = value;
     if (value != null) {
@@ -64,14 +77,44 @@ class EstimationController extends GetxController {
     }
     update();
   }
-  List<String> Kitchen = [
+
+
+
+  void chooseDrawingRoom2(String? value) {
+    chooseDrawingRoom2Value = value;
+    if (value != null) {
+      log('selectedValue $chooseDrawingRoom2Value');
+    }
+    update();
+  }
+  List<String> DrawingRoom2 = [
     "None",
     "One",
-  ]; String? chooseKitchValue;
-  void chooseKitchen(String? value) {
-    chooseKitchValue = value;
+  ];
+  String? chooseDrawingRoom2Value;
+
+  List<String> Kitchen2 = [
+    "None",
+    "One",
+  ];
+  String? chooseKitchen2Value;
+  void chooseKitchen2(String? value) {
+    chooseKitchen2Value = value;
     if (value != null) {
-      log('selectedValue $chooseKitchValue');
+      log('selectedValue $chooseKitchen2Value');
+    }
+    update();
+  }
+
+  List<String> TvLounch2 = [
+    "None",
+    "One",
+  ];
+  String? chooseTvLounch2Value;
+  void chooseTvLounch2(String? value) {
+    chooseTvLounch2Value = value;
+    if (value != null) {
+      log('selectedValue $chooseTvLounch2Value');
     }
     update();
   }
@@ -91,7 +134,7 @@ class EstimationController extends GetxController {
   int estimatedGravel = 0;
   int estimatedIronRod = 0;
   int estimatedCement = 0;
-  void calculateEstimation() {
+  Future calculateEstimation() async {
     if (chooseAreaValue != null) {
       String intValue = chooseAreaValue!.split(' ')[0];
       int selectedValue = int.tryParse(intValue) ?? 0;

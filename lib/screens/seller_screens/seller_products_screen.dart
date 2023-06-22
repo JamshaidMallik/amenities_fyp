@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 import '../../constant.dart';
 import '../../model/product_model.dart';
+import '../../widgets/photo_view.dart';
 import '../user_screens/user_search_screen.dart';
 import '../../widgets/custom_text_field.dart';
 import 'seller_search_screen.dart';
@@ -37,7 +38,8 @@ class SellerProductsScreen extends StatelessWidget {
                     return;
                   }
                 },
-                    icon: const Icon(Icons.search)):Container(),
+                    icon: const Icon(Icons.search))
+                    :Container(),
                 kStorage.read(kUserType) != 'Admin' && kStorage.read(kUserType) != 'Seller'
                     ? GestureDetector(
                         onTap: () {
@@ -64,108 +66,117 @@ class SellerProductsScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   )
                 : c.productList.isNotEmpty
-                    ? ListView.builder(
-                        itemCount: c.productList.length,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          Product product = c.productList[index];
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(
-                              shadowColor: kPrimaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 8.0,
-                              child: Column(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 200,
-                                        width: double.infinity ,
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(5),
-                                          child: FadeInImage.assetNetwork(
-                                            fadeInDuration: const Duration(seconds: 1),
-                                            placeholder: placeHolderPic,
-                                            image: product.image,
-                                            fit: BoxFit.cover,
-                                            placeholderFit: BoxFit.cover,
+                    ? Padding(
+                      padding: const EdgeInsets.only(bottom: 50),
+                      child: ListView.builder(
+                          itemCount: c.productList.length,
+                          physics: const BouncingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            Product product = c.productList[index];
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Card(
+                                shadowColor: kPrimaryColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                elevation: 8.0,
+                                child: Column(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: (){
+                                            Get.to(()=> PhotoViewPage(product.image));
+                                          },
+                                          child: SizedBox(
+                                            height: 200,
+                                            width: double.infinity ,
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(5),
+                                              child: FadeInImage.assetNetwork(
+                                                fadeInDuration: const Duration(seconds: 1),
+                                                placeholder: placeHolderPic,
+                                                image: product.image,
+                                                fit: BoxFit.cover,
+                                                placeholderFit: BoxFit.cover,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                        child: Row(
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(product.productName, style: kSubHeadingText.copyWith(fontSize: 16.0),),
-                                                Text(product.price.toString(), style: kPrimaryGrayText.copyWith(fontSize: 15.0),),
-                                              ],
-                                            ),
-                                            const Spacer(),
-                                            if (kStorage.read(kUserType) == 'Seller')
-                                              TextButton(
-                                                  onPressed: () {
-                                                    AwesomeDialog(
-                                                      context: context,
-                                                      dialogType:
-                                                          DialogType.question,
-                                                      animType: AnimType.rightSlide,
-                                                      title:
-                                                          'Are you sure you want to Delete this Product?',
-                                                      btnCancelOnPress: () {
-                                                        Get.back();
-                                                      },
-                                                      btnOkOnPress: () async {
-                                                        c.deleteProduct(
-                                                            productId: product.id,
-                                                            index: index,
-                                                            imageUrl:
-                                                                product.image);
-                                                      },
-                                                      btnCancelText: 'No',
-                                                      btnOkText: "Yes",
-                                                      btnOkColor: Colors.teal,
-                                                    ).show();
-                                                  },
-                                                  child: const Text(
-                                                    'Delete',
-                                                    style: TextStyle(
-                                                        color: Colors.red),
-                                                  )),
-                                            if (kStorage.read(kUserType) == 'User')
-                                              TextButton(
-                                                  onPressed: () {
-                                                    Get.bottomSheet(
-                                                     MyBottomSheet(product),
-                                                    );
-                                                  },
-                                                  child: const Text(
-                                                   'Add To Cart',
-                                                   style: TextStyle(
-                                                       color: kPrimaryColor),
-                                                      )),
-                                          ],
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                          child: Row(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(product.productName, style: kSubHeadingText.copyWith(fontSize: 16.0),),
+                                                  Text(product.price.toString(), style: kPrimaryGrayText.copyWith(fontSize: 15.0),),
+                                                ],
+                                              ),
+                                              const Spacer(),
+                                              if (kStorage.read(kUserType) == 'Seller')
+                                                TextButton(
+                                                    onPressed: () {
+                                                      AwesomeDialog(
+                                                        context: context,
+                                                        dialogType:
+                                                            DialogType.question,
+                                                        animType: AnimType.rightSlide,
+                                                        title:
+                                                            'Are you sure you want to Delete this Product?',
+                                                        btnCancelOnPress: () {
+                                                          Get.back();
+                                                        },
+                                                        btnOkOnPress: () async {
+                                                          c.deleteProduct(
+                                                              productId: product.id,
+                                                              index: index,
+                                                              imageUrl:
+                                                                  product.image);
+                                                        },
+                                                        btnCancelText: 'No',
+                                                        btnOkText: "Yes",
+                                                        btnOkColor: Colors.teal,
+                                                      ).show();
+                                                    },
+                                                    child: const Text(
+                                                      'Delete',
+                                                      style: TextStyle(
+                                                          color: Colors.red),
+                                                    )),
+                                              if (kStorage.read(kUserType) == 'User')
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Get.bottomSheet(
+                                                       MyBottomSheet(product),
+                                                      );
+                                                    },
+                                                    child: const Text(
+                                                     'Add To Cart',
+                                                     style: TextStyle(
+                                                         color: kPrimaryColor),
+                                                        )),
+                                            ],
+                                          ),
                                         ),
-                                      ),
 
-                                    ],
-                                  ),
-                                  15.0.height,
-                                ],
+                                      ],
+                                    ),
+                                    15.0.height,
+                                  ],
+                                ),
                               ),
-                            ),
-                          );
-                        })
+                            );
+                          }),
+                    )
                     : const Center(child: Text('No Products')),
             floatingActionButton: FloatingActionButton(
               tooltip: 'Add Product',
+              mini: true,
               elevation: 0.0,
               backgroundColor: kStorage.read(kUserType) == 'Seller'
                   ? kTealColor
