@@ -11,6 +11,7 @@ import '../../profile_screen.dart';
 import 'building_type_screen.dart';
 import 'cart_screen.dart';
 import 'user_order_Screen.dart';
+import 'user_search_screen.dart';
 
 class UserMainScreen extends StatelessWidget {
   const UserMainScreen({Key? key}) : super(key: key);
@@ -21,6 +22,10 @@ class UserMainScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Amenities'),
         actions: [
+          IconButton(onPressed: (){
+              Get.to(() => const UserSearchScreen());
+          },
+              icon: const Icon(Icons.search)),
           GestureDetector(
             onTap: (){
               Get.to(() => const CartScreen());
