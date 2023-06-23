@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class EstimationController extends GetxController {
-
   final residentialAreaFormKey = GlobalKey<FormState>();
 
   String? chooseAreaValue;
@@ -27,19 +26,19 @@ class EstimationController extends GetxController {
     update();
   }
 
-  int? chooseFloorValue;
-  List<int> floorList = [
-    1,
-    2,
+  String? chooseFloorValue;
+  List<String> floorList = [
+    "Ground Floor",
+    '1',
+    '2',
   ];
-  void chooseFloor(int? value) {
+  void chooseFloor(String? value) {
     chooseFloorValue = value;
     if (value != null) {
       log('selectedValue $chooseFloorValue');
     }
     update();
   }
-
 
   List<String> Kitchen = [
     "None",
@@ -53,6 +52,7 @@ class EstimationController extends GetxController {
     }
     update();
   }
+
   List<String> DrawingRoom = [
     "None",
     "One",
@@ -65,6 +65,7 @@ class EstimationController extends GetxController {
     }
     update();
   }
+
   List<String> TvLounch = [
     "None",
     "One",
@@ -78,8 +79,6 @@ class EstimationController extends GetxController {
     update();
   }
 
-
-
   void chooseDrawingRoom2(String? value) {
     chooseDrawingRoom2Value = value;
     if (value != null) {
@@ -87,6 +86,7 @@ class EstimationController extends GetxController {
     }
     update();
   }
+
   List<String> DrawingRoom2 = [
     "None",
     "One",
@@ -119,14 +119,69 @@ class EstimationController extends GetxController {
     update();
   }
 
+  String? chooseGroundFloorValue;
+  List<String> GroundFloorList = [
+    "Ground Floor",
+    '1',
+    '2',
+  ];
+  void chooseGroundFloor(String? value) {
+    chooseGroundFloorValue = value;
+    if (value != null) {
+      log('selectedValue $chooseGroundFloorValue');
+    }
+    update();
+  }
+
+  List<String> GroundFloorKitchen = [
+    "None",
+    "One",
+  ];
+  String? chooseGroundFloorKitchenValue;
+  void chooseGroundFloorKitchen(String? value) {
+    chooseGroundFloorKitchenValue = value;
+    if (value != null) {
+      log('selectedValue $chooseGroundFloorKitchenValue');
+    }
+    update();
+  }
+
+  List<String> GroundFloorDrawingRoom = [
+    "None",
+    "One",
+  ];
+  String? chooseGroundFloorDrawingRoomValue;
+  void chooseGroundFloorDrawingRoom(String? value) {
+    chooseGroundFloorDrawingRoomValue = value;
+    if (value != null) {
+      log('selectedValue $chooseGroundFloorDrawingRoomValue');
+    }
+    update();
+  }
+
+  List<String> GroundFloorTvLounch = [
+    "None",
+    "One",
+  ];
+  String? chooseGroundFloorTvLounchValue;
+  void chooseGroundFloorTvLounch(String? value) {
+    chooseGroundFloorTvLounchValue = value;
+    if (value != null) {
+      log('selectedValue $chooseGroundFloorTvLounchValue');
+    }
+    update();
+  }
+
+  /// groundFloor controller
+  TextEditingController groundFloorTotalRoom = TextEditingController();
+  TextEditingController groundFloorWashroomController = TextEditingController();
+
   /// firstFloor controller
   TextEditingController firstFloorTotalRoom = TextEditingController();
-  TextEditingController firstFloorKitchenController = TextEditingController();
   TextEditingController firstFloorWashroomController = TextEditingController();
 
   /// secondFloor controller
   TextEditingController secondFloorRoomController = TextEditingController();
-  TextEditingController secondFloorKitchenController = TextEditingController();
   TextEditingController secondFloorWashroomController = TextEditingController();
 
   int estimatedBricks = 0;
@@ -136,7 +191,7 @@ class EstimationController extends GetxController {
   int estimatedCement = 0;
   Future calculateEstimation() async {
     if (chooseAreaValue != null) {
-      String intValue = chooseAreaValue!.split(' ')[0];
+      String intValue = chooseAreaValue!.split('')[0];
       int selectedValue = int.tryParse(intValue) ?? 0;
       double conversionFactor = 1.0;
       if (chooseAreaValue!.contains("Kanal")) {
@@ -144,31 +199,47 @@ class EstimationController extends GetxController {
         conversionFactor = 20.0;
       }
       double areaInMarla = selectedValue * conversionFactor;
-      if (chooseFloorValue == 1) {
+      if(chooseFloorValue == 'Ground Floor'){
+        int groundRoom = int.parse(groundFloorTotalRoom.text) ?? 0;
+        int groundWashroom = int.parse(groundFloorWashroomController.text) ?? 0;
+
+        // Calculate estimation for first floor
+        estimatedBricks = (areaInMarla  * groundRoom * groundWashroom * 1000).toInt();
+        estimatedSand = (areaInMarla  * groundRoom * groundWashroom * 10).toInt();
+        estimatedGravel = (areaInMarla  * groundRoom * groundWashroom* 20).toInt();
+        estimatedIronRod = (areaInMarla  * groundRoom *groundWashroom * 25).toInt();
+        estimatedCement = (areaInMarla  * groundRoom * groundWashroom * 10).toInt();
+
+
+      }
+
+      else if (chooseFloorValue == '1') {
+        int groundRoom = int.parse(groundFloorTotalRoom.text) ?? 0;
+        int groundWashroom = int.parse(groundFloorWashroomController.text) ?? 0;
         int totalRooms = int.tryParse(firstFloorTotalRoom.text) ?? 0;
-        int totalKitchen = int.tryParse(firstFloorKitchenController.text) ?? 0;
         int totalWashroom = int.tryParse(firstFloorWashroomController.text) ?? 0;
 
-
-        // Calculate estimation for 1 floor
-        estimatedBricks = (areaInMarla * totalRooms * totalKitchen * totalWashroom * 1000).toInt();
-        estimatedSand = (areaInMarla * totalRooms * totalKitchen * totalWashroom * 10).toInt();
-        estimatedGravel = (areaInMarla * totalRooms * totalKitchen * totalWashroom * 20).toInt();
-        estimatedIronRod = (areaInMarla * totalRooms * totalKitchen * totalWashroom * 25).toInt();
-        estimatedCement = (areaInMarla * totalRooms * totalKitchen * totalWashroom * 10).toInt();
-      } else if (chooseFloorValue == 2) {
+        // Calculate estimation for first floor
+        estimatedBricks = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom) * 1000).toInt();
+        estimatedSand = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom) * 10).toInt();
+        estimatedGravel = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom) * 20).toInt();
+        estimatedIronRod = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom) * 25).toInt();
+        estimatedCement = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom) * 10).toInt();
+      }
+      else if (chooseFloorValue == '2') {
+        int groundRoom = int.parse(groundFloorTotalRoom.text) ?? 0;
+        int groundWashroom = int.parse(groundFloorWashroomController.text) ?? 0;
         int firstFloorTotalRooms = int.tryParse(firstFloorTotalRoom.text) ?? 0;
         int secondFloorTotalRooms = int.tryParse(secondFloorRoomController.text) ?? 0;
-        int firstFloorKitchen = int.tryParse(firstFloorKitchenController.text) ?? 0;
-        int secondFloorKitchen = int.tryParse(secondFloorKitchenController.text) ?? 0;
         int firstFloorWashroom = int.tryParse(firstFloorWashroomController.text) ?? 0;
         int secondFloorWashroom = int.tryParse(secondFloorWashroomController.text) ?? 0;
-        // Calculate estimation for 2 floors
-        estimatedBricks = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorKitchen + secondFloorKitchen + firstFloorWashroom + secondFloorWashroom) * 1000).toInt();
-        estimatedSand = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorKitchen + secondFloorKitchen + firstFloorWashroom + secondFloorWashroom) * 10).toInt();
-        estimatedGravel = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms+ firstFloorKitchen + secondFloorKitchen + firstFloorWashroom + secondFloorWashroom) * 20).toInt();
-        estimatedIronRod = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms+ firstFloorKitchen + secondFloorKitchen + firstFloorWashroom + secondFloorWashroom) * 25).toInt();
-        estimatedCement = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms+ firstFloorKitchen + secondFloorKitchen + firstFloorWashroom + secondFloorWashroom) * 10).toInt();
+
+        // Calculate estimation for second floor
+        estimatedBricks = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom) * 1000).toInt();
+        estimatedSand = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom) * 10).toInt();
+        estimatedGravel = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom) * 20).toInt();
+        estimatedIronRod = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom) * 25).toInt();
+        estimatedCement = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom) * 10).toInt();
       }
       log('Estimated Bricks: $estimatedBricks');
       log('Estimated Sand: $estimatedSand');
@@ -183,8 +254,6 @@ class EstimationController extends GetxController {
     super.dispose();
     firstFloorTotalRoom.clear();
     secondFloorRoomController.clear();
-    firstFloorKitchenController.clear();
-    secondFloorKitchenController.clear();
     firstFloorWashroomController.clear();
     secondFloorWashroomController.clear();
     chooseFloorValue = null;

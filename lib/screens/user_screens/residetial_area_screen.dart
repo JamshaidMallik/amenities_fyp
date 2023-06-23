@@ -82,12 +82,276 @@ class ResidentialAreaScreen extends StatelessWidget {
                             }).toList(),
                             value: c.chooseFloorValue,
                             onChanged: (newValue)=> c.chooseFloor(newValue)),
+                        if(c.chooseFloorValue ==  'Ground Floor')
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            15.0.height,
+                            const Divider(),
+                            15.0.height,
+                            Text('Enter Ground Floor Detail', style: kHeadingText.copyWith(fontSize: 12.0),),
+                            20.0.height,
+                            customTextFieldForEstimation(
+                              hintText: 'Numbers of Room',
+                              controller: c.groundFloorTotalRoom,
+                              keyboardType: TextInputType.number,
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return 'Please Enter Ground Floor Room';
+                                }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! < 2){
+                                  return 'Enter Minimum 2 Room';
+                                }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! > 3){
+                                  return 'Enter Maximum 3 Room';
+                                }
+                                else if(c.chooseAreaValue == '4 Marla' && int.tryParse(value)! < 2){
+                                  return 'Enter Minimum 2 Room';
+                                }else if(c.chooseAreaValue == '4 Marla' && int.tryParse(value)! > 3){
+                                  return 'Enter Maximum 3 Room';
+                                }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! < 2){
+                                  return 'Enter Minimum 2 Room';
+                                }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! > 4){
+                                  return 'Enter Maximum 4 Room';
+                                }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! < 2){
+                                  return 'Enter Minimum 2 Room';
+                                }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! > 4){
+                                  return 'Enter Maximum 4 Room';
+                                }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! < 2){
+                                  return 'Enter Minimum 2 Room';
+                                }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! > 4){
+                                  return 'Enter Maximum 4 Room';
+                                }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! < 3){
+                                  return 'Enter Minimum 3 Room';
+                                }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! > 5){
+                                  return 'Enter Maximum 5 Room';
+                                }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! < 3){
+                                  return 'Enter Minimum 3 Room';
+                                }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! > 5){
+                                  return 'Enter Maximum 5 Room';
+                                }
+                                return null;
+                              },
+                            ),
+                            20.0.height,
+                            customTextFieldForEstimation(
+                              hintText: 'Numbers of Washroom',
+                              controller: c.groundFloorWashroomController,
+                              keyboardType: TextInputType.number,
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return 'Please Enter Ground Floor Total Washroom';
+                                }else if(int.parse(value) > int.parse(c.groundFloorTotalRoom.text)){
+                                  return 'Number of washrooms cant exceed number of rooms';
+                                }
+                                return null;
+                              },
+                            ),
+                            20.0.height,
+                            DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                ),
+                                hint: const Text("Numbers of Kitchen"),
+                                items: c.GroundFloorKitchen.map((chooseGroundFloorKitchenValue){
+                                  return DropdownMenuItem(
+                                    value: chooseGroundFloorKitchenValue.toString(),
+                                    child: Text(chooseGroundFloorKitchenValue.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                  );
+                                }).toList(),
+                                value: c.chooseGroundFloorKitchenValue,
+                                onChanged: (newValue)=> c.chooseGroundFloorKitchen(newValue.toString())),
 
+                            20.0.height,
+                            DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                ),
+                                hint: const Text("Drawing Room"),
+                                items: c.GroundFloorDrawingRoom.map((GroundFloordrawingValues){
+                                  return DropdownMenuItem(
+                                    value: GroundFloordrawingValues.toString(),
+                                    child: Text(GroundFloordrawingValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                  );
+                                }).toList(),
+                                value: c.chooseGroundFloorDrawingRoomValue,
+                                onChanged: (newValue)=> c.chooseGroundFloorDrawingRoom(newValue.toString())),
+                            20.0.height,
+                            DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(color: kPrimaryColor),
+                                  ),
+                                ),
+                                hint: const Text("Tv Lounch"),
+                                items: c.GroundFloorTvLounch.map((GroundFloorTvLounchValues){
+                                  return DropdownMenuItem(
+                                    value: GroundFloorTvLounchValues.toString(),
+                                    child: Text(GroundFloorTvLounchValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                  );
+                                }).toList(),
+                                value: c.chooseGroundFloorTvLounchValue,
+                                onChanged: (newValue)=> c.chooseGroundFloorTvLounch(newValue.toString())),
+                          ],
+                        ),
 
-                        if(c.chooseFloorValue ==  1)
+                        if(c.chooseFloorValue ==  '1')
+
                           Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            /// ground column
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                15.0.height,
+                                const Divider(),
+                                15.0.height,
+                                Text('Enter Ground Floor Detail', style: kHeadingText.copyWith(fontSize: 12.0),),
+                                20.0.height,
+                                customTextFieldForEstimation(
+                                  hintText: 'Numbers of Room',
+                                  controller: c.groundFloorTotalRoom,
+                                  keyboardType: TextInputType.number,
+                                  validator: (value){
+                                    if(value!.isEmpty){
+                                      return 'Please Enter Ground Floor Room';
+                                    }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! < 2){
+                                      return 'Enter Minimum 2 Room';
+                                    }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! > 3){
+                                      return 'Enter Maximum 3 Room';
+                                    }
+                                    else if(c.chooseAreaValue == '4 Marla' && int.tryParse(value)! < 2){
+                                      return 'Enter Minimum 2 Room';
+                                    }else if(c.chooseAreaValue == '4 Marla' && int.tryParse(value)! > 3){
+                                      return 'Enter Maximum 3 Room';
+                                    }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! < 2){
+                                      return 'Enter Minimum 2 Room';
+                                    }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! > 4){
+                                      return 'Enter Maximum 4 Room';
+                                    }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! < 2){
+                                      return 'Enter Minimum 2 Room';
+                                    }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! > 4){
+                                      return 'Enter Maximum 4 Room';
+                                    }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! < 2){
+                                      return 'Enter Minimum 2 Room';
+                                    }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! > 4){
+                                      return 'Enter Maximum 4 Room';
+                                    }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! < 3){
+                                      return 'Enter Minimum 3 Room';
+                                    }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! > 5){
+                                      return 'Enter Maximum 5 Room';
+                                    }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! < 3){
+                                      return 'Enter Minimum 3 Room';
+                                    }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! > 5){
+                                      return 'Enter Maximum 5 Room';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                20.0.height,
+                                customTextFieldForEstimation(
+                                  hintText: 'Numbers of Washroom',
+                                  controller: c.groundFloorWashroomController,
+                                  keyboardType: TextInputType.number,
+                                  validator: (value){
+                                    if(value!.isEmpty){
+                                      return 'Please Enter Ground Floor Total Washroom';
+                                    }else if(int.parse(value) > int.parse(c.groundFloorTotalRoom.text)){
+                                      return 'Number of washrooms cant exceed number of rooms';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                20.0.height,
+                                DropdownButtonFormField(
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(color: kPrimaryColor),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(color: kPrimaryColor),
+                                      ),
+                                    ),
+                                    hint: const Text("Numbers of Kitchen"),
+                                    items: c.GroundFloorKitchen.map((chooseGroundFloorKitchenValue){
+                                      return DropdownMenuItem(
+                                        value: chooseGroundFloorKitchenValue.toString(),
+                                        child: Text(chooseGroundFloorKitchenValue.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                      );
+                                    }).toList(),
+                                    value: c.chooseGroundFloorKitchenValue,
+                                    onChanged: (newValue)=> c.chooseGroundFloorKitchen(newValue.toString())),
+
+                                20.0.height,
+                                DropdownButtonFormField(
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(color: kPrimaryColor),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(color: kPrimaryColor),
+                                      ),
+                                    ),
+                                    hint: const Text("Drawing Room"),
+                                    items: c.GroundFloorDrawingRoom.map((GroundFloordrawingValues){
+                                      return DropdownMenuItem(
+                                        value: GroundFloordrawingValues.toString(),
+                                        child: Text(GroundFloordrawingValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                      );
+                                    }).toList(),
+                                    value: c.chooseGroundFloorDrawingRoomValue,
+                                    onChanged: (newValue)=> c.chooseGroundFloorDrawingRoom(newValue.toString())),
+                                20.0.height,
+                                DropdownButtonFormField(
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(color: kPrimaryColor),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(color: kPrimaryColor),
+                                      ),
+                                    ),
+                                    hint: const Text("Tv Lounch"),
+                                    items: c.GroundFloorTvLounch.map((GroundFloorTvLounchValues){
+                                      return DropdownMenuItem(
+                                        value: GroundFloorTvLounchValues.toString(),
+                                        child: Text(GroundFloorTvLounchValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                      );
+                                    }).toList(),
+                                    value: c.chooseGroundFloorTvLounchValue,
+                                    onChanged: (newValue)=> c.chooseGroundFloorTvLounch(newValue.toString())),
+                              ],
+                            ),
                             15.0.height,
                             const Divider(),
                             15.0.height,
@@ -218,20 +482,149 @@ class ResidentialAreaScreen extends StatelessWidget {
                         ),
 
 
-
-
-
-                        if(c.chooseFloorValue == 2)
+                        if(c.chooseFloorValue == '2')
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               15.0.height,
+                              /// ground column
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   15.0.height,
                                   const Divider(),
                                   15.0.height,
+                                  Text('Enter Ground Floor Detail', style: kHeadingText.copyWith(fontSize: 12.0),),
+                                  20.0.height,
+                                  customTextFieldForEstimation(
+                                    hintText: 'Numbers of Room',
+                                    controller: c.groundFloorTotalRoom,
+                                    keyboardType: TextInputType.number,
+                                    validator: (value){
+                                      if(value!.isEmpty){
+                                        return 'Please Enter Ground Floor Room';
+                                      }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! < 2){
+                                        return 'Enter Minimum 2 Room';
+                                      }else if(c.chooseAreaValue == '3 Marla' && int.tryParse(value)! > 3){
+                                        return 'Enter Maximum 3 Room';
+                                      }
+                                      else if(c.chooseAreaValue == '4 Marla' && int.tryParse(value)! < 2){
+                                        return 'Enter Minimum 2 Room';
+                                      }else if(c.chooseAreaValue == '4 Marla' && int.tryParse(value)! > 3){
+                                        return 'Enter Maximum 3 Room';
+                                      }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! < 2){
+                                        return 'Enter Minimum 2 Room';
+                                      }else if(c.chooseAreaValue == '5 Marla'  && int.tryParse(value)! > 4){
+                                        return 'Enter Maximum 4 Room';
+                                      }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! < 2){
+                                        return 'Enter Minimum 2 Room';
+                                      }else if(c.chooseAreaValue == '7 Marla'  && int.tryParse(value)! > 4){
+                                        return 'Enter Maximum 4 Room';
+                                      }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! < 2){
+                                        return 'Enter Minimum 2 Room';
+                                      }else if(c.chooseAreaValue == '10 Marla'  && int.tryParse(value)! > 4){
+                                        return 'Enter Maximum 4 Room';
+                                      }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! < 3){
+                                        return 'Enter Minimum 3 Room';
+                                      }else if(c.chooseAreaValue == '1 Kanal'  && int.tryParse(value)! > 5){
+                                        return 'Enter Maximum 5 Room';
+                                      }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! < 3){
+                                        return 'Enter Minimum 3 Room';
+                                      }else if(c.chooseAreaValue == '2 Kanal'  && int.tryParse(value)! > 5){
+                                        return 'Enter Maximum 5 Room';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  20.0.height,
+                                  customTextFieldForEstimation(
+                                    hintText: 'Numbers of Washroom',
+                                    controller: c.groundFloorWashroomController,
+                                    keyboardType: TextInputType.number,
+                                    validator: (value){
+                                      if(value!.isEmpty){
+                                        return 'Please Enter Ground Floor Total Washroom';
+                                      }else if(int.parse(value) > int.parse(c.groundFloorTotalRoom.text)){
+                                        return 'Number of washrooms cant exceed number of rooms';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  20.0.height,
+                                  DropdownButtonFormField(
+                                      decoration: InputDecoration(
+                                        contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                      ),
+                                      hint: const Text("Numbers of Kitchen"),
+                                      items: c.GroundFloorKitchen.map((chooseGroundFloorKitchenValue){
+                                        return DropdownMenuItem(
+                                          value: chooseGroundFloorKitchenValue.toString(),
+                                          child: Text(chooseGroundFloorKitchenValue.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                        );
+                                      }).toList(),
+                                      value: c.chooseGroundFloorKitchenValue,
+                                      onChanged: (newValue)=> c.chooseGroundFloorKitchen(newValue.toString())),
+
+                                  20.0.height,
+                                  DropdownButtonFormField(
+                                      decoration: InputDecoration(
+                                        contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                      ),
+                                      hint: const Text("Drawing Room"),
+                                      items: c.GroundFloorDrawingRoom.map((GroundFloordrawingValues){
+                                        return DropdownMenuItem(
+                                          value: GroundFloordrawingValues.toString(),
+                                          child: Text(GroundFloordrawingValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                        );
+                                      }).toList(),
+                                      value: c.chooseGroundFloorDrawingRoomValue,
+                                      onChanged: (newValue)=> c.chooseGroundFloorDrawingRoom(newValue.toString())),
+                                  20.0.height,
+                                  DropdownButtonFormField(
+                                      decoration: InputDecoration(
+                                        contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(50),
+                                          borderSide: const BorderSide(color: kPrimaryColor),
+                                        ),
+                                      ),
+                                      hint: const Text("Tv Lounch"),
+                                      items: c.GroundFloorTvLounch.map((GroundFloorTvLounchValues){
+                                        return DropdownMenuItem(
+                                          value: GroundFloorTvLounchValues.toString(),
+                                          child: Text(GroundFloorTvLounchValues.toString(), style:kPrimaryText.copyWith(fontSize: 14.0),),
+                                        );
+                                      }).toList(),
+                                      value: c.chooseGroundFloorTvLounchValue,
+                                      onChanged: (newValue)=> c.chooseGroundFloorTvLounch(newValue.toString())),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  10.0.height,
+                                  const Divider(),
+                                  10.0.height,
                                   Text('Enter First Floor Detail', style: kHeadingText.copyWith(fontSize: 12.0),),
                                   20.0.height,
                                   customTextFieldForEstimation(
@@ -497,43 +890,99 @@ class ResidentialAreaScreen extends StatelessWidget {
                       colorText: Colors.white,
                         'Alert!', 'Please Select Area');
                     return;
-                  }else if(c.chooseFloorValue == null){
+                  }
+                  else if(c.chooseFloorValue == null){
                     Get.snackbar(
                         colorText: Colors.white,
                         'Alert!', 'Please Select Floor');
                     return;
-                  }else if(c.chooseKitchenValue == null){
+                  }
+
+                  /// ground floor value start
+                  else if(c.chooseGroundFloorKitchenValue == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Ground Floor Kitchen Value');
+                    return;
+                  }
+                  else if(c.chooseGroundFloorTvLounchValue == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Ground Floor Tv lounch Value');
+                    return;
+                  }
+                  else if(c.chooseGroundFloorDrawingRoomValue == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Ground Floor drawing room Value');
+                    return;
+                  }
+                  /// ground floor value end
+
+
+                  /// first floor value start
+                  else if(c.chooseKitchenValue == '1' && c.chooseKitchenValue == null){
                     Get.snackbar(
                         colorText: Colors.white,
                         'Alert!', 'Please Select Kitchen Value');
                     return;
-                  }else if(c.chooseTvLounchValue == null){
+                  }
+                  else if(c.chooseKitchenValue == '1' && c.chooseTvLounchValue == null){
                     Get.snackbar(
                         colorText: Colors.white,
                         'Alert!', 'Please Select Tv lounch Value');
                     return;
-                  }else if(c.chooseDrawingRoomValue == null){
+                  }
+                  else if(c.chooseKitchenValue == '1' && c.chooseDrawingRoomValue == null){
                     Get.snackbar(
                         colorText: Colors.white,
                         'Alert!', 'Please Select drawing room Value');
                     return;
-                  }else if(c.chooseFloorValue == 2 && c.chooseKitchen2Value == null){
+                  }
+
+                  /// ground values
+                  else if(c.chooseKitchenValue == '1' && c.chooseGroundFloorKitchenValue == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Ground floor Kitchen Value');
+                    return;
+                  }
+                  else if(c.chooseTvLounchValue == '1' && c.chooseGroundFloorTvLounchValue == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Ground floor Tv lounch Value');
+                    return;
+                  }
+                  else if(c.chooseDrawingRoomValue == '1' && c.chooseGroundFloorDrawingRoomValue == null){
+                    Get.snackbar(
+                        colorText: Colors.white,
+                        'Alert!', 'Please Select Ground floor drawing room Value');
+                    return;
+                  }
+
+                  /// first floor value end
+
+
+                  /// second floor value start
+                  else if(c.chooseFloorValue == '2' && c.chooseKitchen2Value == null){
                     Get.snackbar(
                         colorText: Colors.white,
                         'Alert!', 'Please Select Second Floor Kitchen Value');
                     return;
-                  }else if(c.chooseFloorValue == 2 && c.chooseDrawingRoom2Value == null){
+                  }
+                  else if(c.chooseFloorValue == '2' && c.chooseDrawingRoom2Value == null){
                     Get.snackbar(
                         colorText: Colors.white,
                         'Alert!', 'Please Select Second Floor Drawing Room Value');
                     return;
-                  }else if(c.chooseFloorValue == 2 && c.chooseTvLounch2Value == null){
+                  }
+                  else if(c.chooseFloorValue == '2' && c.chooseTvLounch2Value == null){
                     Get.snackbar(
                         colorText: Colors.white,
                         'Alert!', 'Please Select Second Floor Tv lounch Value');
                     return;
                   }
-
+                  /// second floor value end
                   else{
                     await c.calculateEstimation();
                     Get.to(()=> const EstimateResultScreen());
