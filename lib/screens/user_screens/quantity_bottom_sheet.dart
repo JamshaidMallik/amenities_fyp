@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../constant.dart';
 import '../../controller/product_controller.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../widgets/photo_view.dart';
 
 class MyBottomSheet extends StatelessWidget {
   final Product product;
@@ -36,6 +37,22 @@ class MyBottomSheet extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      GestureDetector(
+                        onTap: (){
+                          Get.to(()=> PhotoViewPage(product.image));
+                        },
+                        child: SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5.0),
+                            child: Image.network(
+                              product.image.toString(),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
                       Text(
                         'Product Name: ${product.productName}',
                         style: kSubHeadingText,
