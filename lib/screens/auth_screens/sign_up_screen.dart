@@ -155,9 +155,11 @@ class SignUpScreen extends GetView<AuthController> {
                   press: () async {
                     if (controller.selectedUserType == '') {
                       kShowSnackBar(context: context, message: 'Please Select User Type', isSuccess: false);
-                    } else if (controller.image == null) {
-                      kShowSnackBar(context: context, message: 'Please select the image', isSuccess: false);
-                    } else {
+                    }
+                    // else if (controller.image == null) {
+                    //   kShowSnackBar(context: context, message: 'Please select the image', isSuccess: false);
+                    // }
+                    else {
                       await controller.signup();
                     }
                   }),

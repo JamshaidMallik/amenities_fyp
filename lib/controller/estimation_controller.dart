@@ -252,6 +252,7 @@ class EstimationController extends GetxController {
   @override
   void dispose() {
     super.dispose();
+    groundFloorTotalRoom.clear();
     firstFloorTotalRoom.clear();
     secondFloorRoomController.clear();
     firstFloorWashroomController.clear();
