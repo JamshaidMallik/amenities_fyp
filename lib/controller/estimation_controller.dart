@@ -22,6 +22,22 @@ class EstimationController extends GetxController {
       String intValue = value.split(' ')[0];
       int selectedValue = int.tryParse(intValue) ?? 0;
       log('selectedValue $selectedValue');
+      groundFloorTotalRoom.clear();
+      firstFloorTotalRoom.clear();
+      firstFloorTotalRoom.clear();
+      firstFloorWashroomController.clear();
+      secondFloorRoomController.clear();
+      firstFloorWashroomController.clear();
+      secondFloorWashroomController.clear();
+      chooseFloorValue = null;
+      chooseAreaValue = null;
+      chooseKitchenValue = null;
+      chooseDrawingRoomValue = null;
+      chooseTvLounchValue = null;
+      chooseKitchen2Value = null;
+      chooseDrawingRoom2Value = null;
+      chooseTvLounch2Value = null;
+
     }
     update();
   }
@@ -266,6 +282,8 @@ class EstimationController extends GetxController {
     super.dispose();
     groundFloorTotalRoom.clear();
     firstFloorTotalRoom.clear();
+    firstFloorTotalRoom.clear();
+    firstFloorWashroomController.clear();
     secondFloorRoomController.clear();
     firstFloorWashroomController.clear();
     secondFloorWashroomController.clear();
