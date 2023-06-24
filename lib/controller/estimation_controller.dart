@@ -205,16 +205,25 @@ class EstimationController extends GetxController {
         int groundWashroom = int.parse(groundFloorWashroomController.text) ?? 0;
         int totalRooms = int.tryParse(firstFloorTotalRoom.text) ?? 0;
         int totalWashroom = int.tryParse(firstFloorWashroomController.text) ?? 0;
-        int kitchenValue = chooseGroundFloorKitchenValue  == 'One'?  2 : 1;
-        int drawingRoomValue = chooseGroundFloorDrawingRoomValue  == 'One'?  2 : 1;
-        int tvLounchValue = chooseGroundFloorTvLounchValue  == 'One'?  2 : 1;
+
+        /// ground floor value
+        int kitchenValue1 = chooseGroundFloorKitchenValue  == 'One'?  2 : 1;
+        int drawingRoomValue1 = chooseGroundFloorDrawingRoomValue  == 'One'?  2 : 1;
+        int tvLounchValue1 = chooseGroundFloorTvLounchValue  == 'One'?  2 : 1;
+
+        /// first floor value
+        int firstFloorKitchenValue = chooseKitchenValue  == 'One'?  2 : 1;
+        int firstFloorDrawingRoomValue = chooseDrawingRoomValue  == 'One'?  2 : 1;
+        int firstFloorTvLounchValue = chooseTvLounchValue  == 'One'?  2 : 1;
+
+
 
         // Calculate estimation for first floor
-        estimatedBricks = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom + kitchenValue +drawingRoomValue +tvLounchValue) * 1000).toInt();
-        estimatedSand = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom + kitchenValue +drawingRoomValue +tvLounchValue) * 10).toInt();
-        estimatedGravel = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom + kitchenValue +drawingRoomValue +tvLounchValue) * 20).toInt();
-        estimatedIronRod = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom + kitchenValue +drawingRoomValue +tvLounchValue) * 25).toInt();
-        estimatedCement = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom + kitchenValue +drawingRoomValue +tvLounchValue) * 10).toInt();
+        estimatedBricks = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom + kitchenValue1 +drawingRoomValue1 +tvLounchValue1 +firstFloorKitchenValue + firstFloorDrawingRoomValue + firstFloorTvLounchValue ) * 1000).toInt();
+        estimatedSand = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom + kitchenValue1 +drawingRoomValue1 +tvLounchValue1+firstFloorKitchenValue + firstFloorDrawingRoomValue + firstFloorTvLounchValue) * 10).toInt();
+        estimatedGravel = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom + kitchenValue1 +drawingRoomValue1 +tvLounchValue1+firstFloorKitchenValue + firstFloorDrawingRoomValue + firstFloorTvLounchValue) * 20).toInt();
+        estimatedIronRod = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom + kitchenValue1 +drawingRoomValue1 +tvLounchValue1+firstFloorKitchenValue + firstFloorDrawingRoomValue + firstFloorTvLounchValue) * 25).toInt();
+        estimatedCement = (areaInMarla * (totalRooms + groundRoom + groundWashroom + totalWashroom + kitchenValue1 +drawingRoomValue1 +tvLounchValue1+firstFloorKitchenValue + firstFloorDrawingRoomValue + firstFloorTvLounchValue) * 10).toInt();
       }
       else if (chooseFloorValue == '2') {
         int groundRoom = int.parse(groundFloorTotalRoom.text) ?? 0;
@@ -223,17 +232,26 @@ class EstimationController extends GetxController {
         int secondFloorTotalRooms = int.tryParse(secondFloorRoomController.text) ?? 0;
         int firstFloorWashroom = int.tryParse(firstFloorWashroomController.text) ?? 0;
         int secondFloorWashroom = int.tryParse(secondFloorWashroomController.text) ?? 0;
-        int kitchenValue = chooseGroundFloorKitchenValue  == 'One'?  2 : 1;
-        int drawingRoomValue = chooseGroundFloorDrawingRoomValue  == 'One'?  2 : 1;
-        int tvLounchValue = chooseGroundFloorTvLounchValue  == 'One'?  2 : 1;
+        /// ground floor values
+        int kitchenValue2 = chooseGroundFloorKitchenValue  == 'One'?  2 : 1;
+        int drawingRoomValue2 = chooseGroundFloorDrawingRoomValue  == 'One'?  2 : 1;
+        int tvLounchValue2 = chooseGroundFloorTvLounchValue  == 'One'?  2 : 1;
 
+        /// first floor values
+        int firstFloorKitchenValue = chooseKitchenValue  == 'One'?  2 : 1;
+        int firstFloorDrawingRoomValue = chooseDrawingRoomValue  == 'One'?  2 : 1;
+        int firstFloorTvLounchValue = chooseTvLounchValue  == 'One'?  2 : 1;
+        /// second floor values
+        int firstFloorKitchenValue2 = chooseKitchen2Value  == 'One'?  2 : 1;
+        int firstFloorDrawingRoomValue2 = chooseDrawingRoom2Value  == 'One'?  2 : 1;
+        int firstFloorTvLounchValue2 = chooseTvLounch2Value  == 'One'?  2 : 1;
 
         // Calculate estimation for second floor
-        estimatedBricks = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom + kitchenValue +drawingRoomValue +tvLounchValue) * 1000).toInt();
-        estimatedSand = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom + kitchenValue +drawingRoomValue +tvLounchValue) * 10).toInt();
-        estimatedGravel = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom + kitchenValue +drawingRoomValue +tvLounchValue) * 20).toInt();
-        estimatedIronRod = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom + kitchenValue +drawingRoomValue +tvLounchValue) * 25).toInt();
-        estimatedCement = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom + kitchenValue +drawingRoomValue +tvLounchValue) * 10).toInt();
+        estimatedBricks = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom + kitchenValue2 +drawingRoomValue2 +tvLounchValue2 +firstFloorKitchenValue + firstFloorDrawingRoomValue + firstFloorTvLounchValue+firstFloorKitchenValue2 + firstFloorDrawingRoomValue2+firstFloorTvLounchValue2) * 1000).toInt();
+        estimatedSand = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom + kitchenValue2 +drawingRoomValue2 +tvLounchValue2+firstFloorKitchenValue + firstFloorDrawingRoomValue + firstFloorTvLounchValue+firstFloorKitchenValue2 + firstFloorDrawingRoomValue2+firstFloorTvLounchValue2) * 10).toInt();
+        estimatedGravel = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom + kitchenValue2 +drawingRoomValue2 +tvLounchValue2+firstFloorKitchenValue + firstFloorDrawingRoomValue + firstFloorTvLounchValue+firstFloorKitchenValue2 + firstFloorDrawingRoomValue2+firstFloorTvLounchValue2) * 20).toInt();
+        estimatedIronRod = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom + kitchenValue2 +drawingRoomValue2 +tvLounchValue2+firstFloorKitchenValue + firstFloorDrawingRoomValue + firstFloorTvLounchValue+firstFloorKitchenValue2 + firstFloorDrawingRoomValue2+firstFloorTvLounchValue2) * 25).toInt();
+        estimatedCement = (areaInMarla * (firstFloorTotalRooms + secondFloorTotalRooms + firstFloorWashroom + secondFloorWashroom + groundRoom + groundWashroom + kitchenValue2 +drawingRoomValue2 +tvLounchValue2+firstFloorKitchenValue + firstFloorDrawingRoomValue + firstFloorTvLounchValue+firstFloorKitchenValue2 + firstFloorDrawingRoomValue2+firstFloorTvLounchValue2) * 10).toInt();
       }
       log('Estimated Bricks: $estimatedBricks');
       log('Estimated Sand: $estimatedSand');
