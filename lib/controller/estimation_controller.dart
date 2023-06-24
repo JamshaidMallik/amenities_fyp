@@ -271,5 +271,11 @@ class EstimationController extends GetxController {
     secondFloorWashroomController.clear();
     chooseFloorValue = null;
     chooseAreaValue = null;
+    chooseKitchenValue = null;
+    chooseDrawingRoomValue = null;
+    chooseTvLounchValue = null;
+    chooseKitchen2Value = null;
+    chooseDrawingRoom2Value = null;
+    chooseTvLounch2Value = null;
   }
 }

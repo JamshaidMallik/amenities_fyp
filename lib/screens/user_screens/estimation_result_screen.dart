@@ -131,22 +131,26 @@ class EstimateResultScreen extends StatelessWidget {
               ),
             ),
           ),
-          // bottomNavigationBar: Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: primarybutton(
-          //       btnText: 'Proceed to Order',
-          //       press: () {
-          //     c.firstFloorTotalRoom.clear();
-          //     c.secondFloorRoomController.clear();
-          //     c.firstFloorKitchenController.clear();
-          //     c.secondFloorKitchenController.clear();
-          //     c.firstFloorWashroomController.clear();
-          //     c.secondFloorWashroomController.clear();
-          //     c.chooseAreaValue = null;
-          //     c.chooseFloorValue = null;
-          //    Get.off(() => const UserMainScreen());
-          //   }),
-          // ),
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: primarybutton(
+                btnText: 'Proceed to Order',
+                press: () {
+              c.firstFloorTotalRoom.clear();
+              c.secondFloorRoomController.clear();
+              c.firstFloorWashroomController.clear();
+              c.secondFloorWashroomController.clear();
+              c.chooseAreaValue = null;
+              c.chooseFloorValue = null;
+              c.chooseKitchenValue = null;
+              c.chooseDrawingRoomValue = null;
+              c.chooseTvLounchValue = null;
+              c.chooseKitchen2Value = null;
+              c.chooseDrawingRoom2Value = null;
+              c.chooseTvLounch2Value = null;
+             Get.off(() => const UserMainScreen());
+            }),
+          ),
         );
       }
     );
