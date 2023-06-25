@@ -36,21 +36,11 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
               onChanged: (value) {
                 setState(() {
                   bool isNumeric = double.tryParse(value) != null;
-
                   if (isNumeric) {
-                    searchStream = kFireStore
-                        .collection(kProductCollection)
-                    .where('product_price', isGreaterThanOrEqualTo: value.toString())
-                        .snapshots();
+                    searchStream = kFireStore.collection(kProductCollection).where('product_price', isGreaterThanOrEqualTo: value.toString()).snapshots();
                   } else {
-                    searchStream = kFireStore
-                        .collection(kProductCollection)
-                        .where('uppercase_name', isGreaterThanOrEqualTo: value.toUpperCase())
-                        .snapshots();
+                    searchStream = kFireStore.collection(kProductCollection).where('uppercase_name', isGreaterThanOrEqualTo: value.toUpperCase()).snapshots();
                   }
-
-
-
                 });
               },
               style: const TextStyle(color: Colors.white),

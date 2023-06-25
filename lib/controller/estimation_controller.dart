@@ -23,6 +23,7 @@ class EstimationController extends GetxController {
       int selectedValue = int.tryParse(intValue) ?? 0;
       log('selectedValue $selectedValue');
       groundFloorTotalRoom.clear();
+      groundFloorWashroomController.clear();
       firstFloorTotalRoom.clear();
       firstFloorTotalRoom.clear();
       firstFloorWashroomController.clear();
@@ -30,7 +31,7 @@ class EstimationController extends GetxController {
       firstFloorWashroomController.clear();
       secondFloorWashroomController.clear();
       chooseFloorValue = null;
-      chooseAreaValue = null;
+      // chooseAreaValue = null;
       chooseKitchenValue = null;
       chooseDrawingRoomValue = null;
       chooseTvLounchValue = null;
