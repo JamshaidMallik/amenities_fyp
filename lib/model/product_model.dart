@@ -8,6 +8,8 @@ class Product {
   String userId;
   String image;
   String status;
+  String size;
+
 
   Product({
     required this.id,
@@ -17,6 +19,7 @@ class Product {
     required this.userId,
     required this.image,
     required this.status,
+required this.size,
   });
 
   Product.fromSnapshot(DocumentSnapshot snapshot)
@@ -26,5 +29,6 @@ class Product {
         price = snapshot['product_price'],
         userId = snapshot['userId'],
         image = snapshot['image'],
-        status = snapshot['status'];
+        status = snapshot['status'],
+        size = snapshot['size'];
 }

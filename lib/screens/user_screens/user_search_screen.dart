@@ -99,7 +99,7 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(product.productName, style: kSubHeadingText.copyWith(fontSize: 16.0),),
-                                          Text(product.price.toString(), style: kPrimaryGrayText.copyWith(fontSize: 15.0),),
+                                          Text('${product.price} ${product.size}', style: kPrimaryGrayText.copyWith(fontSize: 15.0),),
                                         ],
                                       ),
                                       const Spacer(),

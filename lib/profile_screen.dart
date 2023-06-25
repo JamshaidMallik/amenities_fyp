@@ -49,7 +49,7 @@ class ProfileScreen extends GetView<ProfileController> {
                                           child: CircleAvatar(
                                               radius: 60,
                                               backgroundColor: Colors.grey.shade100,
-                                              backgroundImage: CachedNetworkImageProvider(controller.userImage),
+                                              backgroundImage: CachedNetworkImageProvider(controller.userImage != ''? controller.userImage: 'https://t4.ftcdn.net/jpg/01/07/43/45/360_F_107434511_iarF2z88c6Ds6AlgtwotHSAktWCdYOn7.jpg'),
                                           ),
                                         ),
                                       ],

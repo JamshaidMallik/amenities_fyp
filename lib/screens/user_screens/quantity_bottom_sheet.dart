@@ -64,20 +64,6 @@ class MyBottomSheet extends StatelessWidget {
                             'Price: ${product.price}',
                             style: kSubHeadingText,
                           ),
-                          if (c.myCartQuantityController.text.isNotEmpty)
-                            Row(
-                              children: [
-                                Text(
-                                  'New Price: ',
-                                  style: kSubHeadingText,
-                                ),
-                                Text(
-                                  c.totalPrice.toString(),
-                                  style: kSubHeadingText.copyWith(
-                                      color: Colors.red),
-                                ),
-                              ],
-                            ),
                         ],
                       ),
                       10.0.height,
@@ -101,19 +87,6 @@ class MyBottomSheet extends StatelessWidget {
                             ),
                           ),
                           10.0.width,
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: kPrimaryColor,
-                              primary: kWhiteColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50.0),
-                              ),
-                            ),
-                            onPressed: () {
-                              c.totalPriceCount(product.price);
-                            },
-                            child: const Text('Save'),
-                          ),
                         ],
                       ),
                       10.0.height,
@@ -158,15 +131,6 @@ class MyBottomSheet extends StatelessWidget {
                                     colorText: kWhiteColor,
                                     duration: const Duration(seconds: 3),
                                   );
-                                } else if(c.totalPrice == null){
-                                  Get.snackbar(
-                                    "Important",
-                                    "Please Save Quantity First",
-                                    backgroundColor: Colors.red,
-                                    snackPosition: SnackPosition.TOP,
-                                    colorText: kWhiteColor,
-                                    duration: const Duration(seconds: 3),
-                                  );
                                 }
                                 else {
                                   c.addToCartItem(
@@ -177,7 +141,7 @@ class MyBottomSheet extends StatelessWidget {
                                     productUserId: product.userId,
                                     productImage: product.image,
                                     price: product.price,
-                                    totalPrice: c.totalPrice.toString(),
+                                    totalPrice: product.price,
                                   );
                                   c.myCartQuantityController.clear();
                                   Get.back();
