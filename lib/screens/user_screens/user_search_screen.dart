@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../constant.dart';
 import '../../controller/product_controller.dart';
 import '../../model/product_model.dart';
@@ -34,11 +35,22 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
             title: TextField(
               onChanged: (value) {
                 setState(() {
-                  searchStream = kFireStore
-                      .collection(kProductCollection)
-                      .where('uppercase_name', isGreaterThanOrEqualTo: value.toUpperCase())
-                  // .where('product_price', isGreaterThanOrEqualTo: value.toString())
-                      .snapshots();
+                  bool isNumeric = double.tryParse(value) != null;
+
+                  if (isNumeric) {
+                    searchStream = kFireStore
+                        .collection(kProductCollection)
+                    .where('product_price', isGreaterThanOrEqualTo: value.toString())
+                        .snapshots();
+                  } else {
+                    searchStream = kFireStore
+                        .collection(kProductCollection)
+                        .where('uppercase_name', isGreaterThanOrEqualTo: value.toUpperCase())
+                        .snapshots();
+                  }
+
+
+
                 });
               },
               style: const TextStyle(color: Colors.white),

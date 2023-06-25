@@ -10,7 +10,6 @@ import '../../constant.dart';
 import '../../model/product_model.dart';
 import '../../widgets/photo_view.dart';
 import '../user_screens/user_search_screen.dart';
-import '../../widgets/custom_text_field.dart';
 import 'seller_search_screen.dart';
 
 class SellerProductsScreen extends StatelessWidget {

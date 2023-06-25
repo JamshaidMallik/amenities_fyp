@@ -1,12 +1,12 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../constant.dart';
 import '../../controller/product_controller.dart';
 import '../../model/product_model.dart';
 import '../../widgets/photo_view.dart';
-import '../user_screens/quantity_bottom_sheet.dart';
 
 class SellerSearchScreen extends StatefulWidget {
   const SellerSearchScreen({Key? key}) : super(key: key);
@@ -35,10 +35,19 @@ class _SellerSearchScreenState extends State<SellerSearchScreen> {
               title: TextField(
                 onChanged: (value) {
                   setState(() {
-                    searchStream = kFireStore
-                        .collection(kProductCollection)
-                        .where('product_name', isGreaterThanOrEqualTo: value.toUpperCase())
-                        .snapshots();
+                    bool isNumeric = double.tryParse(value) != null;
+
+                    if (isNumeric) {
+                      searchStream = kFireStore
+                          .collection(kProductCollection)
+                          .where('product_price', isGreaterThanOrEqualTo: value.toString())
+                          .snapshots();
+                    } else {
+                      searchStream = kFireStore
+                          .collection(kProductCollection)
+                          .where('uppercase_name', isGreaterThanOrEqualTo: value.toUpperCase())
+                          .snapshots();
+                    }
                   });
                 },
                 style: const TextStyle(color: Colors.white),

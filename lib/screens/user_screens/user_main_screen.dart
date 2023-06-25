@@ -1,7 +1,6 @@
 import 'package:amenities_app/controller/product_controller.dart';
 import 'package:amenities_app/screens/user_screens/all_seller_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

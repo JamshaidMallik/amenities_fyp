@@ -5,7 +5,6 @@ import 'package:amenities_app/widgets/photo_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:photo_view/photo_view.dart';
 
 import 'widgets/button_widgets.dart';
 
