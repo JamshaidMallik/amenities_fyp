@@ -63,9 +63,11 @@ class AllProductScreen extends StatelessWidget {
                            ),
                            Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                             child: Row(
+                             child: Column(
+                               crossAxisAlignment: CrossAxisAlignment.start,
                                children: [
                                  Text(product.productName, style: kSubHeadingText.copyWith(fontSize: 18.0),),
+                                 Text('${product.price} ${product.size}', style: kPrimaryGrayText.copyWith(fontSize: 15.0),),
                                ],
                              ),
                            ),

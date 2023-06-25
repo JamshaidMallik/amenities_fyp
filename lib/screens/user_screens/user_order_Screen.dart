@@ -3,6 +3,8 @@ import 'package:amenities_app/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../widgets/photo_view.dart';
+
 class UserOrders extends StatelessWidget {
   const UserOrders({Key? key}) : super(key: key);
 
@@ -62,9 +64,14 @@ class UserOrders extends StatelessWidget {
                       Column(
                         children: item.products.map((product) {
                           return ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: kPrimaryColor,
-                              backgroundImage: NetworkImage(product['product_image']),
+                            leading: GestureDetector(
+                              onTap: (){
+                                Get.to(()=> PhotoViewPage(product['product_image']));
+                              },
+                              child: CircleAvatar(
+                                backgroundColor: kPrimaryColor,
+                                backgroundImage: NetworkImage(product['product_image']),
+                              ),
                             ),
                             title: Row(
                               children: [

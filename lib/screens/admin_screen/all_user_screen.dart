@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constant.dart';
+import '../../widgets/photo_view.dart';
 import '../seller_screens/seller_products_screen.dart';
 
 class AllUsersScreen extends StatelessWidget {
@@ -34,10 +35,15 @@ class AllUsersScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                CircleAvatar(
-                                  backgroundColor: kPrimaryColor,
-                                  maxRadius: 30,
-                                  backgroundImage: NetworkImage(users.userImage.toString()),
+                                GestureDetector(
+                                  onTap: (){
+                                    Get.to(()=> PhotoViewPage(users.userImage.toString()));
+                                  },
+                                  child: CircleAvatar(
+                                    backgroundColor: kPrimaryColor,
+                                    maxRadius: 30,
+                                    backgroundImage: NetworkImage(users.userImage.toString()),
+                                  ),
                                 ),
                                 10.0.width,
                                 Expanded(

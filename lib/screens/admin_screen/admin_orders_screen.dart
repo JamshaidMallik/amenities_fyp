@@ -4,6 +4,8 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../widgets/photo_view.dart';
+
 class AdminOrdersScreen extends StatelessWidget {
   const AdminOrdersScreen({Key? key}) : super(key: key);
 
@@ -106,9 +108,14 @@ class AdminOrdersScreen extends StatelessWidget {
                       Column(
                         children: item.products.map((product) {
                           return ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: kPrimaryColor,
-                              backgroundImage: NetworkImage(product['product_image']),
+                            leading: GestureDetector(
+                              onTap: (){
+                                  Get.to(()=> PhotoViewPage(product['product_image']));
+                              },
+                              child: CircleAvatar(
+                                backgroundColor: kPrimaryColor,
+                                backgroundImage: NetworkImage(product['product_image']),
+                              ),
                             ),
                             title: Row(
                               children: [
