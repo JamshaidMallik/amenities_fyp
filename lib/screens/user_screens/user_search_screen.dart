@@ -37,6 +37,7 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
                   searchStream = kFireStore
                       .collection(kProductCollection)
                       .where('uppercase_name', isGreaterThanOrEqualTo: value.toUpperCase())
+                  // .where('product_price', isGreaterThanOrEqualTo: value.toString())
                       .snapshots();
                 });
               },

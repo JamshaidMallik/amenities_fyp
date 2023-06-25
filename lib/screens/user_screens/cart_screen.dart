@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constant.dart';
 import '../../widgets/button_widgets.dart';
+import '../../widgets/photo_view.dart';
 import 'check_out_screen.dart';
 
 class CartScreen extends StatelessWidget {
@@ -58,58 +59,64 @@ class CartScreen extends StatelessWidget {
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.all(20.0),
-                                        child: Row(
-                                          children: [
-                                            CircleAvatar(
-                                              backgroundColor: kTealColor,
-                                              maxRadius: 30,
-                                              backgroundImage: NetworkImage(item.productImage),
-                                            ),
-                                            10.0.width,
-                                            Expanded(
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    item.name,
-                                                    style: kHeadingText,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text('Price:  ', style: kHeadingText.copyWith(fontSize: 12)),
-                                                      Text(item.price.toString(), style: kSecondaryText),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text('Quantity:  ', style: kHeadingText.copyWith(fontSize: 12)),
-                                                      Text(item.quantity, style: kSecondaryText),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text('Total Price:  ', style: kHeadingText.copyWith(fontSize: 12)),
-                                                      Text(item.totalPrice.toString(), style: kSecondaryText),
-                                                    ],
-                                                  ),
-                                                ],
+                                        child: GestureDetector(
+                                          onTap: (){
+                                            Get.to(()=> PhotoViewPage(item.productImage));
+                                          },
+                                          child: Row(
+                                            children: [
+                                              CircleAvatar(
+                                                backgroundColor: kTealColor,
+                                                maxRadius: 30,
+                                                backgroundImage: NetworkImage(item.productImage),
+
                                               ),
-                                            ),
-                                            MaterialButton(
-                                              color: kTealColor,
-                                              textColor: Colors.white,
-                                              onPressed: () {
-                                                Get.bottomSheet(
-                                                  CartPageBottomSheet(item),
-                                                );
-                                              },
-                                              child: Text(
-                                                'Edit',
-                                                style: kSecondaryText,
+                                              10.0.width,
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      item.name,
+                                                      style: kHeadingText,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text('Price:  ', style: kHeadingText.copyWith(fontSize: 12)),
+                                                        Text(item.price.toString(), style: kSecondaryText),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text('Quantity:  ', style: kHeadingText.copyWith(fontSize: 12)),
+                                                        Text(item.quantity, style: kSecondaryText),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text('Total Price:  ', style: kHeadingText.copyWith(fontSize: 12)),
+                                                        Text(item.totalPrice.toString(), style: kSecondaryText),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                              MaterialButton(
+                                                color: kTealColor,
+                                                textColor: Colors.white,
+                                                onPressed: () {
+                                                  Get.bottomSheet(
+                                                    CartPageBottomSheet(item),
+                                                  );
+                                                },
+                                                child: Text(
+                                                  'Edit',
+                                                  style: kSecondaryText,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       Positioned(
