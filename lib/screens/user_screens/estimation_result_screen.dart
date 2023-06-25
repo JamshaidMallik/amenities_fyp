@@ -136,8 +136,8 @@ class EstimateResultScreen extends StatelessWidget {
             child: primarybutton(
                 btnText: 'Proceed to Order',
                 press: () {
-                  c.groundFloorTotalRoom.clear();
-                  c.groundFloorWashroomController.clear();
+              c.groundFloorWashroomController.clear();
+              c.groundFloorTotalRoom.clear();
               c.firstFloorTotalRoom.clear();
               c.secondFloorRoomController.clear();
               c.firstFloorWashroomController.clear();

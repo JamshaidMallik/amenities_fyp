@@ -31,7 +31,6 @@ class EstimationController extends GetxController {
       firstFloorWashroomController.clear();
       secondFloorWashroomController.clear();
       chooseFloorValue = null;
-      // chooseAreaValue = null;
       chooseKitchenValue = null;
       chooseDrawingRoomValue = null;
       chooseTvLounchValue = null;
