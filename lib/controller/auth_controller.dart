@@ -41,6 +41,7 @@ class AuthController extends GetxController{
   RxBool isProductLoading = false.obs;
   final ImagePicker _picker = ImagePicker();
   File? image;
+  String? imageFetch;
   pickImage() async {
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
@@ -98,16 +99,17 @@ class AuthController extends GetxController{
     kShowLoading(Get.context!);
     try {
       userCredential = await auth.createUserWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text);
-      Get.back();
       if (userCredential?.user != null) {
-        String imageUrl = await uploadImageToStorage(image!); // Assign the result to imageUrl
+        if(image != null){
+           imageFetch = await uploadImageToStorage(image!);
+        }
         _firestore.collection(kUserCollection).doc(userCredential?.user!.uid).set({
           'user_id': userCredential?.user!.uid,
           'fullName': fullNameController.text,
           'email': userCredential?.user!.email,
           'user_type': selectedUserType.value,
           'created_at': DateTime.now(),
-          'user_image': imageUrl,
+          'user_image': imageFetch,
           'user_phone': phoneController.text,
         }).then((value) {
           kShowSnackBar(context: Get.context!, message: 'Account Created Successfully', isSuccess: true);
